@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Video Game Recommendation System"
 subtitle: "Proposal"
 author: 
-  - name: "Team Name - Team member 1, Team member 2,..."
+  - name: "Spencer Atchley (solo)"
     affiliations:
       - name: "College of Information Science, University of Arizona"
-description: "Project description"
+description: "Video Game Recommendation System"
 format:
   html:
     code-tools: true
@@ -31,9 +31,56 @@ import numpy as np
 #| label: load-dataset
 #| message: false
 ```
-#TODO: Testing commit
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+There are three primary data sets that will be used as part of this project:
+
+1. Video Game Sales
+  - Rank
+    - Ranking of overall sales
+  - Name
+    - The games name
+  - Platform
+    - Platform of the games release (i.e. PC,PS4, etc.)
+  - Year
+    - Year of the game's release
+  - Genre
+    - Genre of the game
+  - Publisher
+    - Publisher of the game
+  - NA_Sales
+    - Sales in North America (in millions)
+  - EU_Sales
+    - Sales in Europe (in millions)
+  - JP_Sales
+    - Sales in Japan (in millions)
+  - Other_Sales
+    - Sales in the rest of the world (in millions)
+  - Global_Sales
+    - Total worldwide sales.
+
+2. Video Game Reviews and Ratings
+  - Game Title
+    - The name of the video game (e.g., Super Mario Odyssey, FIFA 24)
+  - User Rating
+    - A numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.
+  - Age Group Target
+    - The primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).
+  - Price
+    - The retail price of the game (in USD), reflecting its market value at the time of purchase.
+  - Platform
+    - The gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).
+  - Requires Special Device
+    - Whether the game requires special hardware or accessories
+  - Developer
+    - The company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).
+  - Publisher
+    - The company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).
+  - Release Year
+    - The year the game was released to the public.
+  - Genre
+    - The category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).
+
+3. TODO: Determine synthetic data generation attributes
 
 Make sure to load the data and use inline code for some of this information.
 
