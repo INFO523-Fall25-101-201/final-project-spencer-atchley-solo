@@ -4141,26 +4141,248 @@ vertical-align: -.125em;
 
 
 <div id="load-pkgs" class="cell" data-message="false" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> random</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<div id="load-dataset" class="cell" data-message="false" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Loading in the two datasets.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>sales_df   <span class="op">=</span> pd.read_csv(<span class="st">&quot;./data/vgsales.csv&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>reviews_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;./data/video_game_reviews.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="view-datasets" class="cell" data-message="false" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Looking at some information about the two data sets.</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(sales_df.info())</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="bu">print</span>(reviews_df.info())</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(sales_df.head())</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="bu">print</span>(reviews_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 16598 entries, 0 to 16597
+Data columns (total 11 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   Rank          16598 non-null  int64  
+ 1   Name          16598 non-null  object 
+ 2   Platform      16598 non-null  object 
+ 3   Year          16327 non-null  float64
+ 4   Genre         16598 non-null  object 
+ 5   Publisher     16540 non-null  object 
+ 6   NA_Sales      16598 non-null  float64
+ 7   EU_Sales      16598 non-null  float64
+ 8   JP_Sales      16598 non-null  float64
+ 9   Other_Sales   16598 non-null  float64
+ 10  Global_Sales  16598 non-null  float64
+dtypes: float64(6), int64(1), object(4)
+memory usage: 1.4+ MB
+None
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 47774 entries, 0 to 47773
+Data columns (total 18 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   Game Title               47774 non-null  object 
+ 1   User Rating              47774 non-null  float64
+ 2   Age Group Targeted       47774 non-null  object 
+ 3   Price                    47774 non-null  float64
+ 4   Platform                 47774 non-null  object 
+ 5   Requires Special Device  47774 non-null  object 
+ 6   Developer                47774 non-null  object 
+ 7   Publisher                47774 non-null  object 
+ 8   Release Year             47774 non-null  int64  
+ 9   Genre                    47774 non-null  object 
+ 10  Multiplayer              47774 non-null  object 
+ 11  Game Length (Hours)      47774 non-null  float64
+ 12  Graphics Quality         47774 non-null  object 
+ 13  Soundtrack Quality       47774 non-null  object 
+ 14  Story Quality            47774 non-null  object 
+ 15  User Review Text         47774 non-null  object 
+ 16  Game Mode                47774 non-null  object 
+ 17  Min Number of Players    47774 non-null  int64  
+dtypes: float64(3), int64(2), object(13)
+memory usage: 6.6+ MB
+None
+   Rank                      Name Platform    Year         Genre Publisher  \
+0     1                Wii Sports      Wii  2006.0        Sports  Nintendo   
+1     2         Super Mario Bros.      NES  1985.0      Platform  Nintendo   
+2     3            Mario Kart Wii      Wii  2008.0        Racing  Nintendo   
+3     4         Wii Sports Resort      Wii  2009.0        Sports  Nintendo   
+4     5  Pokemon Red/Pokemon Blue       GB  1996.0  Role-Playing  Nintendo   
+
+   NA_Sales  EU_Sales  JP_Sales  Other_Sales  Global_Sales  
+0     41.49     29.02      3.77         8.46         82.74  
+1     29.08      3.58      6.81         0.77         40.24  
+2     15.85     12.88      3.79         3.31         35.82  
+3     15.75     11.01      3.28         2.96         33.00  
+4     11.27      8.89     10.22         1.00         31.37  
+           Game Title  User Rating Age Group Targeted  Price     Platform  \
+0  Grand Theft Auto V         36.4           All Ages  41.41           PC   
+1          The Sims 4         38.3             Adults  57.56           PC   
+2           Minecraft         26.8              Teens  44.93           PC   
+3   Bioshock Infinite         38.4           All Ages  48.29       Mobile   
+4     Half-Life: Alyx         30.1             Adults  55.49  PlayStation   
+
+  Requires Special Device   Developer        Publisher  Release Year  \
+0                      No  Game Freak       Innersloth          2015   
+1                      No    Nintendo  Electronic Arts          2015   
+2                     Yes      Bungie           Capcom          2012   
+3                     Yes  Game Freak         Nintendo          2015   
+4                     Yes  Game Freak       Epic Games          2022   
+
+       Genre Multiplayer  Game Length (Hours) Graphics Quality  \
+0  Adventure          No                 55.3           Medium   
+1    Shooter         Yes                 34.6              Low   
+2  Adventure         Yes                 13.9              Low   
+3     Sports          No                 41.9           Medium   
+4        RPG         Yes                 13.2             High   
+
+  Soundtrack Quality Story Quality  \
+0            Average          Poor   
+1               Poor          Poor   
+2               Good       Average   
+3               Good     Excellent   
+4               Poor          Good   
+
+                                User Review Text Game Mode  \
+0                 Solid game, but too many bugs.   Offline   
+1                 Solid game, but too many bugs.   Offline   
+2  Great game, but the graphics could be better.   Offline   
+3  Solid game, but the graphics could be better.    Online   
+4                 Great game, but too many bugs.   Offline   
+
+   Min Number of Players  
+0                      1  
+1                      3  
+2                      5  
+3                      4  
+4                      1  </code></pre>
+</div>
+</div>
+<div id="generating-users" class="cell" data-message="false" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Showcasing an example script of how I might generate the synthetic data for users.</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># First, loading in the unique platforms and game_titles from the sales dataframe.</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># In the actual project I will merge sales and reviews to get a more complete list of games that exist in both dataframes.</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>platforms <span class="op">=</span> sales_df[<span class="st">&quot;Platform&quot;</span>].unique().tolist()</span>
+<span id="cb5-6"><a href="#cb5-6"></a>game_titles <span class="op">=</span> sales_df[<span class="st">&quot;Name&quot;</span>].unique().tolist()</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># Helper data for random generation</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>genres <span class="op">=</span> [<span class="st">&quot;Action&quot;</span>, <span class="st">&quot;Adventure&quot;</span>, <span class="st">&quot;RPG&quot;</span>, <span class="st">&quot;Shooter&quot;</span>, <span class="st">&quot;Sports&quot;</span>, <span class="st">&quot;Puzzle&quot;</span>]</span>
+<span id="cb5-10"><a href="#cb5-10"></a>countries <span class="op">=</span> [<span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;UK&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Australia&quot;</span>]</span>
+<span id="cb5-11"><a href="#cb5-11"></a>price_sensitivity_levels <span class="op">=</span> [<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>]</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="kw">def</span> generate_user(user_id: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="co">&quot;&quot;&quot;Generate one synthetic user record.&quot;&quot;&quot;</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="co"># Choose platforms (1–5 unique)</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    owned_platforms <span class="op">=</span> <span class="bu">set</span>(random.sample(platforms, random.randint(<span class="dv">1</span>, <span class="bu">min</span>(<span class="dv">5</span>, <span class="bu">len</span>(platforms)))))</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="co"># Choose owned games (10-50 unique)</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    owned_games <span class="op">=</span> random.sample(game_titles, random.randint(<span class="dv">10</span>, <span class="bu">min</span>(<span class="dv">50</span>, <span class="bu">len</span>(game_titles))))</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="co"># Build playtime and rating maps for owned games</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    playtime_by_game <span class="op">=</span> {game: <span class="bu">round</span>(random.uniform(<span class="dv">1</span>, <span class="dv">200</span>), <span class="dv">1</span>) <span class="cf">for</span> game <span class="kw">in</span> owned_games}</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    ratings_by_game <span class="op">=</span> {game: <span class="bu">round</span>(random.uniform(<span class="dv">4</span>, <span class="dv">10</span>), <span class="dv">1</span>) <span class="cf">for</span> game <span class="kw">in</span> owned_games}</span>
+<span id="cb5-24"><a href="#cb5-24"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-26"><a href="#cb5-26"></a>        <span class="st">&quot;UserId&quot;</span>: user_id,</span>
+<span id="cb5-27"><a href="#cb5-27"></a>        <span class="st">&quot;Username&quot;</span>: <span class="ss">f&quot;user_</span><span class="sc">{</span>user_id<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb5-28"><a href="#cb5-28"></a>        <span class="st">&quot;Age&quot;</span>: random.randint(<span class="dv">13</span>, <span class="dv">50</span>),</span>
+<span id="cb5-29"><a href="#cb5-29"></a>        <span class="st">&quot;Gender&quot;</span>: random.choice([<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Other&quot;</span>]),</span>
+<span id="cb5-30"><a href="#cb5-30"></a>        <span class="st">&quot;Country&quot;</span>: random.choice(countries),</span>
+<span id="cb5-31"><a href="#cb5-31"></a>        <span class="st">&quot;PlatformsOwned&quot;</span>: owned_platforms,</span>
+<span id="cb5-32"><a href="#cb5-32"></a>        <span class="st">&quot;AvgPlaytimePerWeek&quot;</span>: <span class="bu">round</span>(random.uniform(<span class="dv">2</span>, <span class="dv">30</span>), <span class="dv">1</span>),</span>
+<span id="cb5-33"><a href="#cb5-33"></a>        <span class="st">&quot;FavoriteGenres&quot;</span>: random.sample(genres, random.randint(<span class="dv">1</span>, <span class="dv">3</span>)),</span>
+<span id="cb5-34"><a href="#cb5-34"></a>        <span class="st">&quot;PriceSensitivity&quot;</span>: random.choice(price_sensitivity_levels),</span>
+<span id="cb5-35"><a href="#cb5-35"></a>        <span class="st">&quot;HasSpecialHardware&quot;</span>: random.choice([<span class="va">True</span>, <span class="va">False</span>]),</span>
+<span id="cb5-36"><a href="#cb5-36"></a>        <span class="st">&quot;GamesOwned&quot;</span>: owned_games,</span>
+<span id="cb5-37"><a href="#cb5-37"></a>        <span class="st">&quot;PlaytimeByGame&quot;</span>: playtime_by_game,</span>
+<span id="cb5-38"><a href="#cb5-38"></a>        <span class="st">&quot;UserRatings&quot;</span>: ratings_by_game,</span>
+<span id="cb5-39"><a href="#cb5-39"></a>        <span class="st">&quot;SessionFrequency&quot;</span>: random.randint(<span class="dv">1</span>, <span class="dv">14</span>)</span>
+<span id="cb5-40"><a href="#cb5-40"></a>    }</span>
+<span id="cb5-41"><a href="#cb5-41"></a></span>
+<span id="cb5-42"><a href="#cb5-42"></a><span class="co"># Generate multiple users</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>num_users <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>users <span class="op">=</span> [generate_user(i <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_users)]</span>
+<span id="cb5-45"><a href="#cb5-45"></a></span>
+<span id="cb5-46"><a href="#cb5-46"></a><span class="co"># Convert to a DataFrame for preview (simplified view)</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a>df_users <span class="op">=</span> pd.DataFrame([{</span>
+<span id="cb5-48"><a href="#cb5-48"></a>    <span class="st">&quot;UserId&quot;</span>: u[<span class="st">&quot;UserId&quot;</span>],</span>
+<span id="cb5-49"><a href="#cb5-49"></a>    <span class="st">&quot;Username&quot;</span>: u[<span class="st">&quot;Username&quot;</span>],</span>
+<span id="cb5-50"><a href="#cb5-50"></a>    <span class="st">&quot;Age&quot;</span>: u[<span class="st">&quot;Age&quot;</span>],</span>
+<span id="cb5-51"><a href="#cb5-51"></a>    <span class="st">&quot;Country&quot;</span>: u[<span class="st">&quot;Country&quot;</span>],</span>
+<span id="cb5-52"><a href="#cb5-52"></a>    <span class="st">&quot;PlatformsOwned&quot;</span>: <span class="st">&quot;, &quot;</span>.join(u[<span class="st">&quot;PlatformsOwned&quot;</span>]),</span>
+<span id="cb5-53"><a href="#cb5-53"></a>    <span class="st">&quot;FavoriteGenres&quot;</span>: <span class="st">&quot;, &quot;</span>.join(u[<span class="st">&quot;FavoriteGenres&quot;</span>]),</span>
+<span id="cb5-54"><a href="#cb5-54"></a>    <span class="st">&quot;GamesOwned&quot;</span>: <span class="st">&quot;, &quot;</span>.join(u[<span class="st">&quot;GamesOwned&quot;</span>])</span>
+<span id="cb5-55"><a href="#cb5-55"></a>} <span class="cf">for</span> u <span class="kw">in</span> users])</span>
+<span id="cb5-56"><a href="#cb5-56"></a></span>
+<span id="cb5-57"><a href="#cb5-57"></a><span class="bu">print</span>(df_users.head()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   UserId Username  Age  Country            PlatformsOwned  \
+0       1   user_1   27    Japan     WiiU, PC, PS, NG, PSV   
+1       2   user_2   32   Canada                 WiiU, PSV   
+2       3   user_3   18  Germany  X360, 2600, PS4, PSP, WS   
+3       4   user_4   50   Canada         PSP, DS, X360, GB   
+4       5   user_5   49       UK   X360, PS, 3DO, PS4, SAT   
+
+            FavoriteGenres                                         GamesOwned  
+0        Sports, Adventure  NFL GameDay 98, Major League Baseball 2K5, Mon...  
+1                  Shooter  Animal Paradise, Company of Heroes 2, Phantasy...  
+2          Action, Shooter  Chaos Rings III, MorphX, Dragon Quest: Shounen...  
+3              RPG, Sports  WWE SmackDown vs. Raw 2010, Godzilla Unleashed...  
+4  Adventure, RPG, Shooter  Blood of Bahamut, Hot Shots Golf: Out of Bound...  </code></pre>
+</div>
+</div>
 <p>There are three primary data sets that will be used as part of this project:</p>
 <ol type="1">
 <li>Video Game Sales</li>
 </ol>
 <ul>
-<li>Rank: Ranking of overall sales</li>
-<li>Name: The games name</li>
-<li>Platform: Platform of the games release (i.e. PC,PS4, etc.)</li>
-<li>Year: Year of the game’s release</li>
-<li>Genre: Genre of the game</li>
-<li>Publisher: Publisher of the game</li>
-<li>NA_Sales: Sales in North America (in millions)</li>
-<li>EU_Sales: Sales in Europe (in millions)</li>
-<li>JP_Sales: Sales in Japan (in millions)</li>
-<li>Other_Sales: Sales in the rest of the world (in millions)</li>
-<li>Global_Sales: Total worldwide sales.</li>
+<li>Rank
+<ul>
+<li>Ranking of overall sales</li>
+</ul></li>
+<li>Name
+<ul>
+<li>The games name</li>
+</ul></li>
+<li>Platform
+<ul>
+<li>Platform of the games release (i.e. PC,PS4, etc.)</li>
+</ul></li>
+<li>Year
+<ul>
+<li>Year of the game’s release</li>
+</ul></li>
+<li>Genre
+<ul>
+<li>Genre of the game</li>
+</ul></li>
+<li>Publisher
+<ul>
+<li>Publisher of the game</li>
+</ul></li>
+<li>NA_Sales
+<ul>
+<li>Sales in North America (in millions)</li>
+</ul></li>
+<li>EU_Sales
+<ul>
+<li>Sales in Europe (in millions)</li>
+</ul></li>
+<li>JP_Sales
+<ul>
+<li>Sales in Japan (in millions)</li>
+</ul></li>
+<li>Other_Sales
+<ul>
+<li>Sales in the rest of the world (in millions)</li>
+</ul></li>
+<li>Global_Sales
+<ul>
+<li>Total worldwide sales.</li>
+</ul></li>
 </ul>
 <ol start="2" type="1">
 <li>Video Game Reviews and Ratings</li>
@@ -4208,18 +4430,89 @@ vertical-align: -.125em;
 </ul></li>
 </ul>
 <ol start="3" type="1">
-<li></li>
+<li>User (synthetic data)</li>
 </ol>
-<p>Make sure to load the data and use inline code for some of this information.</p>
+<ul>
+<li>UserId
+<ul>
+<li>Unique identifier assigned to each user</li>
+</ul></li>
+<li>Username
+<ul>
+<li>Fictional username or handle representing the player. Sometimes known as a “gamertag”</li>
+</ul></li>
+<li>Age
+<ul>
+<li>The user’s age in years; allows demographic-based analysis (e.g., age-related genre preferences).</li>
+</ul></li>
+<li>Gender
+<ul>
+<li>The gender of the user</li>
+</ul></li>
+<li>Country
+<ul>
+<li>The country or region where the user resides; aligns with regional sales data such as NA_Sales or EU_Sales.</li>
+</ul></li>
+<li>PlatformsOwned
+<ul>
+<li>The gaming platform(s) that the user owns</li>
+</ul></li>
+<li>AvgPlaytimePerWeek
+<ul>
+<li>The average number of hours the user spends gaming each week; indicates engagement intensity and likelihood of interaction with new titles.</li>
+</ul></li>
+<li>FavoriteGenres
+<ul>
+<li>The top 1–3 game genres the user most enjoys (e.g., RPG, Action, Sports)</li>
+</ul></li>
+<li>PriceSensitivity
+<ul>
+<li>Represents the user’s sensitivity to price (Low, Medium, High)</li>
+</ul></li>
+<li>HasSpecialHardware
+<ul>
+<li>Indicates whether the user owns specialized hardware (e.g., VR headset, motion controller)</li>
+</ul></li>
+<li>GamesOwned
+<ul>
+<li>A list of titles currently owned by the user</li>
+</ul></li>
+<li>PlaytimeByGame
+<ul>
+<li>A mapping of each owned game to the number of hours played</li>
+</ul></li>
+<li>UserRatings
+<ul>
+<li>A mapping of each owned game to a user-assigned rating (0–10); enables collaborative filtering based on user-item relationships.</li>
+</ul></li>
+<li>SessionFrequency
+<ul>
+<li>Number of gaming sessions per week; helps model user engagement and recommendation responsiveness.</li>
+</ul></li>
+</ul>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>The two questions you want to answer.</p>
+<p>Which video games should be recommended to a user based on their existing library, playtime, and ratings?</p>
+<p>What factors (such as genre, platform, or region) most strongly influence a game’s global sales performance?</p>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h2>
+<ol type="1">
+<li>Video Game Recommender</li>
+</ol>
 <ul>
-<li>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</li>
+<li>Variables Used: User’s games, playtime, ratings, favorite genres, and platforms.</li>
+<li>New Data to Create: Average playtime and ratings by genre for each user.</li>
+<li>Extra Data Needed: None, all data comes from the current datasets.</li>
+</ul>
+<ol start="2" type="1">
+<li>Which factors influence a game’s global sales performance?</li>
+</ol>
+<ul>
+<li>Variables Used: Global sales, genre, platform, release year, publisher, and user rating.</li>
+<li>New Data to Create: Average sales by genre and platform.</li>
+<li>Extra Data Needed: None, only existing sales and reviews data are used.</li>
 </ul>
 
 
@@ -4731,88 +5024,208 @@ vertical-align: -.125em;
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="an">title:</span><span class="co"> &quot;Video Game Recommendation System&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Proposal&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">  - name: &quot;Spencer Atchley (solo)&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">    affiliations:</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">      - name: &quot;College of Information Science, University of Arizona&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="an">description:</span><span class="co"> &quot;Video Game Recommendation System&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="an">format:</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">  html:</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">    code-tools: true</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="an">execute:</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">  warning: false</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">---</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="in">```{python}</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#| label: load-pkgs</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#| message: false</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="in">```</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="fu">## Dataset</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="in">```{python}</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="co">#| label: load-dataset</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="co">#| message: false</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="in">```</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a></span>
-<span id="cb2-39"><a href="#cb2-39"></a>There are three primary data sets that will be used as part of this project:</span>
-<span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="ss">1. </span>Video Game Sales</span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="ss">  - </span>Rank: Ranking of overall sales</span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="ss">  - </span>Name: The games name</span>
-<span id="cb2-44"><a href="#cb2-44"></a><span class="ss">  - </span>Platform: Platform of the games release (i.e. PC,PS4, etc.)</span>
-<span id="cb2-45"><a href="#cb2-45"></a><span class="ss">  - </span>Year: Year of the game&#39;s release</span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="ss">  - </span>Genre: Genre of the game</span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="ss">  - </span>Publisher: Publisher of the game</span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="ss">  - </span>NA_Sales: Sales in North America (in millions)</span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="ss">  - </span>EU_Sales: Sales in Europe (in millions)</span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="ss">  - </span>JP_Sales: Sales in Japan (in millions)</span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="ss">  - </span>Other_Sales: Sales in the rest of the world (in millions)</span>
-<span id="cb2-52"><a href="#cb2-52"></a><span class="ss">  - </span>Global_Sales: Total worldwide sales.</span>
-<span id="cb2-53"><a href="#cb2-53"></a></span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="ss">2. </span>Video Game Reviews and Ratings</span>
-<span id="cb2-55"><a href="#cb2-55"></a><span class="ss">  - </span>Game Title</span>
-<span id="cb2-56"><a href="#cb2-56"></a><span class="ss">    - </span>The name of the video game (e.g., Super Mario Odyssey, FIFA 24)</span>
-<span id="cb2-57"><a href="#cb2-57"></a><span class="ss">  - </span>User Rating</span>
-<span id="cb2-58"><a href="#cb2-58"></a><span class="ss">    - </span>A numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.</span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="ss">  - </span>Age Group Target</span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="ss">    - </span>The primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).</span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="ss">  - </span>Price</span>
-<span id="cb2-62"><a href="#cb2-62"></a><span class="ss">    - </span>The retail price of the game (in USD), reflecting its market value at the time of purchase.</span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="ss">  - </span>Platform</span>
-<span id="cb2-64"><a href="#cb2-64"></a><span class="ss">    - </span>The gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).</span>
-<span id="cb2-65"><a href="#cb2-65"></a><span class="ss">  - </span>Requires Special Device</span>
-<span id="cb2-66"><a href="#cb2-66"></a><span class="ss">    - </span>Whether the game requires special hardware or accessories</span>
-<span id="cb2-67"><a href="#cb2-67"></a><span class="ss">  - </span>Developer</span>
-<span id="cb2-68"><a href="#cb2-68"></a><span class="ss">    - </span>The company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).</span>
-<span id="cb2-69"><a href="#cb2-69"></a><span class="ss">  - </span>Publisher</span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="ss">    - </span>The company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).</span>
-<span id="cb2-71"><a href="#cb2-71"></a><span class="ss">  - </span>Release Year</span>
-<span id="cb2-72"><a href="#cb2-72"></a><span class="ss">    - </span>The year the game was released to the public.</span>
-<span id="cb2-73"><a href="#cb2-73"></a><span class="ss">  - </span>Genre</span>
-<span id="cb2-74"><a href="#cb2-74"></a><span class="ss">    - </span>The category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).</span>
-<span id="cb2-75"><a href="#cb2-75"></a></span>
-<span id="cb2-76"><a href="#cb2-76"></a><span class="ss">3. </span></span>
-<span id="cb2-77"><a href="#cb2-77"></a></span>
-<span id="cb2-78"><a href="#cb2-78"></a>Make sure to load the data and use inline code for some of this information.</span>
-<span id="cb2-79"><a href="#cb2-79"></a></span>
-<span id="cb2-80"><a href="#cb2-80"></a><span class="fu">## Questions</span></span>
-<span id="cb2-81"><a href="#cb2-81"></a></span>
-<span id="cb2-82"><a href="#cb2-82"></a>The two questions you want to answer.</span>
-<span id="cb2-83"><a href="#cb2-83"></a></span>
-<span id="cb2-84"><a href="#cb2-84"></a><span class="fu">## Analysis plan</span></span>
-<span id="cb2-85"><a href="#cb2-85"></a></span>
-<span id="cb2-86"><a href="#cb2-86"></a><span class="ss">-   </span>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> &quot;Video Game Recommendation System&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Proposal&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">  - name: &quot;Spencer Atchley (solo)&quot;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">    affiliations:</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">      - name: &quot;College of Information Science, University of Arizona&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="an">description:</span><span class="co"> &quot;Video Game Recommendation System&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="an">format:</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">  html:</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">    code-tools: true</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="an">execute:</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">  warning: false</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">---</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="in">```{python}</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#| label: load-pkgs</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#| message: false</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="im">import</span> random</span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="in">```</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a></span>
+<span id="cb7-32"><a href="#cb7-32"></a><span class="fu">## Dataset</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a></span>
+<span id="cb7-36"><a href="#cb7-36"></a><span class="in">```{python}</span></span>
+<span id="cb7-37"><a href="#cb7-37"></a><span class="co">#| label: load-dataset</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a><span class="co">#| message: false</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a> </span>
+<span id="cb7-40"><a href="#cb7-40"></a><span class="co"># Loading in the two datasets.</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a>sales_df   <span class="op">=</span> pd.read_csv(<span class="st">&quot;./data/vgsales.csv&quot;</span>)</span>
+<span id="cb7-42"><a href="#cb7-42"></a>reviews_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;./data/video_game_reviews.csv&quot;</span>)</span>
+<span id="cb7-43"><a href="#cb7-43"></a><span class="in">```</span></span>
+<span id="cb7-44"><a href="#cb7-44"></a></span>
+<span id="cb7-47"><a href="#cb7-47"></a><span class="in">```{python}</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a><span class="co">#| label: view-datasets</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a><span class="co">#| message: false</span></span>
+<span id="cb7-50"><a href="#cb7-50"></a> </span>
+<span id="cb7-51"><a href="#cb7-51"></a><span class="co"># Looking at some information about the two data sets.</span></span>
+<span id="cb7-52"><a href="#cb7-52"></a><span class="bu">print</span>(sales_df.info())</span>
+<span id="cb7-53"><a href="#cb7-53"></a><span class="bu">print</span>(reviews_df.info())</span>
+<span id="cb7-54"><a href="#cb7-54"></a><span class="bu">print</span>(sales_df.head())</span>
+<span id="cb7-55"><a href="#cb7-55"></a><span class="bu">print</span>(reviews_df.head())</span>
+<span id="cb7-56"><a href="#cb7-56"></a><span class="in">```</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a></span>
+<span id="cb7-60"><a href="#cb7-60"></a><span class="in">```{python}</span></span>
+<span id="cb7-61"><a href="#cb7-61"></a><span class="co">#| label: generating-users</span></span>
+<span id="cb7-62"><a href="#cb7-62"></a><span class="co">#| message: false</span></span>
+<span id="cb7-63"><a href="#cb7-63"></a></span>
+<span id="cb7-64"><a href="#cb7-64"></a><span class="co"># Showcasing an example script of how I might generate the synthetic data for users.</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a></span>
+<span id="cb7-66"><a href="#cb7-66"></a><span class="co"># First, loading in the unique platforms and game_titles from the sales dataframe.</span></span>
+<span id="cb7-67"><a href="#cb7-67"></a><span class="co"># In the actual project I will merge sales and reviews to get a more complete list of games that exist in both dataframes.</span></span>
+<span id="cb7-68"><a href="#cb7-68"></a>platforms <span class="op">=</span> sales_df[<span class="st">&quot;Platform&quot;</span>].unique().tolist()</span>
+<span id="cb7-69"><a href="#cb7-69"></a>game_titles <span class="op">=</span> sales_df[<span class="st">&quot;Name&quot;</span>].unique().tolist()</span>
+<span id="cb7-70"><a href="#cb7-70"></a></span>
+<span id="cb7-71"><a href="#cb7-71"></a><span class="co"># Helper data for random generation</span></span>
+<span id="cb7-72"><a href="#cb7-72"></a><span class="co"># For genre, I&#39;ll determine the user&#39;s favorite genres based off of the highest frequency of genres the user has played. For now this will suffice.</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>genres <span class="op">=</span> [<span class="st">&quot;Action&quot;</span>, <span class="st">&quot;Adventure&quot;</span>, <span class="st">&quot;RPG&quot;</span>, <span class="st">&quot;Shooter&quot;</span>, <span class="st">&quot;Sports&quot;</span>, <span class="st">&quot;Puzzle&quot;</span>]</span>
+<span id="cb7-74"><a href="#cb7-74"></a>countries <span class="op">=</span> [<span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;UK&quot;</span>, <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;Australia&quot;</span>]</span>
+<span id="cb7-75"><a href="#cb7-75"></a>price_sensitivity_levels <span class="op">=</span> [<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>]</span>
+<span id="cb7-76"><a href="#cb7-76"></a></span>
+<span id="cb7-77"><a href="#cb7-77"></a><span class="kw">def</span> generate_user(user_id: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb7-78"><a href="#cb7-78"></a>    <span class="co">&quot;&quot;&quot;Generate one synthetic user record.&quot;&quot;&quot;</span></span>
+<span id="cb7-79"><a href="#cb7-79"></a>    <span class="co"># Choose platforms (1–5 unique)</span></span>
+<span id="cb7-80"><a href="#cb7-80"></a>    owned_platforms <span class="op">=</span> <span class="bu">set</span>(random.sample(platforms, random.randint(<span class="dv">1</span>, <span class="bu">min</span>(<span class="dv">5</span>, <span class="bu">len</span>(platforms)))))</span>
+<span id="cb7-81"><a href="#cb7-81"></a>    </span>
+<span id="cb7-82"><a href="#cb7-82"></a>    <span class="co"># Choose owned games (10-50 unique)</span></span>
+<span id="cb7-83"><a href="#cb7-83"></a>    owned_games <span class="op">=</span> random.sample(game_titles, random.randint(<span class="dv">10</span>, <span class="bu">min</span>(<span class="dv">50</span>, <span class="bu">len</span>(game_titles))))</span>
+<span id="cb7-84"><a href="#cb7-84"></a>    </span>
+<span id="cb7-85"><a href="#cb7-85"></a>    <span class="co"># Build playtime and rating maps for owned games</span></span>
+<span id="cb7-86"><a href="#cb7-86"></a>    playtime_by_game <span class="op">=</span> {game: <span class="bu">round</span>(random.uniform(<span class="dv">1</span>, <span class="dv">200</span>), <span class="dv">1</span>) <span class="cf">for</span> game <span class="kw">in</span> owned_games}</span>
+<span id="cb7-87"><a href="#cb7-87"></a>    ratings_by_game <span class="op">=</span> {game: <span class="bu">round</span>(random.uniform(<span class="dv">4</span>, <span class="dv">10</span>), <span class="dv">1</span>) <span class="cf">for</span> game <span class="kw">in</span> owned_games}</span>
+<span id="cb7-88"><a href="#cb7-88"></a>    </span>
+<span id="cb7-89"><a href="#cb7-89"></a>    <span class="cf">return</span> {</span>
+<span id="cb7-90"><a href="#cb7-90"></a>        <span class="st">&quot;UserId&quot;</span>: user_id,</span>
+<span id="cb7-91"><a href="#cb7-91"></a>        <span class="st">&quot;Username&quot;</span>: <span class="ss">f&quot;user_</span><span class="sc">{</span>user_id<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb7-92"><a href="#cb7-92"></a>        <span class="st">&quot;Age&quot;</span>: random.randint(<span class="dv">13</span>, <span class="dv">50</span>),</span>
+<span id="cb7-93"><a href="#cb7-93"></a>        <span class="st">&quot;Gender&quot;</span>: random.choice([<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Other&quot;</span>]),</span>
+<span id="cb7-94"><a href="#cb7-94"></a>        <span class="st">&quot;Country&quot;</span>: random.choice(countries),</span>
+<span id="cb7-95"><a href="#cb7-95"></a>        <span class="st">&quot;PlatformsOwned&quot;</span>: owned_platforms,</span>
+<span id="cb7-96"><a href="#cb7-96"></a>        <span class="st">&quot;AvgPlaytimePerWeek&quot;</span>: <span class="bu">round</span>(random.uniform(<span class="dv">2</span>, <span class="dv">30</span>), <span class="dv">1</span>),</span>
+<span id="cb7-97"><a href="#cb7-97"></a>        <span class="st">&quot;FavoriteGenres&quot;</span>: random.sample(genres, random.randint(<span class="dv">1</span>, <span class="dv">3</span>)),</span>
+<span id="cb7-98"><a href="#cb7-98"></a>        <span class="st">&quot;PriceSensitivity&quot;</span>: random.choice(price_sensitivity_levels),</span>
+<span id="cb7-99"><a href="#cb7-99"></a>        <span class="st">&quot;HasSpecialHardware&quot;</span>: random.choice([<span class="va">True</span>, <span class="va">False</span>]),</span>
+<span id="cb7-100"><a href="#cb7-100"></a>        <span class="st">&quot;GamesOwned&quot;</span>: owned_games,</span>
+<span id="cb7-101"><a href="#cb7-101"></a>        <span class="st">&quot;PlaytimeByGame&quot;</span>: playtime_by_game,</span>
+<span id="cb7-102"><a href="#cb7-102"></a>        <span class="st">&quot;UserRatings&quot;</span>: ratings_by_game,</span>
+<span id="cb7-103"><a href="#cb7-103"></a>        <span class="st">&quot;SessionFrequency&quot;</span>: random.randint(<span class="dv">1</span>, <span class="dv">14</span>)</span>
+<span id="cb7-104"><a href="#cb7-104"></a>    }</span>
+<span id="cb7-105"><a href="#cb7-105"></a></span>
+<span id="cb7-106"><a href="#cb7-106"></a><span class="co"># Generate multiple users</span></span>
+<span id="cb7-107"><a href="#cb7-107"></a>num_users <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb7-108"><a href="#cb7-108"></a>users <span class="op">=</span> [generate_user(i <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_users)]</span>
+<span id="cb7-109"><a href="#cb7-109"></a></span>
+<span id="cb7-110"><a href="#cb7-110"></a><span class="co"># Convert to a DataFrame for preview (simplified view)</span></span>
+<span id="cb7-111"><a href="#cb7-111"></a>df_users <span class="op">=</span> pd.DataFrame(users)</span>
+<span id="cb7-112"><a href="#cb7-112"></a></span>
+<span id="cb7-113"><a href="#cb7-113"></a><span class="bu">print</span>(df_users.head()) </span>
+<span id="cb7-114"><a href="#cb7-114"></a><span class="in">```</span></span>
+<span id="cb7-115"><a href="#cb7-115"></a></span>
+<span id="cb7-116"><a href="#cb7-116"></a>There are three primary data sets that will be used as part of this project:</span>
+<span id="cb7-117"><a href="#cb7-117"></a></span>
+<span id="cb7-118"><a href="#cb7-118"></a><span class="ss">1. </span>Video Game Sales</span>
+<span id="cb7-119"><a href="#cb7-119"></a><span class="ss">  - </span>Rank</span>
+<span id="cb7-120"><a href="#cb7-120"></a><span class="ss">    - </span>Ranking of overall sales</span>
+<span id="cb7-121"><a href="#cb7-121"></a><span class="ss">  - </span>Name</span>
+<span id="cb7-122"><a href="#cb7-122"></a><span class="ss">    - </span>The games name</span>
+<span id="cb7-123"><a href="#cb7-123"></a><span class="ss">  - </span>Platform</span>
+<span id="cb7-124"><a href="#cb7-124"></a><span class="ss">    - </span>Platform of the games release (i.e. PC,PS4, etc.)</span>
+<span id="cb7-125"><a href="#cb7-125"></a><span class="ss">  - </span>Year</span>
+<span id="cb7-126"><a href="#cb7-126"></a><span class="ss">    - </span>Year of the game&#39;s release</span>
+<span id="cb7-127"><a href="#cb7-127"></a><span class="ss">  - </span>Genre</span>
+<span id="cb7-128"><a href="#cb7-128"></a><span class="ss">    - </span>Genre of the game</span>
+<span id="cb7-129"><a href="#cb7-129"></a><span class="ss">  - </span>Publisher</span>
+<span id="cb7-130"><a href="#cb7-130"></a><span class="ss">    - </span>Publisher of the game</span>
+<span id="cb7-131"><a href="#cb7-131"></a><span class="ss">  - </span>NA_Sales</span>
+<span id="cb7-132"><a href="#cb7-132"></a><span class="ss">    - </span>Sales in North America (in millions)</span>
+<span id="cb7-133"><a href="#cb7-133"></a><span class="ss">  - </span>EU_Sales</span>
+<span id="cb7-134"><a href="#cb7-134"></a><span class="ss">    - </span>Sales in Europe (in millions)</span>
+<span id="cb7-135"><a href="#cb7-135"></a><span class="ss">  - </span>JP_Sales</span>
+<span id="cb7-136"><a href="#cb7-136"></a><span class="ss">    - </span>Sales in Japan (in millions)</span>
+<span id="cb7-137"><a href="#cb7-137"></a><span class="ss">  - </span>Other_Sales</span>
+<span id="cb7-138"><a href="#cb7-138"></a><span class="ss">    - </span>Sales in the rest of the world (in millions)</span>
+<span id="cb7-139"><a href="#cb7-139"></a><span class="ss">  - </span>Global_Sales</span>
+<span id="cb7-140"><a href="#cb7-140"></a><span class="ss">    - </span>Total worldwide sales.</span>
+<span id="cb7-141"><a href="#cb7-141"></a></span>
+<span id="cb7-142"><a href="#cb7-142"></a><span class="ss">2. </span>Video Game Reviews and Ratings</span>
+<span id="cb7-143"><a href="#cb7-143"></a><span class="ss">  - </span>Game Title</span>
+<span id="cb7-144"><a href="#cb7-144"></a><span class="ss">    - </span>The name of the video game (e.g., Super Mario Odyssey, FIFA 24)</span>
+<span id="cb7-145"><a href="#cb7-145"></a><span class="ss">  - </span>User Rating</span>
+<span id="cb7-146"><a href="#cb7-146"></a><span class="ss">    - </span>A numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.</span>
+<span id="cb7-147"><a href="#cb7-147"></a><span class="ss">  - </span>Age Group Target</span>
+<span id="cb7-148"><a href="#cb7-148"></a><span class="ss">    - </span>The primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).</span>
+<span id="cb7-149"><a href="#cb7-149"></a><span class="ss">  - </span>Price</span>
+<span id="cb7-150"><a href="#cb7-150"></a><span class="ss">    - </span>The retail price of the game (in USD), reflecting its market value at the time of purchase.</span>
+<span id="cb7-151"><a href="#cb7-151"></a><span class="ss">  - </span>Platform</span>
+<span id="cb7-152"><a href="#cb7-152"></a><span class="ss">    - </span>The gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).</span>
+<span id="cb7-153"><a href="#cb7-153"></a><span class="ss">  - </span>Requires Special Device</span>
+<span id="cb7-154"><a href="#cb7-154"></a><span class="ss">    - </span>Whether the game requires special hardware or accessories</span>
+<span id="cb7-155"><a href="#cb7-155"></a><span class="ss">  - </span>Developer</span>
+<span id="cb7-156"><a href="#cb7-156"></a><span class="ss">    - </span>The company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).</span>
+<span id="cb7-157"><a href="#cb7-157"></a><span class="ss">  - </span>Publisher</span>
+<span id="cb7-158"><a href="#cb7-158"></a><span class="ss">    - </span>The company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).</span>
+<span id="cb7-159"><a href="#cb7-159"></a><span class="ss">  - </span>Release Year</span>
+<span id="cb7-160"><a href="#cb7-160"></a><span class="ss">    - </span>The year the game was released to the public.</span>
+<span id="cb7-161"><a href="#cb7-161"></a><span class="ss">  - </span>Genre</span>
+<span id="cb7-162"><a href="#cb7-162"></a><span class="ss">    - </span>The category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).</span>
+<span id="cb7-163"><a href="#cb7-163"></a></span>
+<span id="cb7-164"><a href="#cb7-164"></a><span class="ss">3. </span>User (synthetic data)</span>
+<span id="cb7-165"><a href="#cb7-165"></a><span class="ss">  - </span>UserId</span>
+<span id="cb7-166"><a href="#cb7-166"></a><span class="ss">    - </span>Unique identifier assigned to each user</span>
+<span id="cb7-167"><a href="#cb7-167"></a><span class="ss">  - </span>Username</span>
+<span id="cb7-168"><a href="#cb7-168"></a><span class="ss">    - </span>Fictional username or handle representing the player. Sometimes known as a &quot;gamertag&quot;</span>
+<span id="cb7-169"><a href="#cb7-169"></a><span class="ss">  - </span>Age</span>
+<span id="cb7-170"><a href="#cb7-170"></a><span class="ss">    - </span>The user’s age in years; allows demographic-based analysis (e.g., age-related genre preferences).</span>
+<span id="cb7-171"><a href="#cb7-171"></a><span class="ss">  - </span>Gender</span>
+<span id="cb7-172"><a href="#cb7-172"></a><span class="ss">    - </span>The gender of the user</span>
+<span id="cb7-173"><a href="#cb7-173"></a><span class="ss">  - </span>Country</span>
+<span id="cb7-174"><a href="#cb7-174"></a><span class="ss">    - </span>The country or region where the user resides; aligns with regional sales data such as NA_Sales or EU_Sales.</span>
+<span id="cb7-175"><a href="#cb7-175"></a><span class="ss">  - </span>PlatformsOwned</span>
+<span id="cb7-176"><a href="#cb7-176"></a><span class="ss">    - </span>The gaming platform(s) that the user owns</span>
+<span id="cb7-177"><a href="#cb7-177"></a><span class="ss">  - </span>AvgPlaytimePerWeek</span>
+<span id="cb7-178"><a href="#cb7-178"></a><span class="ss">    - </span>The average number of hours the user spends gaming each week; indicates engagement intensity and likelihood of interaction with new titles.</span>
+<span id="cb7-179"><a href="#cb7-179"></a><span class="ss">  - </span>FavoriteGenres</span>
+<span id="cb7-180"><a href="#cb7-180"></a><span class="ss">    - </span>The top 1–3 game genres the user most enjoys (e.g., RPG, Action, Sports)</span>
+<span id="cb7-181"><a href="#cb7-181"></a><span class="ss">  - </span>PriceSensitivity</span>
+<span id="cb7-182"><a href="#cb7-182"></a><span class="ss">    - </span>Represents the user’s sensitivity to price (Low, Medium, High)</span>
+<span id="cb7-183"><a href="#cb7-183"></a><span class="ss">  - </span>HasSpecialHardware</span>
+<span id="cb7-184"><a href="#cb7-184"></a><span class="ss">    - </span>Indicates whether the user owns specialized hardware (e.g., VR headset, motion controller)</span>
+<span id="cb7-185"><a href="#cb7-185"></a><span class="ss">  - </span>GamesOwned</span>
+<span id="cb7-186"><a href="#cb7-186"></a><span class="ss">    - </span>A list of titles currently owned by the user</span>
+<span id="cb7-187"><a href="#cb7-187"></a><span class="ss">  - </span>PlaytimeByGame</span>
+<span id="cb7-188"><a href="#cb7-188"></a><span class="ss">    - </span>A mapping of each owned game to the number of hours played</span>
+<span id="cb7-189"><a href="#cb7-189"></a><span class="ss">  - </span>UserRatings</span>
+<span id="cb7-190"><a href="#cb7-190"></a><span class="ss">    - </span>A mapping of each owned game to a user-assigned rating (0–10); enables collaborative filtering based on user-item relationships.</span>
+<span id="cb7-191"><a href="#cb7-191"></a><span class="ss">  - </span>SessionFrequency</span>
+<span id="cb7-192"><a href="#cb7-192"></a><span class="ss">    - </span>Number of gaming sessions per week; helps model user engagement and recommendation responsiveness.</span>
+<span id="cb7-193"><a href="#cb7-193"></a></span>
+<span id="cb7-194"><a href="#cb7-194"></a><span class="fu">## Questions</span></span>
+<span id="cb7-195"><a href="#cb7-195"></a></span>
+<span id="cb7-196"><a href="#cb7-196"></a>Which video games should be recommended to a user based on their existing library, playtime, and ratings?</span>
+<span id="cb7-197"><a href="#cb7-197"></a></span>
+<span id="cb7-198"><a href="#cb7-198"></a>What factors (such as genre, platform, or region) most strongly influence a game’s global sales performance?</span>
+<span id="cb7-199"><a href="#cb7-199"></a></span>
+<span id="cb7-200"><a href="#cb7-200"></a><span class="fu">## Analysis plan</span></span>
+<span id="cb7-201"><a href="#cb7-201"></a></span>
+<span id="cb7-202"><a href="#cb7-202"></a><span class="ss">1. </span>Video Game Recommender</span>
+<span id="cb7-203"><a href="#cb7-203"></a><span class="ss">- </span>Variables Used: User’s games, playtime, ratings, favorite genres, and platforms.</span>
+<span id="cb7-204"><a href="#cb7-204"></a><span class="ss">- </span>New Data to Create: Average playtime and ratings by genre for each user.</span>
+<span id="cb7-205"><a href="#cb7-205"></a><span class="ss">- </span>Extra Data Needed: None, all data comes from the current datasets.</span>
+<span id="cb7-206"><a href="#cb7-206"></a></span>
+<span id="cb7-207"><a href="#cb7-207"></a><span class="ss">2. </span>Which factors influence a game&#39;s global sales performance?</span>
+<span id="cb7-208"><a href="#cb7-208"></a><span class="ss">- </span>Variables Used: Global sales, genre, platform, release year, publisher, and user rating.</span>
+<span id="cb7-209"><a href="#cb7-209"></a><span class="ss">- </span>New Data to Create: Average sales by genre and platform.</span>
+<span id="cb7-210"><a href="#cb7-210"></a><span class="ss">- </span>Extra Data Needed: None, only existing sales and reviews data are used.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
