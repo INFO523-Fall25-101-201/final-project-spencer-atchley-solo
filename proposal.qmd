@@ -108,81 +108,84 @@ print(df_users.head())
 
 There are three primary data sets that will be used as part of this project:
 
-1. Video Game Sales
-  - Rank
-    - Ranking of overall sales
-  - Name
-    - The games name
-  - Platform
-    - Platform of the games release (i.e. PC,PS4, etc.)
-  - Year
-    - Year of the game's release
-  - Genre
-    - Genre of the game
-  - Publisher
-    - Publisher of the game
-  - NA_Sales
-    - Sales in North America (in millions)
-  - EU_Sales
-    - Sales in Europe (in millions)
-  - JP_Sales
-    - Sales in Japan (in millions)
-  - Other_Sales
-    - Sales in the rest of the world (in millions)
-  - Global_Sales
-    - Total worldwide sales.
+1.  Video Game Sales
 
-2. Video Game Reviews and Ratings
-  - Game Title
-    - The name of the video game (e.g., Super Mario Odyssey, FIFA 24)
-  - User Rating
-    - A numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.
-  - Age Group Target
-    - The primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).
-  - Price
-    - The retail price of the game (in USD), reflecting its market value at the time of purchase.
-  - Platform
-    - The gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).
-  - Requires Special Device
-    - Whether the game requires special hardware or accessories
-  - Developer
-    - The company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).
-  - Publisher
-    - The company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).
-  - Release Year
-    - The year the game was released to the public.
-  - Genre
-    - The category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).
+-   Rank
+    -   Ranking of overall sales
+-   Name
+    -   The games name
+-   Platform
+    -   Platform of the games release (i.e. PC,PS4, etc.)
+-   Year
+    -   Year of the game's release
+-   Genre
+    -   Genre of the game
+-   Publisher
+    -   Publisher of the game
+-   NA_Sales
+    -   Sales in North America (in millions)
+-   EU_Sales
+    -   Sales in Europe (in millions)
+-   JP_Sales
+    -   Sales in Japan (in millions)
+-   Other_Sales
+    -   Sales in the rest of the world (in millions)
+-   Global_Sales
+    -   Total worldwide sales.
 
-3. User (synthetic data)
-  - UserId
-    - Unique identifier assigned to each user
-  - Username
-    - Fictional username or handle representing the player. Sometimes known as a "gamertag"
-  - Age
-    - The user’s age in years; allows demographic-based analysis (e.g., age-related genre preferences).
-  - Gender
-    - The gender of the user
-  - Country
-    - The country or region where the user resides; aligns with regional sales data such as NA_Sales or EU_Sales.
-  - PlatformsOwned
-    - The gaming platform(s) that the user owns
-  - AvgPlaytimePerWeek
-    - The average number of hours the user spends gaming each week; indicates engagement intensity and likelihood of interaction with new titles.
-  - FavoriteGenres
-    - The top 1–3 game genres the user most enjoys (e.g., RPG, Action, Sports)
-  - PriceSensitivity
-    - Represents the user’s sensitivity to price (Low, Medium, High)
-  - HasSpecialHardware
-    - Indicates whether the user owns specialized hardware (e.g., VR headset, motion controller)
-  - GamesOwned
-    - A list of titles currently owned by the user
-  - PlaytimeByGame
-    - A mapping of each owned game to the number of hours played
-  - UserRatings
-    - A mapping of each owned game to a user-assigned rating (0–10); enables collaborative filtering based on user-item relationships.
-  - SessionFrequency
-    - Number of gaming sessions per week; helps model user engagement and recommendation responsiveness.
+2.  Video Game Reviews and Ratings
+
+-   Game Title
+    -   The name of the video game (e.g., Super Mario Odyssey, FIFA 24)
+-   User Rating
+    -   A numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.
+-   Age Group Target
+    -   The primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).
+-   Price
+    -   The retail price of the game (in USD), reflecting its market value at the time of purchase.
+-   Platform
+    -   The gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).
+-   Requires Special Device
+    -   Whether the game requires special hardware or accessories
+-   Developer
+    -   The company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).
+-   Publisher
+    -   The company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).
+-   Release Year
+    -   The year the game was released to the public.
+-   Genre
+    -   The category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).
+
+3.  User (synthetic data)
+
+-   UserId
+    -   Unique identifier assigned to each user
+-   Username
+    -   Fictional username or handle representing the player. Sometimes known as a "gamertag"
+-   Age
+    -   The user’s age in years; allows demographic-based analysis (e.g., age-related genre preferences).
+-   Gender
+    -   The gender of the user
+-   Country
+    -   The country or region where the user resides; aligns with regional sales data such as NA_Sales or EU_Sales.
+-   PlatformsOwned
+    -   The gaming platform(s) that the user owns
+-   AvgPlaytimePerWeek
+    -   The average number of hours the user spends gaming each week; indicates engagement intensity and likelihood of interaction with new titles.
+-   FavoriteGenres
+    -   The top 1–3 game genres the user most enjoys (e.g., RPG, Action, Sports)
+-   PriceSensitivity
+    -   Represents the user’s sensitivity to price (Low, Medium, High)
+-   HasSpecialHardware
+    -   Indicates whether the user owns specialized hardware (e.g., VR headset, motion controller)
+-   GamesOwned
+    -   A list of titles currently owned by the user
+-   PlaytimeByGame
+    -   A mapping of each owned game to the number of hours played
+-   UserRatings
+    -   A mapping of each owned game to a user-assigned rating (0–10); enables collaborative filtering based on user-item relationships.
+-   SessionFrequency
+    -   Number of gaming sessions per week; helps model user engagement and recommendation responsiveness.
 
 ## Questions
 
@@ -192,12 +195,14 @@ What factors (such as genre, platform, or region) most strongly influence a game
 
 ## Analysis plan
 
-1. Video Game Recommender
-- Variables Used: User’s games, playtime, ratings, favorite genres, and platforms.
-- New Data to Create: Average playtime and ratings by genre for each user.
-- Extra Data Needed: None, all data comes from the current datasets.
+1.  Video Game Recommender
 
-2. Which factors influence a game's global sales performance?
-- Variables Used: Global sales, genre, platform, release year, publisher, and user rating.
-- New Data to Create: Average sales by genre and platform.
-- Extra Data Needed: None, only existing sales and reviews data are used.
+-   Variables Used: User’s games, playtime, ratings, favorite genres, and platforms.
+-   New Data to Create: Average playtime and ratings by genre for each user.
+-   Extra Data Needed: None, all data comes from the current datasets.
+
+2.  Which factors influence a game's global sales performance?
+
+-   Variables Used: Global sales, genre, platform, release year, publisher, and user rating.
+-   New Data to Create: Average sales by genre and platform.
+-   Extra Data Needed: None, only existing sales and reviews data are used.

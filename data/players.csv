@@ -1,0 +1,1001 @@
+user_id,age_group,session_count_per_week,avg_session_length_hours
+1,Adults,3,1.74
+2,Kids,4,1.68
+3,Adults,5,2.54
+4,All Ages,5,2.57
+5,Teens,12,1.63
+6,Adults,3,1.72
+7,Adults,3,2.38
+8,Adults,5,1.42
+9,Teens,5,1.71
+10,Kids,6,2.06
+11,Kids,2,2.7
+12,Adults,12,1.58
+13,All Ages,6,0.71
+14,Adults,10,0.66
+15,Kids,3,1.12
+16,Teens,6,1.08
+17,All Ages,2,1.89
+18,Teens,9,1.17
+19,Adults,5,1.51
+20,All Ages,5,1.46
+21,Adults,2,1.69
+22,Kids,5,2.93
+23,Adults,9,2.46
+24,Adults,4,2.01
+25,Adults,5,1.68
+26,Teens,4,1.7
+27,Kids,6,2.23
+28,Teens,2,2.41
+29,Teens,5,1.36
+30,All Ages,5,2.03
+31,All Ages,6,0.58
+32,Adults,8,2.15
+33,Kids,13,2.53
+34,Kids,3,1.8
+35,Kids,6,3.27
+36,Teens,3,1.38
+37,Teens,3,2.15
+38,Kids,12,1.97
+39,Teens,6,1.93
+40,All Ages,4,1.92
+41,Kids,11,2.07
+42,Adults,5,2.59
+43,All Ages,2,2.96
+44,Kids,9,2.0
+45,Adults,4,2.57
+46,Adults,5,1.51
+47,Kids,5,2.54
+48,Kids,6,1.47
+49,All Ages,2,2.76
+50,Teens,14,3.55
+51,Teens,6,1.91
+52,Teens,4,0.5
+53,Adults,6,1.62
+54,All Ages,3,2.86
+55,All Ages,14,2.39
+56,Adults,14,2.17
+57,Kids,7,2.71
+58,All Ages,12,2.34
+59,Teens,7,2.85
+60,Teens,4,2.64
+61,All Ages,5,3.07
+62,Kids,5,2.25
+63,All Ages,4,2.63
+64,Adults,4,1.79
+65,All Ages,5,1.58
+66,All Ages,13,3.19
+67,All Ages,3,2.15
+68,Kids,2,2.56
+69,Teens,8,2.09
+70,Kids,6,1.59
+71,Teens,11,2.01
+72,Kids,2,3.01
+73,Adults,9,2.39
+74,Teens,2,0.8
+75,Teens,4,1.85
+76,Kids,11,3.25
+77,Kids,12,1.85
+78,All Ages,2,0.74
+79,All Ages,8,3.33
+80,Adults,9,2.48
+81,All Ages,4,1.95
+82,Kids,7,1.74
+83,Adults,2,2.76
+84,Teens,4,1.62
+85,Teens,3,2.8
+86,Teens,5,2.38
+87,All Ages,7,2.17
+88,Kids,6,2.1
+89,Teens,5,1.88
+90,Kids,12,2.73
+91,Teens,3,1.39
+92,All Ages,4,0.86
+93,Kids,3,2.43
+94,Kids,5,2.44
+95,Kids,12,2.34
+96,All Ages,13,2.29
+97,Kids,3,1.78
+98,Teens,3,2.55
+99,Teens,8,1.97
+100,Adults,10,1.66
+101,Adults,4,1.78
+102,All Ages,6,3.41
+103,Kids,3,0.79
+104,Adults,4,2.35
+105,Adults,3,0.82
+106,All Ages,2,1.92
+107,Kids,7,1.7
+108,Kids,2,0.54
+109,Teens,9,2.27
+110,Adults,2,1.73
+111,Kids,9,0.53
+112,Teens,6,2.59
+113,Kids,7,3.0
+114,All Ages,2,3.04
+115,Teens,4,2.25
+116,Adults,9,2.03
+117,Adults,4,2.93
+118,All Ages,5,3.18
+119,Kids,4,2.79
+120,All Ages,3,1.34
+121,All Ages,14,2.14
+122,All Ages,2,2.31
+123,Teens,2,0.73
+124,Kids,8,2.33
+125,Teens,5,3.59
+126,Kids,6,2.45
+127,Kids,2,3.03
+128,Teens,4,2.13
+129,Teens,14,1.95
+130,All Ages,14,2.27
+131,Teens,5,1.43
+132,Adults,3,1.33
+133,All Ages,3,2.89
+134,Kids,5,2.96
+135,All Ages,3,1.31
+136,Teens,6,2.68
+137,Adults,4,1.94
+138,Kids,2,2.24
+139,Adults,5,2.32
+140,Teens,3,2.7
+141,Kids,7,2.06
+142,Kids,6,2.99
+143,Adults,5,2.22
+144,All Ages,3,2.44
+145,Kids,4,1.42
+146,Kids,4,3.51
+147,Kids,3,2.33
+148,All Ages,2,2.5
+149,Kids,13,0.87
+150,Teens,5,1.42
+151,Adults,7,2.87
+152,Adults,4,2.2
+153,Teens,10,0.66
+154,All Ages,2,2.73
+155,Teens,4,1.62
+156,All Ages,2,2.99
+157,Kids,6,1.94
+158,All Ages,2,2.14
+159,All Ages,4,2.83
+160,Adults,2,1.37
+161,Teens,8,1.31
+162,Adults,3,1.86
+163,Teens,4,2.58
+164,Teens,3,1.07
+165,All Ages,4,0.83
+166,Kids,8,2.58
+167,Adults,12,1.58
+168,Adults,2,1.73
+169,Kids,4,0.7
+170,Adults,5,1.52
+171,Kids,14,1.99
+172,All Ages,13,2.65
+173,Kids,2,1.46
+174,Adults,6,3.16
+175,Teens,2,1.52
+176,Teens,9,1.52
+177,Kids,6,3.08
+178,Adults,6,2.15
+179,Adults,9,1.61
+180,All Ages,4,1.89
+181,Adults,14,2.95
+182,Adults,3,3.03
+183,All Ages,4,1.43
+184,Kids,2,1.97
+185,Adults,6,2.06
+186,All Ages,7,1.31
+187,Kids,4,1.96
+188,Teens,3,2.0
+189,All Ages,6,2.8
+190,Kids,12,2.85
+191,Adults,12,1.77
+192,Teens,3,1.85
+193,Teens,6,2.47
+194,Adults,4,1.59
+195,Teens,3,2.41
+196,Teens,4,1.94
+197,All Ages,2,1.32
+198,Adults,3,1.33
+199,Teens,4,3.01
+200,Kids,5,1.89
+201,Adults,5,3.15
+202,Adults,11,1.64
+203,Kids,4,2.2
+204,Teens,13,3.67
+205,Teens,2,1.26
+206,Teens,5,0.67
+207,Teens,13,2.9
+208,All Ages,10,1.42
+209,Teens,6,1.99
+210,All Ages,2,1.59
+211,All Ages,6,2.19
+212,All Ages,4,1.33
+213,Teens,2,1.87
+214,Adults,6,2.31
+215,All Ages,4,1.29
+216,All Ages,7,1.51
+217,Teens,6,1.76
+218,Teens,6,1.0
+219,Adults,2,1.7
+220,Kids,3,2.08
+221,Kids,8,1.72
+222,Kids,4,1.81
+223,All Ages,7,1.99
+224,Adults,14,1.54
+225,Kids,6,2.48
+226,Adults,11,3.01
+227,Teens,2,1.67
+228,All Ages,7,2.34
+229,All Ages,3,1.83
+230,Teens,11,2.26
+231,Teens,6,3.1
+232,Kids,4,2.36
+233,Adults,2,0.76
+234,All Ages,7,2.32
+235,Adults,7,2.86
+236,Adults,3,1.84
+237,Kids,7,2.7
+238,Adults,2,1.52
+239,Teens,4,0.96
+240,Teens,5,2.1
+241,Adults,2,0.77
+242,Adults,3,1.83
+243,Teens,4,2.9
+244,All Ages,4,0.66
+245,All Ages,4,1.1
+246,Adults,2,1.28
+247,All Ages,2,1.96
+248,Kids,7,1.74
+249,Kids,3,2.98
+250,Kids,13,2.67
+251,All Ages,4,2.35
+252,Adults,12,2.1
+253,Kids,3,2.28
+254,Teens,4,1.4
+255,Teens,3,2.6
+256,All Ages,11,1.22
+257,Adults,12,2.58
+258,Teens,2,2.83
+259,Teens,4,2.15
+260,All Ages,6,1.88
+261,Teens,13,2.28
+262,Adults,6,0.5
+263,Kids,2,2.21
+264,Teens,6,1.92
+265,Adults,2,1.96
+266,Teens,6,2.49
+267,Kids,5,1.95
+268,Teens,4,1.2
+269,Teens,9,1.9
+270,Teens,3,2.05
+271,Teens,2,2.08
+272,Teens,6,2.11
+273,Teens,8,2.73
+274,All Ages,12,1.24
+275,All Ages,11,2.12
+276,Kids,13,2.9
+277,Kids,6,0.79
+278,All Ages,5,2.13
+279,Adults,6,1.59
+280,Adults,14,1.74
+281,Teens,5,1.37
+282,Teens,4,1.88
+283,Teens,3,3.29
+284,Teens,3,1.11
+285,All Ages,5,1.18
+286,Kids,7,1.09
+287,Teens,2,3.21
+288,Kids,6,1.68
+289,All Ages,3,1.98
+290,Teens,2,1.72
+291,Adults,13,1.34
+292,Teens,3,1.84
+293,Adults,13,3.72
+294,Teens,6,2.97
+295,Adults,3,1.4
+296,Adults,2,2.45
+297,Adults,2,1.42
+298,Adults,11,0.76
+299,Adults,5,2.71
+300,All Ages,5,2.81
+301,Adults,13,2.73
+302,Teens,11,1.67
+303,All Ages,8,1.88
+304,All Ages,3,2.52
+305,Adults,4,2.27
+306,Kids,10,1.72
+307,Kids,3,0.87
+308,All Ages,5,2.08
+309,Kids,5,2.76
+310,Teens,3,1.16
+311,Kids,2,2.45
+312,Kids,4,2.23
+313,Teens,6,2.53
+314,Kids,8,2.61
+315,Kids,6,1.51
+316,Kids,2,0.87
+317,Kids,2,1.63
+318,All Ages,4,2.62
+319,Kids,7,1.62
+320,Adults,4,1.51
+321,Adults,6,0.73
+322,Kids,2,3.23
+323,Kids,5,2.58
+324,All Ages,5,2.54
+325,Adults,7,2.68
+326,All Ages,10,2.4
+327,Adults,5,1.83
+328,All Ages,7,1.89
+329,All Ages,5,1.7
+330,Kids,5,3.84
+331,All Ages,2,2.39
+332,Teens,6,1.68
+333,All Ages,4,2.33
+334,Adults,5,1.29
+335,Teens,12,3.05
+336,All Ages,3,1.54
+337,Teens,9,2.35
+338,All Ages,4,2.75
+339,Teens,4,2.27
+340,Adults,3,2.07
+341,Teens,3,2.01
+342,Adults,2,1.96
+343,Adults,3,1.6
+344,All Ages,6,1.69
+345,Adults,2,3.04
+346,Adults,6,1.92
+347,Adults,3,1.45
+348,Kids,3,1.64
+349,All Ages,12,2.77
+350,Teens,5,2.47
+351,All Ages,5,2.39
+352,Teens,3,1.82
+353,All Ages,3,2.4
+354,All Ages,3,1.55
+355,Kids,5,1.82
+356,All Ages,4,2.68
+357,Adults,4,2.61
+358,Adults,10,1.31
+359,Kids,2,1.4
+360,All Ages,6,2.08
+361,Adults,9,3.21
+362,Teens,3,0.66
+363,Teens,3,2.19
+364,Teens,4,1.04
+365,All Ages,6,1.56
+366,Kids,5,1.74
+367,Adults,3,1.71
+368,All Ages,2,1.63
+369,Kids,6,2.01
+370,Adults,3,1.63
+371,Adults,7,0.98
+372,Kids,6,2.55
+373,Kids,2,2.53
+374,Kids,13,2.59
+375,Teens,4,0.92
+376,Teens,14,2.21
+377,Adults,9,2.47
+378,Kids,4,1.28
+379,Kids,4,2.01
+380,All Ages,4,1.92
+381,All Ages,4,3.29
+382,Adults,4,3.35
+383,Adults,14,0.83
+384,Kids,2,3.75
+385,Kids,7,1.36
+386,Adults,13,2.69
+387,All Ages,7,2.68
+388,Adults,6,1.3
+389,Teens,5,2.35
+390,Adults,3,1.92
+391,All Ages,10,2.39
+392,Teens,3,2.16
+393,All Ages,3,2.84
+394,All Ages,2,2.05
+395,Teens,5,1.88
+396,Kids,6,2.77
+397,Adults,7,2.41
+398,Kids,5,2.51
+399,Kids,3,1.53
+400,Kids,6,1.27
+401,Kids,13,1.6
+402,Adults,2,1.57
+403,Adults,10,2.55
+404,Teens,3,2.68
+405,Adults,11,1.89
+406,Adults,3,3.0
+407,Kids,5,2.96
+408,Adults,9,2.17
+409,Teens,11,1.42
+410,Adults,10,3.1
+411,All Ages,5,1.96
+412,All Ages,2,2.09
+413,Teens,14,1.76
+414,Adults,2,1.38
+415,Teens,5,0.97
+416,Teens,6,2.44
+417,Teens,3,1.45
+418,Adults,5,4.14
+419,Teens,2,1.24
+420,Adults,2,1.12
+421,All Ages,5,2.36
+422,Teens,6,3.07
+423,Teens,2,2.05
+424,Teens,6,2.4
+425,All Ages,3,0.71
+426,Adults,6,1.53
+427,Teens,2,1.25
+428,Adults,5,0.67
+429,Teens,2,2.08
+430,Adults,3,0.5
+431,Adults,3,1.07
+432,Adults,9,1.62
+433,All Ages,11,1.42
+434,Adults,6,2.28
+435,Teens,2,2.21
+436,Teens,3,2.63
+437,Teens,11,2.53
+438,All Ages,4,2.8
+439,All Ages,12,2.0
+440,All Ages,3,2.21
+441,Adults,5,2.36
+442,Teens,12,2.1
+443,All Ages,3,1.72
+444,Teens,14,1.77
+445,Kids,7,1.43
+446,All Ages,3,2.3
+447,Adults,11,1.93
+448,All Ages,3,1.54
+449,Teens,11,1.54
+450,All Ages,8,1.15
+451,Teens,7,2.69
+452,Adults,5,2.06
+453,All Ages,8,1.4
+454,Teens,4,2.57
+455,Teens,8,1.61
+456,Teens,5,1.02
+457,Adults,6,2.71
+458,Kids,3,1.62
+459,Adults,4,1.71
+460,All Ages,4,2.03
+461,All Ages,14,2.8
+462,Teens,6,2.01
+463,Adults,3,1.16
+464,Kids,5,2.38
+465,All Ages,3,1.66
+466,All Ages,13,3.32
+467,All Ages,6,2.0
+468,Adults,14,0.5
+469,Teens,3,2.25
+470,All Ages,5,3.36
+471,Kids,8,3.1
+472,Kids,2,3.28
+473,Teens,7,1.29
+474,Teens,9,2.64
+475,Kids,5,1.49
+476,Kids,14,2.16
+477,Kids,3,1.11
+478,All Ages,5,1.55
+479,All Ages,3,1.53
+480,Kids,12,2.63
+481,Kids,4,2.56
+482,Teens,3,2.19
+483,All Ages,5,1.05
+484,Kids,4,1.78
+485,Teens,6,1.48
+486,Kids,6,2.61
+487,Kids,4,2.82
+488,Teens,6,2.74
+489,All Ages,4,1.47
+490,All Ages,9,0.5
+491,All Ages,5,0.76
+492,All Ages,6,3.0
+493,All Ages,4,1.72
+494,Kids,5,1.47
+495,Adults,4,3.15
+496,All Ages,7,2.89
+497,Kids,2,2.02
+498,All Ages,5,1.79
+499,Kids,2,1.91
+500,All Ages,4,2.16
+501,All Ages,3,3.12
+502,Adults,8,2.3
+503,Adults,7,2.51
+504,All Ages,3,2.82
+505,All Ages,3,1.18
+506,Adults,14,2.53
+507,Kids,13,1.79
+508,Adults,3,0.5
+509,Kids,2,0.51
+510,Teens,2,1.29
+511,Teens,2,2.37
+512,Adults,6,2.08
+513,Teens,4,2.13
+514,Kids,6,3.37
+515,Kids,7,1.11
+516,Teens,12,1.98
+517,Kids,4,2.21
+518,All Ages,4,1.48
+519,Teens,5,2.02
+520,Adults,3,0.88
+521,Adults,4,2.99
+522,Kids,5,1.52
+523,Teens,5,3.42
+524,All Ages,8,1.98
+525,Teens,6,2.72
+526,Kids,12,1.96
+527,Adults,6,1.98
+528,Adults,5,1.59
+529,Adults,4,2.08
+530,Kids,12,2.22
+531,All Ages,6,1.45
+532,All Ages,4,1.91
+533,Kids,3,1.57
+534,All Ages,5,3.61
+535,Teens,6,1.94
+536,Teens,2,3.08
+537,All Ages,4,1.86
+538,Teens,5,2.18
+539,Teens,2,1.08
+540,Adults,4,1.69
+541,Adults,3,2.15
+542,All Ages,4,3.11
+543,Adults,6,2.16
+544,Adults,6,2.97
+545,Teens,14,2.45
+546,Kids,4,3.14
+547,Kids,5,1.96
+548,Teens,6,3.67
+549,Adults,5,1.66
+550,Kids,5,1.46
+551,Kids,4,1.15
+552,Teens,4,3.63
+553,Teens,9,2.57
+554,Adults,4,1.77
+555,Teens,11,2.87
+556,Teens,4,2.48
+557,Kids,2,3.38
+558,Kids,2,0.92
+559,All Ages,3,1.81
+560,Kids,5,1.68
+561,Teens,3,0.62
+562,Teens,4,2.74
+563,Adults,14,1.81
+564,All Ages,2,2.52
+565,All Ages,3,3.65
+566,All Ages,5,1.75
+567,Adults,8,1.71
+568,Teens,8,2.08
+569,Kids,2,2.69
+570,All Ages,13,1.6
+571,Kids,13,1.56
+572,Adults,3,2.74
+573,Kids,5,2.27
+574,Adults,3,0.57
+575,Adults,7,1.14
+576,All Ages,6,3.05
+577,Adults,5,2.28
+578,All Ages,13,1.47
+579,Adults,3,1.88
+580,Kids,11,2.01
+581,Kids,6,2.52
+582,All Ages,10,1.05
+583,Teens,14,1.41
+584,Kids,14,2.19
+585,Adults,2,1.93
+586,All Ages,3,2.4
+587,Teens,2,1.14
+588,Kids,4,2.25
+589,Teens,5,2.76
+590,Teens,5,2.34
+591,Adults,4,2.1
+592,Kids,2,1.93
+593,Kids,14,1.42
+594,All Ages,4,1.95
+595,Teens,14,2.88
+596,Kids,4,1.92
+597,All Ages,2,1.38
+598,All Ages,2,1.66
+599,Adults,5,2.14
+600,All Ages,2,1.74
+601,Kids,6,2.34
+602,Adults,7,2.37
+603,Adults,4,2.62
+604,All Ages,5,3.0
+605,Adults,3,2.7
+606,Adults,7,1.35
+607,Adults,8,1.37
+608,Teens,2,1.95
+609,All Ages,9,1.68
+610,Kids,4,1.2
+611,All Ages,6,1.69
+612,All Ages,5,1.67
+613,Adults,6,1.53
+614,Adults,6,1.78
+615,Kids,6,2.82
+616,All Ages,4,2.14
+617,All Ages,5,3.73
+618,Kids,2,2.12
+619,Teens,3,1.8
+620,Teens,2,2.0
+621,Adults,3,2.18
+622,Kids,11,2.3
+623,Adults,8,3.45
+624,Kids,5,1.41
+625,Adults,5,2.6
+626,Kids,5,2.15
+627,Adults,6,0.9
+628,Teens,3,2.54
+629,All Ages,2,2.89
+630,Adults,8,1.4
+631,Adults,10,1.99
+632,Adults,8,0.79
+633,Teens,3,1.12
+634,Kids,14,2.73
+635,Teens,6,1.67
+636,Teens,13,1.22
+637,All Ages,8,2.16
+638,All Ages,6,1.63
+639,Adults,2,1.67
+640,Adults,6,2.52
+641,All Ages,4,1.19
+642,Adults,4,1.37
+643,Teens,5,2.11
+644,Teens,5,2.68
+645,All Ages,2,2.87
+646,Adults,6,1.53
+647,Teens,4,2.66
+648,All Ages,9,1.45
+649,All Ages,2,3.28
+650,Teens,3,1.21
+651,Kids,5,2.93
+652,Adults,10,1.54
+653,All Ages,2,3.41
+654,Teens,8,2.41
+655,Adults,2,1.29
+656,Kids,6,1.63
+657,Adults,4,2.55
+658,Kids,6,2.74
+659,All Ages,5,1.95
+660,Kids,6,2.03
+661,Kids,5,2.53
+662,Adults,5,2.09
+663,Teens,4,1.09
+664,Teens,10,1.43
+665,Kids,4,2.16
+666,All Ages,9,2.85
+667,Adults,3,3.13
+668,Adults,6,2.55
+669,Kids,9,2.2
+670,Kids,5,2.52
+671,Teens,12,1.53
+672,All Ages,4,1.89
+673,Adults,2,1.42
+674,All Ages,5,1.13
+675,All Ages,4,2.23
+676,Kids,2,2.13
+677,Adults,4,2.48
+678,Kids,4,2.38
+679,Teens,5,2.17
+680,Kids,5,2.39
+681,Teens,5,1.97
+682,Teens,2,2.29
+683,Teens,3,1.49
+684,Kids,4,2.26
+685,All Ages,7,2.47
+686,Kids,3,1.53
+687,Kids,2,2.04
+688,Adults,2,1.56
+689,All Ages,6,1.63
+690,All Ages,4,1.21
+691,Kids,13,2.89
+692,Adults,6,2.75
+693,Teens,3,2.38
+694,Kids,5,3.38
+695,Adults,11,1.87
+696,All Ages,12,4.12
+697,All Ages,12,1.84
+698,All Ages,2,2.18
+699,All Ages,4,1.72
+700,Kids,2,2.26
+701,Teens,8,2.58
+702,Kids,2,1.92
+703,Teens,11,3.24
+704,Adults,3,2.17
+705,Kids,9,2.19
+706,All Ages,4,1.36
+707,Adults,5,2.29
+708,Adults,6,1.91
+709,Kids,2,1.57
+710,Kids,2,1.46
+711,Adults,12,3.87
+712,All Ages,11,1.82
+713,Adults,6,0.98
+714,Adults,11,1.51
+715,Adults,2,1.96
+716,Teens,9,2.38
+717,All Ages,3,2.39
+718,Teens,11,2.47
+719,All Ages,5,1.55
+720,Adults,3,2.24
+721,All Ages,4,1.39
+722,Kids,3,1.57
+723,Teens,4,1.36
+724,Adults,5,1.17
+725,Teens,4,2.74
+726,Teens,3,2.48
+727,Teens,5,2.68
+728,Teens,9,2.03
+729,Kids,3,2.54
+730,All Ages,8,0.77
+731,Kids,5,2.6
+732,Teens,2,2.12
+733,Teens,6,2.44
+734,Kids,3,2.27
+735,Teens,3,1.31
+736,All Ages,13,0.95
+737,Teens,2,1.5
+738,Kids,5,2.4
+739,Kids,10,2.48
+740,Kids,3,1.04
+741,Teens,6,1.31
+742,Teens,4,1.49
+743,Adults,3,1.75
+744,Teens,7,1.05
+745,All Ages,3,1.0
+746,Kids,2,1.42
+747,Kids,3,2.06
+748,Kids,3,1.17
+749,Adults,3,1.92
+750,Adults,2,2.74
+751,Kids,6,1.09
+752,Kids,3,1.86
+753,Teens,5,2.72
+754,Kids,2,1.71
+755,All Ages,11,1.6
+756,Teens,14,2.81
+757,Kids,5,1.79
+758,Adults,4,2.77
+759,Teens,7,2.3
+760,Kids,13,1.76
+761,All Ages,8,2.34
+762,Teens,10,2.22
+763,Teens,13,2.71
+764,Teens,9,1.62
+765,Adults,6,2.03
+766,Teens,14,1.96
+767,Teens,3,2.49
+768,Teens,5,1.28
+769,Teens,12,2.71
+770,All Ages,5,2.33
+771,Teens,9,1.08
+772,All Ages,2,2.85
+773,All Ages,6,3.56
+774,Adults,2,2.7
+775,Teens,6,3.0
+776,Adults,3,2.06
+777,All Ages,8,0.84
+778,Teens,9,0.71
+779,Adults,5,2.18
+780,Adults,3,1.59
+781,Kids,4,1.36
+782,Adults,3,1.96
+783,Kids,5,2.43
+784,All Ages,3,0.98
+785,Adults,4,1.69
+786,Kids,6,3.06
+787,Adults,7,1.25
+788,Kids,13,2.61
+789,Adults,8,1.66
+790,All Ages,2,2.38
+791,Teens,3,2.77
+792,Kids,6,2.52
+793,Kids,2,2.64
+794,Teens,6,1.19
+795,Teens,3,2.78
+796,Kids,5,1.4
+797,Teens,2,2.18
+798,Teens,6,2.18
+799,All Ages,3,2.34
+800,All Ages,3,2.24
+801,All Ages,3,1.41
+802,Kids,14,1.06
+803,Adults,3,2.61
+804,All Ages,3,2.13
+805,Teens,4,2.8
+806,Teens,4,1.97
+807,All Ages,5,1.02
+808,Teens,6,2.68
+809,All Ages,9,1.74
+810,Adults,10,2.24
+811,Teens,6,1.55
+812,Teens,7,3.15
+813,Adults,9,1.39
+814,All Ages,3,1.76
+815,Teens,5,2.08
+816,Adults,4,1.24
+817,Adults,13,2.23
+818,All Ages,3,3.13
+819,All Ages,4,1.66
+820,Kids,2,2.28
+821,Teens,4,0.5
+822,All Ages,5,1.97
+823,Kids,14,1.78
+824,All Ages,12,1.43
+825,Adults,6,2.76
+826,Teens,3,1.77
+827,All Ages,4,1.88
+828,Teens,3,1.74
+829,Adults,4,0.66
+830,Kids,3,1.21
+831,All Ages,5,2.67
+832,All Ages,3,0.52
+833,Kids,3,1.46
+834,All Ages,3,1.72
+835,All Ages,7,3.22
+836,All Ages,3,2.54
+837,Adults,9,1.61
+838,Adults,11,2.91
+839,Kids,9,1.48
+840,All Ages,2,2.71
+841,Teens,4,1.05
+842,Adults,6,2.75
+843,All Ages,4,1.72
+844,Kids,4,1.28
+845,Teens,7,1.85
+846,Adults,4,2.19
+847,Kids,11,1.65
+848,All Ages,5,2.39
+849,Teens,11,1.59
+850,Adults,13,2.43
+851,Teens,2,2.31
+852,Teens,4,1.96
+853,Adults,13,1.69
+854,Adults,5,2.11
+855,Teens,6,2.39
+856,Kids,3,3.44
+857,All Ages,5,2.66
+858,Adults,7,2.68
+859,Kids,7,4.16
+860,All Ages,2,2.36
+861,All Ages,8,2.34
+862,All Ages,5,2.49
+863,Adults,5,1.29
+864,All Ages,3,1.69
+865,Teens,5,1.65
+866,Adults,2,2.45
+867,Adults,6,1.88
+868,Adults,14,2.1
+869,Teens,3,2.76
+870,Teens,4,2.6
+871,All Ages,5,1.89
+872,Teens,4,1.53
+873,Adults,5,2.79
+874,Kids,14,2.54
+875,All Ages,3,0.88
+876,Adults,3,1.78
+877,Kids,2,2.12
+878,Kids,3,2.55
+879,All Ages,13,2.64
+880,All Ages,10,2.2
+881,Kids,6,2.41
+882,All Ages,2,2.04
+883,Adults,3,1.53
+884,Kids,9,1.82
+885,Teens,2,2.01
+886,Kids,2,1.98
+887,Kids,6,0.68
+888,Teens,4,1.72
+889,Teens,9,2.04
+890,All Ages,2,1.8
+891,Kids,3,1.83
+892,Adults,6,2.34
+893,Teens,5,1.24
+894,Teens,2,0.86
+895,All Ages,4,1.76
+896,Adults,5,2.53
+897,Kids,2,3.18
+898,Teens,7,2.55
+899,Teens,7,0.97
+900,All Ages,2,1.84
+901,Kids,4,2.18
+902,Kids,6,2.12
+903,Teens,5,2.38
+904,Kids,10,1.36
+905,Adults,2,2.05
+906,All Ages,11,2.29
+907,Kids,4,2.58
+908,Teens,6,1.44
+909,Kids,2,1.76
+910,Kids,6,0.5
+911,Adults,5,1.56
+912,Adults,3,1.63
+913,Adults,3,1.29
+914,Adults,4,2.12
+915,Adults,5,1.96
+916,Adults,3,0.5
+917,Teens,2,2.15
+918,Teens,8,1.35
+919,Kids,4,2.34
+920,All Ages,2,1.1
+921,Teens,7,2.02
+922,Adults,3,1.8
+923,All Ages,2,2.21
+924,All Ages,7,2.09
+925,Teens,9,1.82
+926,Kids,2,0.92
+927,Teens,6,0.97
+928,Adults,11,1.59
+929,All Ages,4,1.99
+930,All Ages,2,1.57
+931,Kids,14,2.44
+932,Kids,3,1.8
+933,Kids,3,1.32
+934,Adults,4,1.81
+935,Adults,12,2.16
+936,Teens,13,2.23
+937,Adults,8,3.31
+938,Teens,3,1.53
+939,Adults,6,1.95
+940,Teens,9,2.3
+941,Kids,6,1.98
+942,Adults,6,1.65
+943,Teens,6,0.92
+944,Kids,4,1.64
+945,Kids,6,1.25
+946,Teens,4,0.79
+947,All Ages,13,1.44
+948,Adults,2,1.27
+949,Adults,13,2.41
+950,Kids,7,2.42
+951,All Ages,2,1.37
+952,Teens,2,1.82
+953,Teens,3,0.7
+954,Teens,13,1.65
+955,Adults,6,2.28
+956,Adults,4,2.58
+957,Adults,2,1.5
+958,All Ages,6,2.74
+959,Kids,4,0.94
+960,All Ages,10,1.13
+961,All Ages,10,2.5
+962,Kids,2,3.17
+963,Teens,3,2.35
+964,Teens,4,1.97
+965,Adults,4,0.5
+966,Kids,4,0.58
+967,Adults,3,2.09
+968,Teens,5,1.75
+969,All Ages,3,1.23
+970,Teens,5,2.05
+971,Kids,2,2.08
+972,Teens,5,2.66
+973,Teens,6,2.1
+974,Adults,11,2.86
+975,Kids,3,2.01
+976,All Ages,2,1.92
+977,Kids,2,2.75
+978,Kids,12,1.32
+979,All Ages,6,3.97
+980,Teens,4,2.26
+981,Adults,6,2.27
+982,Adults,6,2.37
+983,All Ages,3,3.31
+984,Kids,3,2.55
+985,Teens,3,0.88
+986,Adults,2,2.98
+987,Kids,10,1.76
+988,Teens,4,2.08
+989,Kids,3,1.1
+990,Adults,9,2.37
+991,All Ages,6,1.54
+992,All Ages,13,2.07
+993,Adults,6,1.8
+994,Teens,11,3.35
+995,Adults,2,3.39
+996,Kids,7,2.03
+997,All Ages,12,2.04
+998,Teens,4,1.74
+999,Adults,5,2.77
+1000,Kids,6,1.77
