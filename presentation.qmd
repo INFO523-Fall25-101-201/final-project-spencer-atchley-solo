@@ -1,7 +1,7 @@
 ---
-title: "Project title"
+title: "Video Game Recommendations"
 subtitle: "INFO 523 - Summer 2025 - Final Project"
-author: "Author names"
+author: "Spencer Atchley"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -23,8 +23,15 @@ execute:
 
 # Load packages here
 import pandas as pd
+import numpy as np
 import seaborn as sns
-
+import matplotlib.pyplot as plt
+from pathlib import Path
+from surprise import Dataset, Reader, SVD
+from surprise.model_selection import cross_validate
+from collections import defaultdict
+import json
+import random
 ```
 
 ```{python}
@@ -45,11 +52,176 @@ plt.rcParams['figure.figsize'] = (6, 6 * 0.618)
 #| label: load-data
 #| include: false
 # Load data in Python
-mtcars = sns.load_dataset('mpg').dropna()  # mtcars dataset is similar to the mpg dataset from seaborn
-mtcars['speed'] = mtcars['horsepower'] / mtcars['weight']
+data_dir = Path("data")
+players_path = data_dir / "players.csv"
+player_games_path = data_dir / "player_games.csv"
+vgsales_path = data_dir / "vgsales.csv"
 
-penguins = sns.load_dataset('penguins').dropna()
+players = pd.read_csv(players_path)
+player_games = pd.read_csv(player_games_path)
+vgsales = pd.read_csv(vgsales_path)
 ```
+
+# Project Overview
+
+## Project Goals
+- Which video games should be recommended to a user based on their existing library, playtime, and ratings?
+- Which factors (such as genre, platform, or region) most strongly influence a game's global sales performance?
+
+## Tools Used
+- Quarto
+- Jupyter Notebook
+- VSCode
+- Generative AI (more on this in later slides)
+
+## Project Writeup
+- Full writeup included on project site
+- [Project Writeup Link](https://info523-fall25-101-201.github.io/final-project-spencer-atchley-solo/writeup.html)
+
+# Recommendation Engines
+
+## Types of recommendation engines
+- Content-based filtering
+- Collaborative filtering
+
+## Content-based filtering
+- Recommends items to users based off of features and metadata
+- Compares item data and user data to create recommendations
+  - Item data: Video game genres, time to game completion, cost
+  - User data: Previously played genres, game completion %, budget range
+
+## Collaborative filtering
+- Groups users based on similarities
+- Recommends new items to users based off of similar user items
+  - Similar users share similar interests
+  - Uses matrices to represent data
+  - Measures similarity between users
+- Example: User A rated Game1 high, User B rated Game1 high, User A also rated Game2 high, recommend Game2 to User B
+- Susceptible to Cold Start problem
+  - New users have no past history, system can't perform evaluation
+
+## Hybrid filtering
+- Uses both content-based filtering and collaborative filtering
+- Helps to overcome weaknesses from models, such as cold start problem
+
+## Project Choice
+- Collaborative filtering chosen for project
+  - Easier to use as introduction to recommendation engines
+  - Good support using available Python libraries
+  - Good learning opportunity, easier to understand
+
+# Tools and Libraries
+
+## Surprise
+- Simple Python RecommendatIon System Engine
+- Collaborative filtering library
+- Well documented, easy to use
+
+## Other libraries used
+- Standard libraries used throughout course
+  - pandas
+  - numpy
+  - seaborn
+
+# Data sets
+
+## Video Game Sales
+- Thousands of video game sales
+- Various pieces of metadata
+  - Ranking of overall sales
+  - Platform
+  - Year of release
+  - Regional sales and global sales
+
+## Video Game Reviews and Ratings
+- Seemed promising at initial glance
+- EDA determined not feasible for project
+  - Randomly generated data
+
+# Use of Generative AI
+
+## Agentic AI
+- How can we use Agentic AI to assist in data science?
+  - Wanted to explore the use of agentic AI in a practical development setting
+- Used OpenAI Codex
+  - Extension for VSCode
+  - Used GPT-5.1-Codex-Max model
+- Thorough review required
+  - Code review needed on each generated line
+
+# Development Workflow
+
+## Synthetic Dataset Generation
+- Needed synthetic player data
+  - Needed both unique player entities and game ratings
+- Agentic AI used for player_gen script
+- Several attempts and some refinement required
+
+## Jupyter Notebook
+- Common tool for data science workflows
+- Used for exploratory data analysis and recommendation engine
+
+# Exploring the Players dataset
+
+## Code from the Jupyter Notebook
+- Not all EDA code and plots included here
+- See Jupyter Notebook file in GitHub repo for full context
+
+## Inspecting the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+# Looking at the players dataset.
+players.info()
+```
+
+## Describing the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+players.describe()
+```
+
+## Examining the age groups
+```{python}
+#| echo: true
+#| code-fold: true
+# How many players are in each age group?
+players['age_group'].value_counts()
+```
+
+## Average session count and session length per age group
+```{python}
+#| echo: true
+#| code-fold: true
+# Based off of age group, what are some statistics for number of sessions per week and average session length?
+players.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])
+```
+
+## Sessions per Week
+```{python}
+#| echo: true
+#| code-fold: true
+#| fig.width: 5.5
+# Looking at the distribution of session counts and average session lengths.
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))
+ax.set_xlabel("Session Count per Week")
+sns.histplot(players['session_count_per_week'], kde=True, ax=ax)
+plt.tight_layout()
+```
+
+## Average Session Length In Hours
+```{python}
+#| echo: true
+#| code-fold: true
+#| fig.width: 5.5
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))
+ax.set_xlabel("Average Session Length (hrs)")
+sns.histplot(players['avg_session_length_hours'], kde=True, ax=ax)
+plt.tight_layout() 
+```
+
+# Player Ratings
 
 # Using Quarto for presentations
 
@@ -81,29 +253,12 @@ or in two columns
 
 ## Code
 
-```{python}
-from sklearn.linear_model import LinearRegression
-import statsmodels.api as sm
-import pandas as pd
-
-# Fit a linear regression model
-X = mtcars[['speed']]
-y = mtcars['mpg']
-model = LinearRegression().fit(X, y)
-
-# Summary of the model
-X2 = sm.add_constant(X)
-est = sm.OLS(y, X2)
-est2 = est.fit()
-print(est2.summary())
-```
-
 ## Plots
 
 ```{python}
-penguins['species'] = penguins['species'].apply(lambda x: "Adelie" if x == "Adelie" else "Other")
-sns.scatterplot(data=penguins, x='flipper_length_mm', y='body_mass_g', hue='species')
-plt.show()
+# penguins['species'] = penguins['species'].apply(lambda x: "Adelie" if x == "Adelie" else "Other")
+# sns.scatterplot(data=penguins, x='flipper_length_mm', y='body_mass_g', hue='species')
+# plt.show()
 ```
 
 ## Plot and text
@@ -119,9 +274,9 @@ plt.show()
 ```{python}
 #| warning: false
 #| fig.width: 5.5
-fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.618))
-sns.boxplot(data=penguins, x='bill_length_mm', y='species', hue='species', ax=ax)
-plt.show()
+# fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.618))
+# sns.boxplot(data=penguins, x='bill_length_mm', y='species', hue='species', ax=ax)
+# plt.show()
 ```
 :::
 :::::
@@ -133,7 +288,7 @@ plt.show()
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
 
 ```{python}
-penguins.head().to_html()
+# penguins.head().to_html()
 ```
 
 ## Images

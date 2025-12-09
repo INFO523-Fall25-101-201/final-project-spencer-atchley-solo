@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -9,8 +9,8 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <meta name="author" content="Author names">
-  <title>Project Title – Project title</title>
+  <meta name="author" content="Spencer Atchley">
+  <title>INFO 523 Final Project – Video Game Recommendations</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-3284f4d69c379a59dc58037f95ed6c56.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -121,24 +187,491 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/watercolour_sys02_img34_teacup-ocean.jpg" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">Project title</h1>
+  <h1 class="title">Video Game Recommendations</h1>
   <p class="subtitle">INFO 523 - Summer 2025 - Final Project</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Author names 
+Spencer Atchley 
 </div>
 </div>
 </div>
 
 </section>
+<section>
+<section id="project-overview" class="title-slide slide level1 center">
+<h1>Project Overview</h1>
+
+</section>
+<section id="project-goals" class="slide level2">
+<h2>Project Goals</h2>
+<ul>
+<li>Which video games should be recommended to a user based on their existing library, playtime, and ratings?</li>
+<li>Which factors (such as genre, platform, or region) most strongly influence a game’s global sales performance?</li>
+</ul>
+</section>
+<section id="tools-used" class="slide level2">
+<h2>Tools Used</h2>
+<ul>
+<li>Quarto</li>
+<li>Jupyter Notebook</li>
+<li>VSCode</li>
+<li>Generative AI (more on this in later slides)</li>
+</ul>
+</section>
+<section id="project-writeup" class="slide level2">
+<h2>Project Writeup</h2>
+<ul>
+<li>Full writeup included on project side</li>
+<li>See <a href="https://info523-fall25-101-201.github.io/final-project-spencer-atchley-solo/writeup.html">Project Writeup</a></li>
+</ul>
+</section></section>
+<section>
+<section id="recommendation-engines" class="title-slide slide level1 center">
+<h1>Recommendation Engines</h1>
+
+</section>
+<section id="types-of-recommendation-engines" class="slide level2">
+<h2>Types of recommendation engines</h2>
+<ul>
+<li>Content-based filtering</li>
+<li>Collaborative filtering</li>
+</ul>
+</section>
+<section id="content-based-filtering" class="slide level2">
+<h2>Content-based filtering</h2>
+<ul>
+<li>Recommends items to users based off of features and metadata</li>
+<li>Compares item data and user data to create recommendations
+<ul>
+<li>Item data: Video game genres, time to game completion, cost</li>
+<li>User data: Previously played genres, game completion %, budget range</li>
+</ul></li>
+</ul>
+</section>
+<section id="collaborative-filtering" class="slide level2">
+<h2>Collaborative filtering</h2>
+<ul>
+<li>Groups users based on similarities</li>
+<li>Recommends new items to users based off of similar user items
+<ul>
+<li>Similar users share similar interests</li>
+<li>Uses matrices to represent data</li>
+<li>Measures similarity between users</li>
+</ul></li>
+<li>Example: User A rated Game1 high, User B rated Game1 high, User A also rated Game2 high, recommend Game2 to User B</li>
+<li>Susceptible to Cold Start problem
+<ul>
+<li>New users have no past history, system can’t perform evaluation</li>
+</ul></li>
+</ul>
+</section>
+<section id="hybrid-filtering" class="slide level2">
+<h2>Hybrid filtering</h2>
+<ul>
+<li>Uses both content-based filtering and collaborative filtering</li>
+<li>Helps to overcome weaknesses from models, such as cold start problem</li>
+</ul>
+</section>
+<section id="project-choice" class="slide level2">
+<h2>Project Choice</h2>
+<ul>
+<li>Collaborative filtering chosen for project
+<ul>
+<li>Easier to use as introduction to recommendation engines</li>
+<li>Good support using available Python libraries</li>
+<li>Good learning opportunity, easier to understand</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="tools-and-libraries" class="title-slide slide level1 center">
+<h1>Tools and Libraries</h1>
+
+</section>
+<section id="surprise" class="slide level2">
+<h2>Surprise</h2>
+<ul>
+<li>Simple Python RecommendatIon System Engine</li>
+<li>Collaborative filtering library</li>
+<li>Well documented, easy to use</li>
+</ul>
+</section>
+<section id="other-libraries-used" class="slide level2">
+<h2>Other libraries used</h2>
+<ul>
+<li>Standard libraries used throughout course
+<ul>
+<li>pandas</li>
+<li>numpy</li>
+<li>seaborn</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="data-sets" class="title-slide slide level1 center">
+<h1>Data sets</h1>
+
+</section>
+<section id="video-game-sales" class="slide level2">
+<h2>Video Game Sales</h2>
+<ul>
+<li>Thousands of video game sales</li>
+<li>Various pieces of metadata
+<ul>
+<li>Ranking of overall sales</li>
+<li>Platform</li>
+<li>Year of release</li>
+<li>Regional sales and global sales</li>
+</ul></li>
+</ul>
+</section>
+<section id="video-game-reviews-and-ratings" class="slide level2">
+<h2>Video Game Reviews and Ratings</h2>
+<ul>
+<li>Seemed promising at initial glance</li>
+<li>EDA determined not feasible for project
+<ul>
+<li>Randomly generated data</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="use-of-generative-ai" class="title-slide slide level1 center">
+<h1>Use of Generative AI</h1>
+
+</section>
+<section id="agentic-ai" class="slide level2">
+<h2>Agentic AI</h2>
+<ul>
+<li>How can we use Agentic AI to assist in data science?
+<ul>
+<li>Wanted to explore the use of agentic AI in a practical development setting</li>
+</ul></li>
+<li>Used OpenAI Codex
+<ul>
+<li>Extension for VSCode</li>
+<li>Used GPT-5.1-Codex-Max model</li>
+</ul></li>
+<li>Thorough review required
+<ul>
+<li>Code review needed on each generated line</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="development-workflow" class="title-slide slide level1 center">
+<h1>Development Workflow</h1>
+
+</section>
+<section id="synthetic-dataset-generation" class="slide level2">
+<h2>Synthetic Dataset Generation</h2>
+<ul>
+<li>Needed synthetic player data
+<ul>
+<li>Needed both unique player entities and game ratings</li>
+</ul></li>
+<li>Agentic AI used for player_gen script</li>
+<li>Several attempts and some refinement required</li>
+</ul>
+</section>
+<section id="jupyter-notebook" class="slide level2">
+<h2>Jupyter Notebook</h2>
+<ul>
+<li>Common tool for data science workflows</li>
+<li>Used for exploratory data analysis and recommendation engine</li>
+</ul>
+</section></section>
+<section>
+<section id="exploring-the-players-dataset" class="title-slide slide level1 center">
+<h1>Exploring the Players dataset</h1>
+
+</section>
+<section id="code-from-the-jupyter-notebook" class="slide level2">
+<h2>Code from the Jupyter Notebook</h2>
+<ul>
+<li>Not all EDA code and plots included here</li>
+<li>See Jupyter Notebook file in GitHub repo for full context</li>
+</ul>
+</section>
+<section id="inspecting-the-dataframe" class="slide level2">
+<h2>Inspecting the dataframe</h2>
+<div id="02f7ed25" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Looking at the players dataset.</span></span>
+<span id="cb1-2"><a></a>players.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 11959 entries, 0 to 11958
+Data columns (total 6 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   user_id                   11959 non-null  int64  
+ 1   age_group                 11959 non-null  object 
+ 2   session_count_per_week    11959 non-null  int64  
+ 3   avg_session_length_hours  11959 non-null  float64
+ 4   primary_genre             11959 non-null  object 
+ 5   preferred_platform        11959 non-null  object 
+dtypes: float64(1), int64(2), object(3)
+memory usage: 560.7+ KB</code></pre>
+</div>
+</div>
+</section>
+<section id="describing-the-dataframe" class="slide level2">
+<h2>Describing the dataframe</h2>
+<div id="a52891e6" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>players.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">user_id</th>
+<th data-quarto-table-cell-role="th">session_count_per_week</th>
+<th data-quarto-table-cell-role="th">avg_session_length_hours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>11959.000000</td>
+<td>11959.000000</td>
+<td>11959.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>5980.000000</td>
+<td>5.649218</td>
+<td>2.014694</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>3452.410269</td>
+<td>3.296081</td>
+<td>0.691597</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>0.500000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>2990.500000</td>
+<td>3.000000</td>
+<td>1.540000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>5980.000000</td>
+<td>5.000000</td>
+<td>2.010000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>8969.500000</td>
+<td>7.000000</td>
+<td>2.480000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>11959.000000</td>
+<td>14.000000</td>
+<td>4.610000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="examining-the-age-groups" class="slide level2">
+<h2>Examining the age groups</h2>
+<div id="176ce869" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># How many players are in each age group?</span></span>
+<span id="cb4-2"><a></a>players[<span class="st">'age_group'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>age_group
+Teen     5924
+Adult    3646
+Kids     2389
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="average-session-count-and-session-length-per-age-group" class="slide level2">
+<h2>Average session count and session length per age group</h2>
+<div id="7048c2a3" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Based off of age group, what are some statistics for number of sessions per week and average session length?</span></span>
+<span id="cb6-2"><a></a>players.groupby(<span class="st">'age_group'</span>)[[<span class="st">'session_count_per_week'</span>, <span class="st">'avg_session_length_hours'</span>]].agg([<span class="st">'mean'</span>,<span class="st">'median'</span>,<span class="st">'min'</span>,<span class="st">'max'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">session_count_per_week</th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">avg_session_length_hours</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">median</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">median</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">age_group</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Adult</th>
+<td>5.702414</td>
+<td>5.0</td>
+<td>2</td>
+<td>14</td>
+<td>2.026676</td>
+<td>2.03</td>
+<td>0.5</td>
+<td>4.32</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kids</th>
+<td>5.687317</td>
+<td>5.0</td>
+<td>2</td>
+<td>14</td>
+<td>2.011875</td>
+<td>2.01</td>
+<td>0.5</td>
+<td>4.60</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Teen</th>
+<td>5.601114</td>
+<td>5.0</td>
+<td>2</td>
+<td>14</td>
+<td>2.008455</td>
+<td>2.00</td>
+<td>0.5</td>
+<td>4.61</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="sessions-per-week" class="slide level2">
+<h2>Sessions per Week</h2>
+<div id="9005a031" class="cell" data-fig.width="5.5" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Looking at the distribution of session counts and average session lengths.</span></span>
+<span id="cb7-2"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.4</span>))</span>
+<span id="cb7-3"><a></a>ax.set_xlabel(<span class="st">"Session Count per Week"</span>)</span>
+<span id="cb7-4"><a></a>sns.histplot(players[<span class="st">'session_count_per_week'</span>], kde<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb7-5"><a></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-9-output-1.png" width="1591" height="602"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="average-session-length-in-hours" class="slide level2">
+<h2>Average Session Length In Hours</h2>
+<div id="0275c90f" class="cell" data-fig.width="5.5" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.4</span>))</span>
+<span id="cb8-2"><a></a>ax.set_xlabel(<span class="st">"Average Session Length (hrs)"</span>)</span>
+<span id="cb8-3"><a></a>sns.histplot(players[<span class="st">'avg_session_length_hours'</span>], kde<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb8-4"><a></a>plt.tight_layout() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-10-output-1.png" width="1591" height="601"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
 <section>
 <section id="using-quarto-for-presentations" class="title-slide slide level1 center">
 <h1>Using Quarto for presentations</h1>
@@ -169,47 +702,9 @@ Author names
 <aside><ol class="aside-footnotes"><li id="fn1"><p>And add footnotes</p></li></ol></aside></section>
 <section id="code" class="slide level2">
 <h2>Code</h2>
-<div id="32ea0c37" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-stdout">
-<pre><code>                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                    mpg   R-squared:                       0.073
-Model:                            OLS   Adj. R-squared:                  0.070
-Method:                 Least Squares   F-statistic:                     30.59
-Date:                Tue, 09 Dec 2025   Prob (F-statistic):           5.84e-08
-Time:                        14:02:16   Log-Likelihood:                -1346.4
-No. Observations:                 392   AIC:                             2697.
-Df Residuals:                     390   BIC:                             2705.
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const         35.8015      2.266     15.800      0.000      31.347      40.257
-speed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623
-==============================================================================
-Omnibus:                       27.687   Durbin-Watson:                   0.589
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               18.976
-Skew:                           0.420   Prob(JB):                     7.57e-05
-Kurtosis:                       2.323   Cond. No.                         169.
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
-</div>
-</div>
 </section>
 <section id="plots" class="slide level2">
 <h2>Plots</h2>
-<div id="27877ffa" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="presentation_files/figure-html/cell-6-output-1.png" width="1673" height="1070"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="plot-and-text" class="slide level2">
 <h2>Plot and text</h2>
@@ -220,15 +715,7 @@ Notes:
 <li><p>goes here</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div id="1c671b0d" class="cell" data-fig.width="5.5" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="presentation_files/figure-html/cell-7-output-1.png" width="1585" height="998"></p>
-</figure>
-</div>
-</div>
-</div>
+
 </div></div>
 </section></section>
 <section>
@@ -239,236 +726,6 @@ Notes:
 <section id="tables" class="slide level2">
 <h2>Tables</h2>
 <p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
-<div id="2b62049d" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
-<table border="1" class="dataframe">
-
-<thead>
-
-<tr style="text-align: right;">
-
-<th>
-</th>
-
-<th>
-species
-</th>
-
-<th>
-island
-</th>
-
-<th>
-bill_length_mm
-</th>
-
-<th>
-bill_depth_mm
-</th>
-
-<th>
-flipper_length_mm
-</th>
-
-<th>
-body_mass_g
-</th>
-
-<th>
-sex
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<th>
-0
-</th>
-
-<td>
-Adelie
-</td>
-
-<td>
-Torgersen
-</td>
-
-<td>
-39.1
-</td>
-
-<td>
-18.7
-</td>
-
-<td>
-181.0
-</td>
-
-<td>
-3750.0
-</td>
-
-<td>
-Male
-</td>
-
-</tr>
-
-<tr>
-
-<th>
-1
-</th>
-
-<td>
-Adelie
-</td>
-
-<td>
-Torgersen
-</td>
-
-<td>
-39.5
-</td>
-
-<td>
-17.4
-</td>
-
-<td>
-186.0
-</td>
-
-<td>
-3800.0
-</td>
-
-<td>
-Female
-</td>
-
-</tr>
-
-<tr>
-
-<th>
-2
-</th>
-
-<td>
-Adelie
-</td>
-
-<td>
-Torgersen
-</td>
-
-<td>
-40.3
-</td>
-
-<td>
-18.0
-</td>
-
-<td>
-195.0
-</td>
-
-<td>
-3250.0
-</td>
-
-<td>
-Female
-</td>
-
-</tr>
-
-<tr>
-
-<th>
-4
-</th>
-
-<td>
-Adelie
-</td>
-
-<td>
-Torgersen
-</td>
-
-<td>
-36.7
-</td>
-
-<td>
-19.3
-</td>
-
-<td>
-193.0
-</td>
-
-<td>
-3450.0
-</td>
-
-<td>
-Female
-</td>
-
-</tr>
-
-<tr>
-
-<th>
-5
-</th>
-
-<td>
-Adelie
-</td>
-
-<td>
-Torgersen
-</td>
-
-<td>
-39.3
-</td>
-
-<td>
-20.6
-</td>
-
-<td>
-190.0
-</td>
-
-<td>
-3650.0
-</td>
-
-<td>
-Male
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-</div>
-</div>
 </section>
 <section id="images" class="slide level2">
 <h2>Images</h2>
