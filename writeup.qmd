@@ -6,6 +6,8 @@ title: "INFO 523 Final Project Write-Up"
 
 This document outlines the work I completed for the final project in the INFO 523 class. It covers the project goals, the types of recommendation engines I considered, the approach I selected and why, the tools and datasets used, how generative AI assisted in the process, an overview of the development workflow, and the results of my analysis.
 
+For the technical write-up portion of this project, please refer to the `notebooks/final.ipynb` file found in the project's repository.
+
 ## Project Goals
 
 My primary goal was to build a recommendation engine capable of suggesting video games to a user based on their existing game library and a larger catalog of games drawn from a video game sales dataset. A secondary question—separate from the recommendation model itself—was whether trends in the video game sales data might help explain why certain titles achieve higher global sales. I saw this as an opportunity to explore not just the mechanics of the recommendation engine but also the broader context of the video game market and how certain categories or publishers consistently outperform others.
