@@ -1,6 +1,6 @@
 ---
 title: "Video Game Recommendations"
-subtitle: "INFO 523 - Summer 2025 - Final Project"
+subtitle: "INFO 523 - Fall 2025 - Final Project"
 author: "Spencer Atchley"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
