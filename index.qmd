@@ -1,11 +1,11 @@
 ---
-title: "Project Title"
+title: "Video Game Recommendation and EDA"
 subtitle: "INFO 523 - Final Project"
 author: 
-  - name: "Team name - Team member 1, Team member 2,..."
+  - name: "Spencer Atchley"
     affiliations:
       - name: "College of Information Science, University of Arizona"
-description: "Project description"
+description: "This project implements a video game recommendation engine using collaborative filtering and a synthetic user–rating dataset built alongside the vgsales dataset. It also explores sales trends within the video game industry to identify factors that may influence global sales performance."
 format:
    html:
     code-tools: true
@@ -20,4 +20,4 @@ jupyter: python3
 
 ## Abstract
 
-Add project abstract here.
+This project focuses on developing a video game recommendation engine capable of suggesting new games to users based on their existing game libraries and simulated rating behavior. Using the Surprise library for collaborative filtering, a synthetic dataset of player ratings, and the vgsales dataset for context, the project demonstrates how user–item interactions can drive effective recommendations while also examining broader trends in video game sales, such as genre performance, publisher dominance, and regional market differences.
