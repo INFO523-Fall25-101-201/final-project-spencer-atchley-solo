@@ -354,7 +354,7 @@
     "href": "presentation.html#section",
     "title": "Video Game Recommendations",
     "section": "",
-    "text": "Code\n# Looking at the players dataset.\nplayers.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 11959 entries, 0 to 11958\nData columns (total 6 columns):\n #   Column                    Non-Null Count  Dtype  \n---  ------                    --------------  -----  \n 0   user_id                   11959 non-null  int64  \n 1   age_group                 11959 non-null  object \n 2   session_count_per_week    11959 non-null  int64  \n 3   avg_session_length_hours  11959 non-null  float64\n 4   primary_genre             11959 non-null  object \n 5   preferred_platform        11959 non-null  object \ndtypes: float64(1), int64(2), object(3)\nmemory usage: 560.7+ KB"
+    "text": "Rows with missing Year dropped: 271\n\n\n\n\n\n\n\n\n\nGlobal_Sales\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\n\n\n\n\ncount\n16327.000000\n16327.000000\n16327.000000\n16327.000000\n16327.000000\n\n\nmean\n0.540232\n0.265415\n0.147554\n0.078661\n0.048325\n\n\nstd\n1.565732\n0.821591\n0.508766\n0.311557\n0.189885\n\n\nmin\n0.010000\n0.000000\n0.000000\n0.000000\n0.000000\n\n\n25%\n0.060000\n0.000000\n0.000000\n0.000000\n0.000000\n\n\n50%\n0.170000\n0.080000\n0.020000\n0.000000\n0.010000\n\n\n75%\n0.480000\n0.240000\n0.110000\n0.040000\n0.040000\n\n\nmax\n82.740000\n41.490000\n29.020000\n10.220000\n10.570000"
   },
   {
     "objectID": "presentation.html#section-1",
@@ -438,6 +438,167 @@
     "href": "presentation.html#project-writeup",
     "title": "Video Game Recommendations",
     "section": "Project Writeup",
-    "text": "Project Writeup\n\nFull writeup included on project side\nSee Project Writeup"
+    "text": "Project Writeup\n\nFull writeup included on project site\nProject Writeup Link"
+  },
+  {
+    "objectID": "presentation.html#disclaimer",
+    "href": "presentation.html#disclaimer",
+    "title": "Video Game Recommendations",
+    "section": "Disclaimer",
+    "text": "Disclaimer\n\nNot all code and EDA is included in this presentation\nSee Jupyter Notebook file notebooks/final.ipynb for full context"
+  },
+  {
+    "objectID": "presentation.html#inspecting-the-dataframe-1",
+    "href": "presentation.html#inspecting-the-dataframe-1",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting the dataframe",
+    "text": "Inspecting the dataframe\n\n\nCode\n# Looking at the players dataset.\nplayer_games.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 59795 entries, 0 to 59794\nData columns (total 9 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   user_id         59795 non-null  int64  \n 1   game_title      59795 non-null  object \n 2   platform        59795 non-null  object \n 3   genre           59795 non-null  object \n 4   release_year    58812 non-null  float64\n 5   publisher       59584 non-null  object \n 6   global_sales    59795 non-null  float64\n 7   playtime_hours  59795 non-null  float64\n 8   player_rating   59795 non-null  float64\ndtypes: float64(4), int64(1), object(4)\nmemory usage: 4.1+ MB"
+  },
+  {
+    "objectID": "presentation.html#describing-the-dataframe-1",
+    "href": "presentation.html#describing-the-dataframe-1",
+    "title": "Video Game Recommendations",
+    "section": "Describing the dataframe",
+    "text": "Describing the dataframe\n\n\nCode\nplayer_games.describe()\n\n\n\n\n\n\n\n\n\nuser_id\nrelease_year\nglobal_sales\nplaytime_hours\nplayer_rating\n\n\n\n\ncount\n59795.00000\n58812.000000\n59795.000000\n59795.000000\n59795.000000\n\n\nmean\n5980.00000\n2006.424641\n0.537874\n6.042779\n2.949367\n\n\nstd\n3452.29479\n5.806611\n1.614241\n4.456615\n0.753637\n\n\nmin\n1.00000\n1980.000000\n0.010000\n0.500000\n1.000000\n\n\n25%\n2990.00000\n2003.000000\n0.060000\n3.458654\n2.430000\n\n\n50%\n5980.00000\n2007.000000\n0.170000\n5.277986\n2.930000\n\n\n75%\n8970.00000\n2010.000000\n0.470000\n7.266400\n3.450000\n\n\nmax\n11959.00000\n2020.000000\n82.740000\n40.703874\n5.000000"
+  },
+  {
+    "objectID": "presentation.html#inspecting-games-per-platform",
+    "href": "presentation.html#inspecting-games-per-platform",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting games per platform",
+    "text": "Inspecting games per platform\n\n\nCode\n# How many games are there per platform?\nplayer_games['platform'].value_counts()\n\n# Definitely skewed towards more modern gaming in this dataset.\n# Especially DS titles - that's mostly Nintendo handheld games.\n\n\nplatform\nDS      7891\nPS2     7841\nPS3     4790\nWii     4741\nX360    4549\nPSP     4403\nPS      4286\nPC      3416\nXB      2969\nGBA     2966\nGC      1992\n3DS     1808\nPSV     1513\nPS4     1206\nN64     1142\nSNES     846\nXOne     756\nSAT      618\nWiiU     506\n2600     466\nGB       354\nNES      353\nDC       180\nGEN       94\nNG        44\nSCD       21\nWS        20\n3DO       10\nTG16       7\nPCFX       4\nGG         3\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#inspecting-games-per-genre",
+    "href": "presentation.html#inspecting-games-per-genre",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting games per genre",
+    "text": "Inspecting games per genre\n\n\nCode\n# How mnay games are there per genre?\nplayer_games['genre'].value_counts()\n\n# Most games are Action or Sports.\n# There are quite a lot of \"Misc\" games too - not sure what those are.#| \n\n\ngenre\nAction          11970\nSports           8490\nMisc             6290\nRole-Playing     5410\nShooter          4675\nAdventure        4675\nRacing           4530\nPlatform         3180\nSimulation       3055\nFighting         2980\nStrategy         2425\nPuzzle           2115\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#top-player-ratings-by-platform",
+    "href": "presentation.html#top-player-ratings-by-platform",
+    "title": "Video Game Recommendations",
+    "section": "Top Player Ratings by Platform",
+    "text": "Top Player Ratings by Platform\n\n\nCode\n# Looking at a box plot of platform and player rating\n# I'll sort by the top 10 platforms by average player rating for better visualization.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.25))\ntop_platforms = player_games.groupby('platform')['player_rating'].mean().sort_values(ascending=False).head(10).index\nsns.boxplot(x='platform', y='player_rating', data=player_games[player_games['platform'].isin(top_platforms)], ax=ax)\nplt.title('Player Ratings by Platform (Top 10 Platforms)')\nplt.xticks(rotation=90)\nplt.show()"
+  },
+  {
+    "objectID": "presentation.html#inspecting-the-dataframe-2",
+    "href": "presentation.html#inspecting-the-dataframe-2",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting the dataframe",
+    "text": "Inspecting the dataframe\n\n\nCode\n# Looking at the players dataset.\nvgsales.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 16598 entries, 0 to 16597\nData columns (total 11 columns):\n #   Column        Non-Null Count  Dtype  \n---  ------        --------------  -----  \n 0   Rank          16598 non-null  int64  \n 1   Name          16598 non-null  object \n 2   Platform      16598 non-null  object \n 3   Year          16327 non-null  float64\n 4   Genre         16598 non-null  object \n 5   Publisher     16540 non-null  object \n 6   NA_Sales      16598 non-null  float64\n 7   EU_Sales      16598 non-null  float64\n 8   JP_Sales      16598 non-null  float64\n 9   Other_Sales   16598 non-null  float64\n 10  Global_Sales  16598 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 1.4+ MB"
+  },
+  {
+    "objectID": "presentation.html#describing-the-dataframe-2",
+    "href": "presentation.html#describing-the-dataframe-2",
+    "title": "Video Game Recommendations",
+    "section": "Describing the dataframe",
+    "text": "Describing the dataframe\n\n\nCode\nvgsales.describe()\n\n\n\n\n\n\n\n\n\nRank\nYear\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\nGlobal_Sales\n\n\n\n\ncount\n16598.000000\n16327.000000\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n\n\nmean\n8300.605254\n2006.406443\n0.264667\n0.146652\n0.077782\n0.048063\n0.537441\n\n\nstd\n4791.853933\n5.828981\n0.816683\n0.505351\n0.309291\n0.188588\n1.555028\n\n\nmin\n1.000000\n1980.000000\n0.000000\n0.000000\n0.000000\n0.000000\n0.010000\n\n\n25%\n4151.250000\n2003.000000\n0.000000\n0.000000\n0.000000\n0.000000\n0.060000\n\n\n50%\n8300.500000\n2007.000000\n0.080000\n0.020000\n0.000000\n0.010000\n0.170000\n\n\n75%\n12449.750000\n2010.000000\n0.240000\n0.110000\n0.040000\n0.040000\n0.470000\n\n\nmax\n16600.000000\n2020.000000\n41.490000\n29.020000\n10.220000\n10.570000\n82.740000"
+  },
+  {
+    "objectID": "presentation.html#sales-per-platform",
+    "href": "presentation.html#sales-per-platform",
+    "title": "Video Game Recommendations",
+    "section": "Sales per platform",
+    "text": "Sales per platform\n\n\nCode\n# How many sales per platform?\nvgsales['Platform'].value_counts() \n\n\nPlatform\nDS      2163\nPS2     2161\nPS3     1329\nWii     1325\nX360    1265\nPSP     1213\nPS      1196\nPC       960\nXB       824\nGBA      822\nGC       556\n3DS      509\nPSV      413\nPS4      336\nN64      319\nSNES     239\nXOne     213\nSAT      173\nWiiU     143\n2600     133\nNES       98\nGB        98\nDC        52\nGEN       27\nNG        12\nSCD        6\nWS         6\n3DO        3\nTG16       2\nGG         1\nPCFX       1\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#sale-counts-vs-game-counts-by-platform",
+    "href": "presentation.html#sale-counts-vs-game-counts-by-platform",
+    "title": "Video Game Recommendations",
+    "section": "Sale counts vs Game counts by Platform",
+    "text": "Sale counts vs Game counts by Platform"
+  },
+  {
+    "objectID": "presentation.html#general-flow",
+    "href": "presentation.html#general-flow",
+    "title": "Video Game Recommendations",
+    "section": "General flow",
+    "text": "General flow\n\nFilter the data frame to user id, game id (title), rating\nInitialize a Reader object from the dataframe\nFit the model"
+  },
+  {
+    "objectID": "presentation.html#filtering-the-dataframe",
+    "href": "presentation.html#filtering-the-dataframe",
+    "title": "Video Game Recommendations",
+    "section": "Filtering the dataframe",
+    "text": "Filtering the dataframe\n# First, I need to filter down to a data frame with three columns for this model:\n# UserID, Game Title, and user rating.\n# The player_games csv has those three columns, so I'll go ahead and grab it.\nmodel_df = pd.read_csv(\"../data/player_games.csv\")\ncols_to_keep = ['user_id', 'game_title', 'player_rating']\n\nrating_df = model_df[cols_to_keep]"
+  },
+  {
+    "objectID": "presentation.html#fold-cross-validation",
+    "href": "presentation.html#fold-cross-validation",
+    "title": "Video Game Recommendations",
+    "section": "5-fold Cross-Validation",
+    "text": "5-fold Cross-Validation\n# Using surprise\nreader = Reader(rating_scale=(1.0, 5.0))\ndata = Dataset.load_from_df(rating_df, reader)\n\nalgo = SVD()\n\n# Run 5-fold cross-validation and print results\ncross_validate(algo, data, measures=[\"RMSE\", \"MAE\"], cv=5, verbose=True)"
+  },
+  {
+    "objectID": "presentation.html#get-top-n-function",
+    "href": "presentation.html#get-top-n-function",
+    "title": "Video Game Recommendations",
+    "section": "Get-Top-N function",
+    "text": "Get-Top-N function\ndef get_top_n(predictions, n=10):\n    \"\"\"Return the top-N recommendation for each user from a set of predictions.\n\n    Args:\n        predictions(list of Prediction objects): The list of predictions, as\n            returned by the test method of an algorithm.\n        n(int): The number of recommendation to output for each user. Default\n            is 10.\n\n    Returns:\n    A dict where keys are user (raw) ids and values are lists of tuples:\n        [(raw item id, rating estimation), ...] of size n.\n    \"\"\"\n\n    # First map the predictions to each user.\n    top_n = defaultdict(list)\n    for uid, iid, true_r, est, _ in predictions:\n        top_n[uid].append((iid, est))\n\n    # Then sort the predictions for each user and retrieve the k highest ones.\n    for uid, user_ratings in top_n.items():\n        user_ratings.sort(key=lambda x: x[1], reverse=True)\n        top_n[uid] = user_ratings[:n]\n\n    return top_n"
+  },
+  {
+    "objectID": "presentation.html#model-training-and-predictions",
+    "href": "presentation.html#model-training-and-predictions",
+    "title": "Video Game Recommendations",
+    "section": "Model Training and Predictions",
+    "text": "Model Training and Predictions\n# Train the model on the full dataset\nprint(\"Training the model on the full dataset...\")\ntrainset = data.build_full_trainset()\nalgo.fit(trainset)\nprint(\"Model trained.\")\n\n# Predict ratings for all pairs that are not in the training set.\nprint(\"Generating recommendations...\")\ntestset = trainset.build_anti_testset()\npredictions = algo.test(testset)\nprint(\"Recommendations generated.\")\n\nprint(\"Getting the top 5 recommendations for each user...\")\ntop_n = get_top_n(predictions,n=5)\n\n# Print the recommended items for each user\nfor uid, user_ratings in top_n.items():\n    print(f\"User {uid}:\")\n    for (iid, est) in user_ratings:\n        print(f\"  Game: {iid}, Estimated Rating: {est:0.2f}\")\n    print()"
+  },
+  {
+    "objectID": "presentation.html#model-training-and-predictions-output-example",
+    "href": "presentation.html#model-training-and-predictions-output-example",
+    "title": "Video Game Recommendations",
+    "section": "Model Training and Predictions Output Example",
+    "text": "Model Training and Predictions Output Example\nTraining the model on the full dataset...\nModel trained.\nGenerating recommendations...\nRecommendations generated.\nGetting the top 5 recommendations for each user...\n...\nUser 11389:\n  Game: Over the Hedge: Hammy Goes Nuts!, Estimated Rating: 3.41\n  Game: SWAT: Global Strike Team, Estimated Rating: 3.39\n  Game: Midnight Play! Pack, Estimated Rating: 3.33\n  Game: Kane & Lynch 2: Dog Days, Estimated Rating: 3.33\n  Game: Tenchu: Dark Secret, Estimated Rating: 3.33\n\nUser 11390:\n  Game: Silly Bandz: Play The Craze, Estimated Rating: 3.56\n  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.48\n  Game: Royal Palace of White Sword and The City of Gentiles, Estimated Rating: 3.45\n  Game: Hot Wheels: Battle Force 5, Estimated Rating: 3.44\n  Game: Hitman 2: Silent Assassin, Estimated Rating: 3.43\n\nUser 11391:\n  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.45\n  Game: Higurashi no Nakukoru ni Kizuna: Dai-Ni-Kan - Sou, Estimated Rating: 3.44\n  Game: Legaia 2: Duel Saga, Estimated Rating: 3.44\n  Game: Seinaru Kana: Orichalcum no Na no Motoni, Estimated Rating: 3.40\n  Game: Need for Speed Underground, Estimated Rating: 3.38"
+  },
+  {
+    "objectID": "presentation.html#the-question",
+    "href": "presentation.html#the-question",
+    "title": "Video Game Recommendations",
+    "section": "The Question",
+    "text": "The Question\n\nCan we determine factors from the data that may influence global sales?\nInitially planned to use ratings data set, but dropped due to reasons mentioned before"
+  },
+  {
+    "objectID": "presentation.html#sales-distribution",
+    "href": "presentation.html#sales-distribution",
+    "title": "Video Game Recommendations",
+    "section": "Sales Distribution",
+    "text": "Sales Distribution\n\n\nCode\n# Let's peek at the sales distribution and how totals moved over time.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))\nsns.histplot(sales_clean['Global_Sales'], bins=30, ax=ax)\nax.set_title('Global sales are very skewed (millions)')\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#totals-over-time",
+    "href": "presentation.html#totals-over-time",
+    "title": "Video Game Recommendations",
+    "section": "Totals Over Time",
+    "text": "Totals Over Time\n\n\nCode\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))\nyearly = sales_clean.groupby('Year')['Global_Sales'].agg(total='sum', mean='mean')\nax.plot(yearly.index, yearly['total'], label='Total global sales')\nax.plot(yearly.index, yearly['mean'], label='Avg per title')\nax.axvspan(2006, 2011, color='orange', alpha=0.15)\nax.set_title('Sales peaked in the mid-late 2000s')\nax.legend()\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#genre-sales",
+    "href": "presentation.html#genre-sales",
+    "title": "Video Game Recommendations",
+    "section": "Genre Sales",
+    "text": "Genre Sales"
+  },
+  {
+    "objectID": "presentation.html#publishers-and-global-sales",
+    "href": "presentation.html#publishers-and-global-sales",
+    "title": "Video Game Recommendations",
+    "section": "Publishers and global sales",
+    "text": "Publishers and global sales"
+  },
+  {
+    "objectID": "presentation.html#key-takeaways-from-eda",
+    "href": "presentation.html#key-takeaways-from-eda",
+    "title": "Video Game Recommendations",
+    "section": "Key Takeaways from EDA",
+    "text": "Key Takeaways from EDA\n\nSales are highly skewed; a small set of blockbusters dominates volume.\nGlobal totals (and per-title averages) peak around 2006–2011, then taper off.\n\nThis could be due to data incompleteness for more recent years, or a real trend."
+  },
+  {
+    "objectID": "presentation.html#key-takeaways-cont",
+    "href": "presentation.html#key-takeaways-cont",
+    "title": "Video Game Recommendations",
+    "section": "Key Takeaways (cont)",
+    "text": "Key Takeaways (cont)\n\nPlatform, Shooter, and Sports games post the highest medians.\nNintendo, EA, and Activision lead cumulative sales.\nFor the biggest 200 games, NA and EU carry the bulk of global revenue; Japan is meaningful but smaller.\nView the full EDA in the Notebook file"
   }
 ]

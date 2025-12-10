@@ -197,7 +197,7 @@
 
 <section id="title-slide" data-background-image="images/watercolour_sys02_img34_teacup-ocean.jpg" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Video Game Recommendations</h1>
-  <p class="subtitle">INFO 523 - Summer 2025 - Final Project</p>
+  <p class="subtitle">INFO 523 - Fall 2025 - Final Project</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -232,8 +232,8 @@ Spencer Atchley
 <section id="project-writeup" class="slide level2">
 <h2>Project Writeup</h2>
 <ul>
-<li>Full writeup included on project side</li>
-<li>See <a href="https://info523-fall25-101-201.github.io/final-project-spencer-atchley-solo/writeup.html">Project Writeup</a></li>
+<li>Full writeup included on project site</li>
+<li><a href="https://info523-fall25-101-201.github.io/final-project-spencer-atchley-solo/writeup.html">Project Writeup Link</a></li>
 </ul>
 </section></section>
 <section>
@@ -393,20 +393,25 @@ Spencer Atchley
 </ul>
 </section></section>
 <section>
+<section id="code-disclaimer" class="title-slide slide level1 center">
+<h1>Code Disclaimer</h1>
+
+</section>
+<section id="disclaimer" class="slide level2">
+<h2>Disclaimer</h2>
+<ul>
+<li>Not all code and EDA is included in this presentation</li>
+<li>See Jupyter Notebook file <code>notebooks/final.ipynb</code> for full context</li>
+</ul>
+</section></section>
+<section>
 <section id="exploring-the-players-dataset" class="title-slide slide level1 center">
 <h1>Exploring the Players dataset</h1>
 
 </section>
-<section id="code-from-the-jupyter-notebook" class="slide level2">
-<h2>Code from the Jupyter Notebook</h2>
-<ul>
-<li>Not all EDA code and plots included here</li>
-<li>See Jupyter Notebook file in GitHub repo for full context</li>
-</ul>
-</section>
 <section id="inspecting-the-dataframe" class="slide level2">
 <h2>Inspecting the dataframe</h2>
-<div id="02f7ed25" class="cell" data-execution_count="4">
+<div id="3864054d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># Looking at the players dataset.</span></span>
@@ -431,12 +436,12 @@ memory usage: 560.7+ KB</code></pre>
 </section>
 <section id="describing-the-dataframe" class="slide level2">
 <h2>Describing the dataframe</h2>
-<div id="a52891e6" class="cell" data-execution_count="5">
+<div id="a15cdbd6" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>players.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="640">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -519,13 +524,13 @@ memory usage: 560.7+ KB</code></pre>
 </section>
 <section id="examining-the-age-groups" class="slide level2">
 <h2>Examining the age groups</h2>
-<div id="176ce869" class="cell" data-execution_count="6">
+<div id="431d5076" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># How many players are in each age group?</span></span>
 <span id="cb4-2"><a></a>players[<span class="st">'age_group'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="641">
 <pre><code>age_group
 Teen     5924
 Adult    3646
@@ -536,13 +541,13 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="average-session-count-and-session-length-per-age-group" class="slide level2">
 <h2>Average session count and session length per age group</h2>
-<div id="7048c2a3" class="cell" data-execution_count="7">
+<div id="4304d84a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># Based off of age group, what are some statistics for number of sessions per week and average session length?</span></span>
 <span id="cb6-2"><a></a>players.groupby(<span class="st">'age_group'</span>)[[<span class="st">'session_count_per_week'</span>, <span class="st">'avg_session_length_hours'</span>]].agg([<span class="st">'mean'</span>,<span class="st">'median'</span>,<span class="st">'min'</span>,<span class="st">'max'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="642">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -635,7 +640,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="sessions-per-week" class="slide level2">
 <h2>Sessions per Week</h2>
-<div id="9005a031" class="cell" data-fig.width="5.5" data-execution_count="8">
+<div id="d0f3a287" class="cell" data-fig.width="5.5" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Looking at the distribution of session counts and average session lengths.</span></span>
@@ -655,7 +660,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="average-session-length-in-hours" class="slide level2">
 <h2>Average Session Length In Hours</h2>
-<div id="0275c90f" class="cell" data-fig.width="5.5" data-execution_count="9">
+<div id="ba220b28" class="cell" data-fig.width="5.5" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.4</span>))</span>
@@ -673,92 +678,676 @@ Name: count, dtype: int64</code></pre>
 </div>
 </section></section>
 <section>
-<section id="using-quarto-for-presentations" class="title-slide slide level1 center">
-<h1>Using Quarto for presentations</h1>
+<section id="player-ratings" class="title-slide slide level1 center">
+<h1>Player Ratings</h1>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<ul>
-<li><p>The presentation is created using the Quarto CLI</p></li>
-<li><p><code>##</code> sets the start of a new slide</p></li>
-</ul>
+<section id="inspecting-the-dataframe-1" class="slide level2">
+<h2>Inspecting the dataframe</h2>
+<div id="6e709a30" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="co"># Looking at the players dataset.</span></span>
+<span id="cb9-2"><a></a>player_games.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 59795 entries, 0 to 59794
+Data columns (total 9 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   user_id         59795 non-null  int64  
+ 1   game_title      59795 non-null  object 
+ 2   platform        59795 non-null  object 
+ 3   genre           59795 non-null  object 
+ 4   release_year    58812 non-null  float64
+ 5   publisher       59584 non-null  object 
+ 6   global_sales    59795 non-null  float64
+ 7   playtime_hours  59795 non-null  float64
+ 8   player_rating   59795 non-null  float64
+dtypes: float64(4), int64(1), object(4)
+memory usage: 4.1+ MB</code></pre>
+</div>
+</div>
 </section>
-<section id="layouts" class="slide level2">
-<h2>Layouts</h2>
-<p>You can use plain text</p>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li>or bullet points<sup>1</sup></li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p>or in two columns</p>
-</div></div>
-<ul>
-<li><p>like</p></li>
-<li><p>this</p></li>
-</ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>And add footnotes</p></li></ol></aside></section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-</section>
-<section id="plots" class="slide level2">
-<h2>Plots</h2>
-</section>
-<section id="plot-and-text" class="slide level2">
-<h2>Plot and text</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><p>Some text</p></li>
-<li><p>goes here</p></li>
-</ul>
-</div><div class="column" style="width:50%;">
+<section id="describing-the-dataframe-1" class="slide level2">
+<h2>Describing the dataframe</h2>
+<div id="9c2e21dc" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>player_games.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="646">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-</div></div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">user_id</th>
+<th data-quarto-table-cell-role="th">release_year</th>
+<th data-quarto-table-cell-role="th">global_sales</th>
+<th data-quarto-table-cell-role="th">playtime_hours</th>
+<th data-quarto-table-cell-role="th">player_rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>59795.00000</td>
+<td>58812.000000</td>
+<td>59795.000000</td>
+<td>59795.000000</td>
+<td>59795.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>5980.00000</td>
+<td>2006.424641</td>
+<td>0.537874</td>
+<td>6.042779</td>
+<td>2.949367</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>3452.29479</td>
+<td>5.806611</td>
+<td>1.614241</td>
+<td>4.456615</td>
+<td>0.753637</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>1.00000</td>
+<td>1980.000000</td>
+<td>0.010000</td>
+<td>0.500000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>2990.00000</td>
+<td>2003.000000</td>
+<td>0.060000</td>
+<td>3.458654</td>
+<td>2.430000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>5980.00000</td>
+<td>2007.000000</td>
+<td>0.170000</td>
+<td>5.277986</td>
+<td>2.930000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>8970.00000</td>
+<td>2010.000000</td>
+<td>0.470000</td>
+<td>7.266400</td>
+<td>3.450000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>11959.00000</td>
+<td>2020.000000</td>
+<td>82.740000</td>
+<td>40.703874</td>
+<td>5.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="inspecting-games-per-platform" class="slide level2">
+<h2>Inspecting games per platform</h2>
+<div id="c9726220" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co"># How many games are there per platform?</span></span>
+<span id="cb12-2"><a></a>player_games[<span class="st">'platform'</span>].value_counts()</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="co"># Definitely skewed towards more modern gaming in this dataset.</span></span>
+<span id="cb12-5"><a></a><span class="co"># Especially DS titles - that's mostly Nintendo handheld games.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="647">
+<pre><code>platform
+DS      7891
+PS2     7841
+PS3     4790
+Wii     4741
+X360    4549
+PSP     4403
+PS      4286
+PC      3416
+XB      2969
+GBA     2966
+GC      1992
+3DS     1808
+PSV     1513
+PS4     1206
+N64     1142
+SNES     846
+XOne     756
+SAT      618
+WiiU     506
+2600     466
+GB       354
+NES      353
+DC       180
+GEN       94
+NG        44
+SCD       21
+WS        20
+3DO       10
+TG16       7
+PCFX       4
+GG         3
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="inspecting-games-per-genre" class="slide level2">
+<h2>Inspecting games per genre</h2>
+<div id="fab51ced" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># How mnay games are there per genre?</span></span>
+<span id="cb14-2"><a></a>player_games[<span class="st">'genre'</span>].value_counts()</span>
+<span id="cb14-3"><a></a></span>
+<span id="cb14-4"><a></a><span class="co"># Most games are Action or Sports.</span></span>
+<span id="cb14-5"><a></a><span class="co"># There are quite a lot of "Misc" games too - not sure what those are.#| </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="648">
+<pre><code>genre
+Action          11970
+Sports           8490
+Misc             6290
+Role-Playing     5410
+Shooter          4675
+Adventure        4675
+Racing           4530
+Platform         3180
+Simulation       3055
+Fighting         2980
+Strategy         2425
+Puzzle           2115
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="top-player-ratings-by-platform" class="slide level2">
+<h2>Top Player Ratings by Platform</h2>
+<div id="6eaaf2b9" class="cell" data-fig.width="5.5" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># Looking at a box plot of platform and player rating</span></span>
+<span id="cb16-2"><a></a><span class="co"># I'll sort by the top 10 platforms by average player rating for better visualization.</span></span>
+<span id="cb16-3"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.25</span>))</span>
+<span id="cb16-4"><a></a>top_platforms <span class="op">=</span> player_games.groupby(<span class="st">'platform'</span>)[<span class="st">'player_rating'</span>].mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).index</span>
+<span id="cb16-5"><a></a>sns.boxplot(x<span class="op">=</span><span class="st">'platform'</span>, y<span class="op">=</span><span class="st">'player_rating'</span>, data<span class="op">=</span>player_games[player_games[<span class="st">'platform'</span>].isin(top_platforms)], ax<span class="op">=</span>ax)</span>
+<span id="cb16-6"><a></a>plt.title(<span class="st">'Player Ratings by Platform (Top 10 Platforms)'</span>)</span>
+<span id="cb16-7"><a></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb16-8"><a></a>plt.show() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-15-output-1.png" width="1473" height="666"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section>
 <section>
-<section id="a-new-section" class="title-slide slide level1 center">
-<h1>A new section…</h1>
+<section id="video-game-sales-1" class="title-slide slide level1 center">
+<h1>Video Game Sales</h1>
 
 </section>
-<section id="tables" class="slide level2">
-<h2>Tables</h2>
-<p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
+<section id="inspecting-the-dataframe-2" class="slide level2">
+<h2>Inspecting the dataframe</h2>
+<div id="1f74ae7d" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="co"># Looking at the players dataset.</span></span>
+<span id="cb17-2"><a></a>vgsales.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 16598 entries, 0 to 16597
+Data columns (total 11 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   Rank          16598 non-null  int64  
+ 1   Name          16598 non-null  object 
+ 2   Platform      16598 non-null  object 
+ 3   Year          16327 non-null  float64
+ 4   Genre         16598 non-null  object 
+ 5   Publisher     16540 non-null  object 
+ 6   NA_Sales      16598 non-null  float64
+ 7   EU_Sales      16598 non-null  float64
+ 8   JP_Sales      16598 non-null  float64
+ 9   Other_Sales   16598 non-null  float64
+ 10  Global_Sales  16598 non-null  float64
+dtypes: float64(6), int64(1), object(4)
+memory usage: 1.4+ MB</code></pre>
+</div>
+</div>
 </section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
+<section id="describing-the-dataframe-2" class="slide level2">
+<h2>Describing the dataframe</h2>
+<div id="64605f9e" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>vgsales.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="651">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<img data-src="images/watercolour_sys02_img34_teacup-ocean.png" width="500" class="r-stretch quarto-figure-center"><p class="caption">Image credit: Danielle Navarro, Percolate.</p></section>
-<section id="math-expressions" class="slide level2 smaller">
-<h2>Math Expressions</h2>
-<p>You can write LaTeX math expressions inside a pair of dollar signs, e.g.&nbsp;$\alpha+\beta$ renders <span class="math inline">\(\alpha + \beta\)</span>. You can use the display style with double dollar signs:</p>
-<pre><code>$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$</code></pre>
-<p><span class="math display">\[
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-\]</span></p>
-<p>Limitations:</p>
-<ol type="1">
-<li><p>The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting <code>$$</code> must appear in the very beginning of a line, followed immediately by a non-space character, and the ending <code>$$</code> must be at the end of a line, led by a non-space character;</p></li>
-<li><p>There should not be spaces after the opening <code>$</code> or before the closing <code>$</code>.</p></li>
-</ol>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Rank</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">NA_Sales</th>
+<th data-quarto-table-cell-role="th">EU_Sales</th>
+<th data-quarto-table-cell-role="th">JP_Sales</th>
+<th data-quarto-table-cell-role="th">Other_Sales</th>
+<th data-quarto-table-cell-role="th">Global_Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>16598.000000</td>
+<td>16327.000000</td>
+<td>16598.000000</td>
+<td>16598.000000</td>
+<td>16598.000000</td>
+<td>16598.000000</td>
+<td>16598.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>8300.605254</td>
+<td>2006.406443</td>
+<td>0.264667</td>
+<td>0.146652</td>
+<td>0.077782</td>
+<td>0.048063</td>
+<td>0.537441</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>4791.853933</td>
+<td>5.828981</td>
+<td>0.816683</td>
+<td>0.505351</td>
+<td>0.309291</td>
+<td>0.188588</td>
+<td>1.555028</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>1.000000</td>
+<td>1980.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.010000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>4151.250000</td>
+<td>2003.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.060000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>8300.500000</td>
+<td>2007.000000</td>
+<td>0.080000</td>
+<td>0.020000</td>
+<td>0.000000</td>
+<td>0.010000</td>
+<td>0.170000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>12449.750000</td>
+<td>2010.000000</td>
+<td>0.240000</td>
+<td>0.110000</td>
+<td>0.040000</td>
+<td>0.040000</td>
+<td>0.470000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>16600.000000</td>
+<td>2020.000000</td>
+<td>41.490000</td>
+<td>29.020000</td>
+<td>10.220000</td>
+<td>10.570000</td>
+<td>82.740000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="sales-per-platform" class="slide level2">
+<h2>Sales per platform</h2>
+<div id="89815277" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="co"># How many sales per platform?</span></span>
+<span id="cb20-2"><a></a>vgsales[<span class="st">'Platform'</span>].value_counts() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="652">
+<pre><code>Platform
+DS      2163
+PS2     2161
+PS3     1329
+Wii     1325
+X360    1265
+PSP     1213
+PS      1196
+PC       960
+XB       824
+GBA      822
+GC       556
+3DS      509
+PSV      413
+PS4      336
+N64      319
+SNES     239
+XOne     213
+SAT      173
+WiiU     143
+2600     133
+NES       98
+GB        98
+DC        52
+GEN       27
+NG        12
+SCD        6
+WS         6
+3DO        3
+TG16       2
+GG         1
+PCFX       1
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="sale-counts-vs-game-counts-by-platform" class="slide level2">
+<h2>Sale counts vs Game counts by Platform</h2>
+<div id="b7c465ea" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-19-output-1.png" width="1591" height="601"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section>
 <section>
-<section id="wrap-up" class="title-slide slide level1 center">
-<h1>Wrap up</h1>
+<section id="the-surprise" class="title-slide slide level1 center">
+<h1>The Surprise</h1>
 
 </section>
-<section id="feeling-adventurous" class="slide level2">
-<h2>Feeling adventurous?</h2>
+<section id="general-flow" class="slide level2">
+<h2>General flow</h2>
 <ul>
-<li><p>You are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.</p></li>
-<li><p>But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.</p></li>
+<li>Filter the data frame to user id, game id (title), rating</li>
+<li>Initialize a Reader object from the dataframe</li>
+<li>Fit the model</li>
+</ul>
+</section>
+<section id="filtering-the-dataframe" class="slide level2">
+<h2>Filtering the dataframe</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="co"># First, I need to filter down to a data frame with three columns for this model:</span></span>
+<span id="cb22-2"><a></a><span class="co"># UserID, Game Title, and user rating.</span></span>
+<span id="cb22-3"><a></a><span class="co"># The player_games csv has those three columns, so I'll go ahead and grab it.</span></span>
+<span id="cb22-4"><a></a>model_df <span class="op">=</span> pd.read_csv(<span class="st">"../data/player_games.csv"</span>)</span>
+<span id="cb22-5"><a></a>cols_to_keep <span class="op">=</span> [<span class="st">'user_id'</span>, <span class="st">'game_title'</span>, <span class="st">'player_rating'</span>]</span>
+<span id="cb22-6"><a></a></span>
+<span id="cb22-7"><a></a>rating_df <span class="op">=</span> model_df[cols_to_keep]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="fold-cross-validation" class="slide level2">
+<h2>5-fold Cross-Validation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="co"># Using surprise</span></span>
+<span id="cb23-2"><a></a>reader <span class="op">=</span> Reader(rating_scale<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">5.0</span>))</span>
+<span id="cb23-3"><a></a>data <span class="op">=</span> Dataset.load_from_df(rating_df, reader)</span>
+<span id="cb23-4"><a></a></span>
+<span id="cb23-5"><a></a>algo <span class="op">=</span> SVD()</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a><span class="co"># Run 5-fold cross-validation and print results</span></span>
+<span id="cb23-8"><a></a>cross_validate(algo, data, measures<span class="op">=</span>[<span class="st">"RMSE"</span>, <span class="st">"MAE"</span>], cv<span class="op">=</span><span class="dv">5</span>, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="get-top-n-function" class="slide level2">
+<h2>Get-Top-N function</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="kw">def</span> get_top_n(predictions, n<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb24-2"><a></a>    <span class="co">"""Return the top-N recommendation for each user from a set of predictions.</span></span>
+<span id="cb24-3"><a></a></span>
+<span id="cb24-4"><a></a><span class="co">    Args:</span></span>
+<span id="cb24-5"><a></a><span class="co">        predictions(list of Prediction objects): The list of predictions, as</span></span>
+<span id="cb24-6"><a></a><span class="co">            returned by the test method of an algorithm.</span></span>
+<span id="cb24-7"><a></a><span class="co">        n(int): The number of recommendation to output for each user. Default</span></span>
+<span id="cb24-8"><a></a><span class="co">            is 10.</span></span>
+<span id="cb24-9"><a></a></span>
+<span id="cb24-10"><a></a><span class="co">    Returns:</span></span>
+<span id="cb24-11"><a></a><span class="co">    A dict where keys are user (raw) ids and values are lists of tuples:</span></span>
+<span id="cb24-12"><a></a><span class="co">        [(raw item id, rating estimation), ...] of size n.</span></span>
+<span id="cb24-13"><a></a><span class="co">    """</span></span>
+<span id="cb24-14"><a></a></span>
+<span id="cb24-15"><a></a>    <span class="co"># First map the predictions to each user.</span></span>
+<span id="cb24-16"><a></a>    top_n <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb24-17"><a></a>    <span class="cf">for</span> uid, iid, true_r, est, _ <span class="kw">in</span> predictions:</span>
+<span id="cb24-18"><a></a>        top_n[uid].append((iid, est))</span>
+<span id="cb24-19"><a></a></span>
+<span id="cb24-20"><a></a>    <span class="co"># Then sort the predictions for each user and retrieve the k highest ones.</span></span>
+<span id="cb24-21"><a></a>    <span class="cf">for</span> uid, user_ratings <span class="kw">in</span> top_n.items():</span>
+<span id="cb24-22"><a></a>        user_ratings.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-23"><a></a>        top_n[uid] <span class="op">=</span> user_ratings[:n]</span>
+<span id="cb24-24"><a></a></span>
+<span id="cb24-25"><a></a>    <span class="cf">return</span> top_n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="model-training-and-predictions" class="slide level2">
+<h2>Model Training and Predictions</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="co"># Train the model on the full dataset</span></span>
+<span id="cb25-2"><a></a><span class="bu">print</span>(<span class="st">"Training the model on the full dataset..."</span>)</span>
+<span id="cb25-3"><a></a>trainset <span class="op">=</span> data.build_full_trainset()</span>
+<span id="cb25-4"><a></a>algo.fit(trainset)</span>
+<span id="cb25-5"><a></a><span class="bu">print</span>(<span class="st">"Model trained."</span>)</span>
+<span id="cb25-6"><a></a></span>
+<span id="cb25-7"><a></a><span class="co"># Predict ratings for all pairs that are not in the training set.</span></span>
+<span id="cb25-8"><a></a><span class="bu">print</span>(<span class="st">"Generating recommendations..."</span>)</span>
+<span id="cb25-9"><a></a>testset <span class="op">=</span> trainset.build_anti_testset()</span>
+<span id="cb25-10"><a></a>predictions <span class="op">=</span> algo.test(testset)</span>
+<span id="cb25-11"><a></a><span class="bu">print</span>(<span class="st">"Recommendations generated."</span>)</span>
+<span id="cb25-12"><a></a></span>
+<span id="cb25-13"><a></a><span class="bu">print</span>(<span class="st">"Getting the top 5 recommendations for each user..."</span>)</span>
+<span id="cb25-14"><a></a>top_n <span class="op">=</span> get_top_n(predictions,n<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb25-15"><a></a></span>
+<span id="cb25-16"><a></a><span class="co"># Print the recommended items for each user</span></span>
+<span id="cb25-17"><a></a><span class="cf">for</span> uid, user_ratings <span class="kw">in</span> top_n.items():</span>
+<span id="cb25-18"><a></a>    <span class="bu">print</span>(<span class="ss">f"User </span><span class="sc">{</span>uid<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb25-19"><a></a>    <span class="cf">for</span> (iid, est) <span class="kw">in</span> user_ratings:</span>
+<span id="cb25-20"><a></a>        <span class="bu">print</span>(<span class="ss">f"  Game: </span><span class="sc">{</span>iid<span class="sc">}</span><span class="ss">, Estimated Rating: </span><span class="sc">{</span>est<span class="sc">:0.2f}</span><span class="ss">"</span>)</span>
+<span id="cb25-21"><a></a>    <span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="model-training-and-predictions-output-example" class="slide level2">
+<h2>Model Training and Predictions Output Example</h2>
+<pre><code>Training the model on the full dataset...
+Model trained.
+Generating recommendations...
+Recommendations generated.
+Getting the top 5 recommendations for each user...
+...
+User 11389:
+  Game: Over the Hedge: Hammy Goes Nuts!, Estimated Rating: 3.41
+  Game: SWAT: Global Strike Team, Estimated Rating: 3.39
+  Game: Midnight Play! Pack, Estimated Rating: 3.33
+  Game: Kane &amp; Lynch 2: Dog Days, Estimated Rating: 3.33
+  Game: Tenchu: Dark Secret, Estimated Rating: 3.33
+
+User 11390:
+  Game: Silly Bandz: Play The Craze, Estimated Rating: 3.56
+  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.48
+  Game: Royal Palace of White Sword and The City of Gentiles, Estimated Rating: 3.45
+  Game: Hot Wheels: Battle Force 5, Estimated Rating: 3.44
+  Game: Hitman 2: Silent Assassin, Estimated Rating: 3.43
+
+User 11391:
+  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.45
+  Game: Higurashi no Nakukoru ni Kizuna: Dai-Ni-Kan - Sou, Estimated Rating: 3.44
+  Game: Legaia 2: Duel Saga, Estimated Rating: 3.44
+  Game: Seinaru Kana: Orichalcum no Na no Motoni, Estimated Rating: 3.40
+  Game: Need for Speed Underground, Estimated Rating: 3.38
+</code></pre>
+</section></section>
+<section>
+<section id="part-2-what-influences-a-game-global-sales-performance" class="title-slide slide level1 center">
+<h1>Part 2: What influences a game global sales performance?</h1>
+
+</section>
+<section id="the-question" class="slide level2">
+<h2>The Question</h2>
+<ul>
+<li>Can we determine factors from the data that may influence global sales?</li>
+<li>Initially planned to use ratings data set, but dropped due to reasons mentioned before</li>
+</ul>
+</section>
+<section id="sales-distribution" class="slide level2">
+<h2>Sales Distribution</h2>
+<div id="73fc2604" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a></a><span class="co"># Let's peek at the sales distribution and how totals moved over time.</span></span>
+<span id="cb27-2"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.35</span>))</span>
+<span id="cb27-3"><a></a>sns.histplot(sales_clean[<span class="st">'Global_Sales'</span>], bins<span class="op">=</span><span class="dv">30</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb27-4"><a></a>ax.set_title(<span class="st">'Global sales are very skewed (millions)'</span>)</span>
+<span id="cb27-5"><a></a>plt.tight_layout() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-21-output-1.png" width="1591" height="519"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="totals-over-time" class="slide level2">
+<h2>Totals Over Time</h2>
+<div id="a03ffb19" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">5.5</span> <span class="op">*</span> <span class="fl">0.35</span>))</span>
+<span id="cb28-2"><a></a>yearly <span class="op">=</span> sales_clean.groupby(<span class="st">'Year'</span>)[<span class="st">'Global_Sales'</span>].agg(total<span class="op">=</span><span class="st">'sum'</span>, mean<span class="op">=</span><span class="st">'mean'</span>)</span>
+<span id="cb28-3"><a></a>ax.plot(yearly.index, yearly[<span class="st">'total'</span>], label<span class="op">=</span><span class="st">'Total global sales'</span>)</span>
+<span id="cb28-4"><a></a>ax.plot(yearly.index, yearly[<span class="st">'mean'</span>], label<span class="op">=</span><span class="st">'Avg per title'</span>)</span>
+<span id="cb28-5"><a></a>ax.axvspan(<span class="dv">2006</span>, <span class="dv">2011</span>, color<span class="op">=</span><span class="st">'orange'</span>, alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb28-6"><a></a>ax.set_title(<span class="st">'Sales peaked in the mid-late 2000s'</span>)</span>
+<span id="cb28-7"><a></a>ax.legend()</span>
+<span id="cb28-8"><a></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-22-output-1.png" width="1591" height="519"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="genre-sales" class="slide level2">
+<h2>Genre Sales</h2>
+<div id="f4383bb5" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-23-output-1.png" width="1562" height="767"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="publishers-and-global-sales" class="slide level2">
+<h2>Publishers and global sales</h2>
+<div id="45c91ae3" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="presentation_files/figure-revealjs/cell-24-output-1.png" width="1829" height="766"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways-from-eda" class="slide level2">
+<h2>Key Takeaways from EDA</h2>
+<ul>
+<li>Sales are highly skewed; a small set of blockbusters dominates volume.</li>
+<li>Global totals (and per-title averages) peak around 2006–2011, then taper off.
+<ul>
+<li>This could be due to data incompleteness for more recent years, or a real trend.</li>
+</ul></li>
+</ul>
+</section>
+<section id="key-takeaways-cont" class="slide level2">
+<h2>Key Takeaways (cont)</h2>
+<ul>
+<li>Platform, Shooter, and Sports games post the highest medians.</li>
+<li>Nintendo, EA, and Activision lead cumulative sales.</li>
+<li>For the biggest 200 games, NA and EU carry the bulk of global revenue; Japan is meaningful but smaller.</li>
+<li>View the full EDA in the Notebook file</li>
 </ul>
 
 
 </section></section>
-
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
