@@ -156,11 +156,13 @@ vgsales = pd.read_csv(vgsales_path)
 - Common tool for data science workflows
 - Used for exploratory data analysis and recommendation engine
 
-# Exploring the Players dataset
+# Code Disclaimer
 
-## Code from the Jupyter Notebook
-- Not all EDA code and plots included here
-- See Jupyter Notebook file in GitHub repo for full context
+## Disclaimer
+- Not all code and EDA is included in this presentation
+- See Jupyter Notebook file `notebooks/final.ipynb` for full context
+
+# Exploring the Players dataset
 
 ## Inspecting the dataframe
 ```{python}
