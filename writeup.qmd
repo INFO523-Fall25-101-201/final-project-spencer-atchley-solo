@@ -1,0 +1,80 @@
+---
+title: "INFO 523 Final Project Write-Up"
+---
+
+## Introduction
+
+This document outlines the work I completed for the final project in the INFO 523 class. It covers the project goals, the types of recommendation engines I considered, the approach I selected and why, the tools and datasets used, how generative AI assisted in the process, an overview of the development workflow, and the results of my analysis.
+
+For the technical write-up portion of this project, please refer to the `notebooks/final.ipynb` file found in the project's repository.
+
+## Project Goals
+
+My primary goal was to build a recommendation engine capable of suggesting video games to a user based on their existing game library and a larger catalog of games drawn from a video game sales dataset. A secondary question—separate from the recommendation model itself—was whether trends in the video game sales data might help explain why certain titles achieve higher global sales. I saw this as an opportunity to explore not just the mechanics of the recommendation engine but also the broader context of the video game market and how certain categories or publishers consistently outperform others.
+
+## Types of Recommendation Engines
+
+While researching the landscape of recommendation engines, two major categories emerged as the most relevant: **content-based filtering** and **collaborative filtering**.
+
+Content-based filtering recommends items by analyzing the attributes of content a user has already engaged with and finding similar items in the system, relying heavily on item metadata such as genre, publisher, or platform. This method works well when metadata is rich and consistent.
+
+Collaborative filtering instead uses patterns in user ratings. By comparing a target user’s ratings to those of similar users, the system can recommend items that those similar users enjoyed, even if the items themselves do not share obvious metadata. This ability to uncover subtle preference patterns is one of collaborative filtering’s strengths.
+
+A third approach, the **hybrid model**, blends both strategies to create a more resilient system capable of handling sparse data or cold-start scenarios.
+
+## Approach Selected
+
+For this project, I chose **collaborative filtering**. It was the more accessible method to implement with the data I had available, and it offered a clear, structured introduction to the fundamentals of recommendation systems. Because the approach is widely used in real-world applications—from streaming services to online retail—working with it seemed like the most practical choice. I also liked the idea that the model could later be expanded into a hybrid system by incorporating metadata from the game sales dataset.
+
+## Tools and Libraries
+
+As I researched implementation options, I found that Python already offered several libraries suited for recommendation systems. The most prominent was **Surprise** (Simple Python RecommendatIon System Engine). Its documentation was accessible, the API was intuitive, and it included several well-established collaborative filtering algorithms that are commonly used in academic examples. That combination made Surprise the ideal choice for building a minimum viable product in the time available.
+
+Along with Surprise, I used several common Python packages including **pandas**, **numpy**, **seaborn**, and **matplotlib**. These tools handled data loading, transformation, visualization, and exploratory analysis, forming the backbone of the workflow.
+
+## Datasets Used
+
+For the datasets, I began with two from Kaggle:
+
+- **vgsales** dataset:  
+  <https://www.kaggle.com/datasets/gregorut/videogamesales>  
+  This dataset contains thousands of video games and associated metadata, including platform, genre, publisher, and regional and global sales.
+
+- **Video Game Reviews and Ratings** dataset:  
+  <https://www.kaggle.com/datasets/jahnavipaliwal/video-game-reviews-and-ratings>  
+  This dataset provides various ratings for games across different sources.
+
+However, neither dataset included user–game rating pairs—an essential requirement for collaborative filtering. Realizing this, I created a fully synthetic dataset containing unique player entities, their “owned” games, and a set of plausible ratings. This allowed me to simulate the kind of user–item interaction data that a real recommendation engine would rely on. I designed this dataset to be reasonably realistic, with players having varied preferences and different rating patterns.
+
+## Use of Generative AI
+
+One of my objectives for the assignment was to explore the use of generative AI—specifically **Agentic AI**—in a practical development setting. I used the OpenAI Codex extension within VSCode and the GPT-5.1-Codex-Max model in Agent mode to assist with parts of the project. The AI helped produce initial versions of code segments, suggest structural improvements, and assist with debugging. I treated this as a collaborative process, not as a substitution for writing the code myself. Every AI-generated contribution was reviewed line-by-line, refined, and validated before inclusion.
+
+## Development Workflow
+
+### Synthetic Dataset Generation  
+The first major step was generating the synthetic player dataset. I wrote a script for this and used GenAI to help iterate on the underlying logic. It took several attempts to refine the distribution of ratings and game selections so that the dataset behaved in a believable way, but the final result was sufficient for training and evaluating the model.
+
+### Exploratory Analysis  
+With the data generated, I moved on to exploratory analysis. I again used GenAI to assist during this phase, particularly within the Jupyter Notebook environment. It supported formatting code cells, suggesting visualizations, and helping identify issues in the data.
+
+During this exploration, I discovered that the reviews dataset contained randomly generated and inconsistent values—for example, genres assigned to games did not align with their real-world classifications. Because this dataset contributed little value and introduced noise, I removed it from the project.
+
+### Model Implementation  
+After validating the remaining datasets, I proceeded with implementing the collaborative filtering model using the Surprise library. The documentation at <https://surpriselib.com/> made the setup straightforward. I trained the model using the synthetic dataset and verified that it could successfully generate recommendations, effectively completing the minimum viable product for the project.
+
+## Sales Trend Analysis
+
+Following the model implementation, I revisited the vgsales dataset to analyze global sales trends. The most noticeable pattern was the extreme skew in sales distribution—a small number of blockbuster games accounted for a disproportionately large share of total global sales. The dataset also showed a peak in sales around the year 2010, followed by a decline. This pattern may reflect gaps in the dataset rather than an industry-wide shift, so additional data would be required for confirmation.
+
+The strongest-selling genres were **Platform**, **Shooter**, and **Sports** games. A small group of publishers—particularly **Nintendo**, **Electronic Arts**, and **Activision**—dominated global sales. Regionally, **North America** and **Europe** represented the largest portions of global sales, with **Japan** contributing a smaller but still meaningful amount.
+
+## Future Work
+
+Looking ahead, I hope to continue developing this project in my free time. There are several enhancements and open questions that I would like to explore, including expanding the model to incorporate content-based recommendations and conducting deeper analysis of sales trends. Additional questions that interest me include:
+
+- Do aggregated player ratings influence global sales?  
+- How have trends shifted during and after the COVID era?  
+- What role do microtransactions play compared to traditional sales?  
+- How significant is the impact of marketing campaigns on overall performance?
+

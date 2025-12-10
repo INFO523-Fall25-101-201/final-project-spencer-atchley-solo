@@ -1,0 +1,604 @@
+[
+  {
+    "objectID": "writeup.html",
+    "href": "writeup.html",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "",
+    "text": "This document outlines the work I completed for the final project in the INFO 523 class. It covers the project goals, the types of recommendation engines I considered, the approach I selected and why, the tools and datasets used, how generative AI assisted in the process, an overview of the development workflow, and the results of my analysis."
+  },
+  {
+    "objectID": "writeup.html#introduction",
+    "href": "writeup.html#introduction",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "",
+    "text": "This document outlines the work I completed for the final project in the INFO 523 class. It covers the project goals, the types of recommendation engines I considered, the approach I selected and why, the tools and datasets used, how generative AI assisted in the process, an overview of the development workflow, and the results of my analysis."
+  },
+  {
+    "objectID": "writeup.html#project-goals",
+    "href": "writeup.html#project-goals",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Project Goals",
+    "text": "Project Goals\nMy primary goal was to build a recommendation engine capable of suggesting video games to a user based on their existing game library and a larger catalog of games drawn from a video game sales dataset. A secondary question—separate from the recommendation model itself—was whether trends in the video game sales data might help explain why certain titles achieve higher global sales. I saw this as an opportunity to explore not just the mechanics of the recommendation engine but also the broader context of the video game market and how certain categories or publishers consistently outperform others."
+  },
+  {
+    "objectID": "writeup.html#types-of-recommendation-engines",
+    "href": "writeup.html#types-of-recommendation-engines",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Types of Recommendation Engines",
+    "text": "Types of Recommendation Engines\nWhile researching the landscape of recommendation engines, two major categories emerged as the most relevant: content-based filtering and collaborative filtering.\nContent-based filtering recommends items by analyzing the attributes of content a user has already engaged with and finding similar items in the system, relying heavily on item metadata such as genre, publisher, or platform. This method works well when metadata is rich and consistent.\nCollaborative filtering instead uses patterns in user ratings. By comparing a target user’s ratings to those of similar users, the system can recommend items that those similar users enjoyed, even if the items themselves do not share obvious metadata. This ability to uncover subtle preference patterns is one of collaborative filtering’s strengths.\nA third approach, the hybrid model, blends both strategies to create a more resilient system capable of handling sparse data or cold-start scenarios."
+  },
+  {
+    "objectID": "writeup.html#approach-selected",
+    "href": "writeup.html#approach-selected",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Approach Selected",
+    "text": "Approach Selected\nFor this project, I chose collaborative filtering. It was the more accessible method to implement with the data I had available, and it offered a clear, structured introduction to the fundamentals of recommendation systems. Because the approach is widely used in real-world applications—from streaming services to online retail—working with it seemed like the most practical choice. I also liked the idea that the model could later be expanded into a hybrid system by incorporating metadata from the game sales dataset."
+  },
+  {
+    "objectID": "writeup.html#tools-and-libraries",
+    "href": "writeup.html#tools-and-libraries",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Tools and Libraries",
+    "text": "Tools and Libraries\nAs I researched implementation options, I found that Python already offered several libraries suited for recommendation systems. The most prominent was Surprise (Simple Python RecommendatIon System Engine). Its documentation was accessible, the API was intuitive, and it included several well-established collaborative filtering algorithms that are commonly used in academic examples. That combination made Surprise the ideal choice for building a minimum viable product in the time available.\nAlong with Surprise, I used several common Python packages including pandas, numpy, seaborn, and matplotlib. These tools handled data loading, transformation, visualization, and exploratory analysis, forming the backbone of the workflow."
+  },
+  {
+    "objectID": "writeup.html#datasets-used",
+    "href": "writeup.html#datasets-used",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Datasets Used",
+    "text": "Datasets Used\nFor the datasets, I began with two from Kaggle:\n\nvgsales dataset:\nhttps://www.kaggle.com/datasets/gregorut/videogamesales\nThis dataset contains thousands of video games and associated metadata, including platform, genre, publisher, and regional and global sales.\nVideo Game Reviews and Ratings dataset:\nhttps://www.kaggle.com/datasets/jahnavipaliwal/video-game-reviews-and-ratings\nThis dataset provides various ratings for games across different sources.\n\nHowever, neither dataset included user–game rating pairs—an essential requirement for collaborative filtering. Realizing this, I created a fully synthetic dataset containing unique player entities, their “owned” games, and a set of plausible ratings. This allowed me to simulate the kind of user–item interaction data that a real recommendation engine would rely on. I designed this dataset to be reasonably realistic, with players having varied preferences and different rating patterns."
+  },
+  {
+    "objectID": "writeup.html#use-of-generative-ai",
+    "href": "writeup.html#use-of-generative-ai",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Use of Generative AI",
+    "text": "Use of Generative AI\nOne of my objectives for the assignment was to explore the use of generative AI—specifically Agentic AI—in a practical development setting. I used the OpenAI Codex extension within VSCode and the GPT-5.1-Codex-Max model in Agent mode to assist with parts of the project. The AI helped produce initial versions of code segments, suggest structural improvements, and assist with debugging. I treated this as a collaborative process, not as a substitution for writing the code myself. Every AI-generated contribution was reviewed line-by-line, refined, and validated before inclusion."
+  },
+  {
+    "objectID": "writeup.html#development-workflow",
+    "href": "writeup.html#development-workflow",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Development Workflow",
+    "text": "Development Workflow\n\nSynthetic Dataset Generation\nThe first major step was generating the synthetic player dataset. I wrote a script for this and used GenAI to help iterate on the underlying logic. It took several attempts to refine the distribution of ratings and game selections so that the dataset behaved in a believable way, but the final result was sufficient for training and evaluating the model.\n\n\nExploratory Analysis\nWith the data generated, I moved on to exploratory analysis. I again used GenAI to assist during this phase, particularly within the Jupyter Notebook environment. It supported formatting code cells, suggesting visualizations, and helping identify issues in the data.\nDuring this exploration, I discovered that the reviews dataset contained randomly generated and inconsistent values—for example, genres assigned to games did not align with their real-world classifications. Because this dataset contributed little value and introduced noise, I removed it from the project.\n\n\nModel Implementation\nAfter validating the remaining datasets, I proceeded with implementing the collaborative filtering model using the Surprise library. The documentation at https://surpriselib.com/ made the setup straightforward. I trained the model using the synthetic dataset and verified that it could successfully generate recommendations, effectively completing the minimum viable product for the project."
+  },
+  {
+    "objectID": "writeup.html#sales-trend-analysis",
+    "href": "writeup.html#sales-trend-analysis",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Sales Trend Analysis",
+    "text": "Sales Trend Analysis\nFollowing the model implementation, I revisited the vgsales dataset to analyze global sales trends. The most noticeable pattern was the extreme skew in sales distribution—a small number of blockbuster games accounted for a disproportionately large share of total global sales. The dataset also showed a peak in sales around the year 2010, followed by a decline. This pattern may reflect gaps in the dataset rather than an industry-wide shift, so additional data would be required for confirmation.\nThe strongest-selling genres were Platform, Shooter, and Sports games. A small group of publishers—particularly Nintendo, Electronic Arts, and Activision—dominated global sales. Regionally, North America and Europe represented the largest portions of global sales, with Japan contributing a smaller but still meaningful amount."
+  },
+  {
+    "objectID": "writeup.html#future-work",
+    "href": "writeup.html#future-work",
+    "title": "INFO 523 Final Project Write-Up",
+    "section": "Future Work",
+    "text": "Future Work\nLooking ahead, I hope to continue developing this project in my free time. There are several enhancements and open questions that I would like to explore, including expanding the model to incorporate content-based recommendations and conducting deeper analysis of sales trends. Additional questions that interest me include:\n\nDo aggregated player ratings influence global sales?\n\nHow have trends shifted during and after the COVID era?\n\nWhat role do microtransactions play compared to traditional sales?\n\nHow significant is the impact of marketing campaigns on overall performance?"
+  },
+  {
+    "objectID": "notebooks/final.html",
+    "href": "notebooks/final.html",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "This notebook loads and explores the three CSVs in data/ for basic structure, missingness, distributions, and quick cross-tabs.\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom pathlib import Path\nfrom surprise import Dataset, Reader, SVD\nfrom surprise.model_selection import cross_validate\nfrom collections import defaultdict\nimport json\nimport random\ndata_dir = Path(\"..\") / \"data\"\nplayers_path = data_dir / \"players.csv\"\nplayer_games_path = data_dir / \"player_games.csv\"\nvgsales_path = data_dir / \"vgsales.csv\"\n\nplayers = pd.read_csv(players_path)\nplayer_games = pd.read_csv(player_games_path)\nvgsales = pd.read_csv(vgsales_path)\n\nplayers.shape, player_games.shape, vgsales.shape\n\n((11959, 6), (59795, 9), (16598, 11))"
+  },
+  {
+    "objectID": "notebooks/final.html#players",
+    "href": "notebooks/final.html#players",
+    "title": "Exploratory Data Analysis",
+    "section": "Players",
+    "text": "Players\n\nThis data set was synthetically generated.\n\n\n# Looking at the players dataset.\nplayers.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 11959 entries, 0 to 11958\nData columns (total 6 columns):\n #   Column                    Non-Null Count  Dtype  \n---  ------                    --------------  -----  \n 0   user_id                   11959 non-null  int64  \n 1   age_group                 11959 non-null  object \n 2   session_count_per_week    11959 non-null  int64  \n 3   avg_session_length_hours  11959 non-null  float64\n 4   primary_genre             11959 non-null  object \n 5   preferred_platform        11959 non-null  object \ndtypes: float64(1), int64(2), object(3)\nmemory usage: 560.7+ KB\n\n\n\nplayers.describe()\n\n\n\n\n\n\n\n\nuser_id\nsession_count_per_week\navg_session_length_hours\n\n\n\n\ncount\n11959.000000\n11959.000000\n11959.000000\n\n\nmean\n5980.000000\n5.649218\n2.014694\n\n\nstd\n3452.410269\n3.296081\n0.691597\n\n\nmin\n1.000000\n2.000000\n0.500000\n\n\n25%\n2990.500000\n3.000000\n1.540000\n\n\n50%\n5980.000000\n5.000000\n2.010000\n\n\n75%\n8969.500000\n7.000000\n2.480000\n\n\nmax\n11959.000000\n14.000000\n4.610000\n\n\n\n\n\n\n\n\n# How many players are in each age group?\nplayers['age_group'].value_counts()\n\nage_group\nTeen     5924\nAdult    3646\nKids     2389\nName: count, dtype: int64\n\n\n\n# Based off of age group, what are some statistics for number of sessions per week and average session length?\nplayers.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])\n\n\n\n\n\n\n\n\nsession_count_per_week\navg_session_length_hours\n\n\n\nmean\nmedian\nmin\nmax\nmean\nmedian\nmin\nmax\n\n\nage_group\n\n\n\n\n\n\n\n\n\n\n\n\nAdult\n5.702414\n5.0\n2\n14\n2.026676\n2.03\n0.5\n4.32\n\n\nKids\n5.687317\n5.0\n2\n14\n2.011875\n2.01\n0.5\n4.60\n\n\nTeen\n5.601114\n5.0\n2\n14\n2.008455\n2.00\n0.5\n4.61\n\n\n\n\n\n\n\n\n# Looking at the distribution of session counts and average session lengths.\nfig, axes = plt.subplots(1, 2, figsize=(12,4))\nsns.histplot(players['session_count_per_week'], kde=True, ax=axes[0])\naxes[0].set_title('Sessions per Week')\nsns.histplot(players['avg_session_length_hours'], kde=True, ax=axes[1])\naxes[1].set_title('Avg Session Length (hours)')\nplt.tight_layout()\n\n\n\n\n\n\n\n\n\n# Visualizing session length by age group\nsns.boxplot(x='age_group', y='avg_session_length_hours', data=players)\nplt.title('Avg Session Length by Age Group')\nplt.show()\n\n\n\n\n\n\n\n\n\n# Visualizing session count per week by age group\n# The player_gen tool didn't randomize this column well, but a real-world dataset would probably have more variation.\nsns.boxplot(x='age_group', y='session_count_per_week', data=players)\nplt.title('Sessions per Week by Age Group')\nplt.show()"
+  },
+  {
+    "objectID": "notebooks/final.html#player-games",
+    "href": "notebooks/final.html#player-games",
+    "title": "Exploratory Data Analysis",
+    "section": "Player Games",
+    "text": "Player Games\n\nThis data set was synthetically generated, but I still want to explore it.\n\n\nplayer_games.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 59795 entries, 0 to 59794\nData columns (total 9 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   user_id         59795 non-null  int64  \n 1   game_title      59795 non-null  object \n 2   platform        59795 non-null  object \n 3   genre           59795 non-null  object \n 4   release_year    58812 non-null  float64\n 5   publisher       59584 non-null  object \n 6   global_sales    59795 non-null  float64\n 7   playtime_hours  59795 non-null  float64\n 8   player_rating   59795 non-null  float64\ndtypes: float64(4), int64(1), object(4)\nmemory usage: 4.1+ MB\n\n\n\nplayer_games.describe()\n\n\n\n\n\n\n\n\nuser_id\nrelease_year\nglobal_sales\nplaytime_hours\nplayer_rating\n\n\n\n\ncount\n59795.00000\n58812.000000\n59795.000000\n59795.000000\n59795.000000\n\n\nmean\n5980.00000\n2006.424641\n0.537874\n6.042779\n2.949367\n\n\nstd\n3452.29479\n5.806611\n1.614241\n4.456615\n0.753637\n\n\nmin\n1.00000\n1980.000000\n0.010000\n0.500000\n1.000000\n\n\n25%\n2990.00000\n2003.000000\n0.060000\n3.458654\n2.430000\n\n\n50%\n5980.00000\n2007.000000\n0.170000\n5.277986\n2.930000\n\n\n75%\n8970.00000\n2010.000000\n0.470000\n7.266400\n3.450000\n\n\nmax\n11959.00000\n2020.000000\n82.740000\n40.703874\n5.000000\n\n\n\n\n\n\n\n\n# How many unique platforms, game titles, genres, and release years are there?\nplayer_games[['platform', 'game_title', 'genre','release_year']].nunique()\n\nplatform           31\ngame_title      11492\ngenre              12\nrelease_year       39\ndtype: int64\n\n\n\n# How many games are there per platform?\nplayer_games['platform'].value_counts()\n\n# Definitely skewed towards more modern gaming in this dataset.\n# Especially DS titles - that's mostly Nintendo handheld games.\n\nplatform\nDS      7891\nPS2     7841\nPS3     4790\nWii     4741\nX360    4549\nPSP     4403\nPS      4286\nPC      3416\nXB      2969\nGBA     2966\nGC      1992\n3DS     1808\nPSV     1513\nPS4     1206\nN64     1142\nSNES     846\nXOne     756\nSAT      618\nWiiU     506\n2600     466\nGB       354\nNES      353\nDC       180\nGEN       94\nNG        44\nSCD       21\nWS        20\n3DO       10\nTG16       7\nPCFX       4\nGG         3\nName: count, dtype: int64\n\n\n\n# How mnay games are there per genre?\nplayer_games['genre'].value_counts()\n\n# Most games are Action or Sports.\n# There are quite a lot of \"Misc\" games too - not sure what those are.\n\ngenre\nAction          11970\nSports           8490\nMisc             6290\nRole-Playing     5410\nShooter          4675\nAdventure        4675\nRacing           4530\nPlatform         3180\nSimulation       3055\nFighting         2980\nStrategy         2425\nPuzzle           2115\nName: count, dtype: int64\n\n\n\n# Looking at examples of games of the \"Misc\" genre\nplayer_games[player_games['genre'] == 'Misc'].head(n=100)\n\n\n\n\n\n\n\n\nuser_id\ngame_title\nplatform\ngenre\nrelease_year\npublisher\nglobal_sales\nplaytime_hours\nplayer_rating\n\n\n\n\n16985\n3398\nWii Play\nWii\nMisc\n2006.0\nNintendo\n29.02\n5.869957\n1.66\n\n\n16986\n3398\nJampack Spring 2004 (RP-T)\nPS2\nMisc\n2003.0\nSony Computer Entertainment\n0.41\n6.299864\n2.18\n\n\n16987\n3398\nCodename: Kids Next Door: Game Boy Advance Vid...\nGBA\nMisc\n2004.0\nNaN\n0.17\n4.623501\n3.43\n\n\n16988\n3398\nRock Band Track Pack: Classic Rock\nX360\nMisc\n2009.0\nMTV Games\n0.07\n6.101976\n1.45\n\n\n16989\n3398\nYou Don't Know Jack\nPC\nMisc\n1995.0\nVivendi Games\n0.02\n6.753385\n2.00\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n17080\n3417\nMario Party DS\nDS\nMisc\n2007.0\nNintendo\n9.02\n13.767694\n3.11\n\n\n17081\n3417\nSpongeBob SquigglePants\nWii\nMisc\n2011.0\nTHQ\n0.41\n4.341520\n2.73\n\n\n17082\n3417\nBomberman Land\nWii\nMisc\n2007.0\nRising Star Games\n0.17\n7.013869\n2.44\n\n\n17083\n3417\nMy Dress-Up\nDS\nMisc\n2008.0\nOxygen Interactive\n0.07\n20.540851\n4.09\n\n\n17084\n3417\nUtawarerumono: Futari no Hakuoro\nPS3\nMisc\n2016.0\nAqua Plus\n0.01\n0.500000\n3.13\n\n\n\n\n100 rows × 9 columns\n\n\n\n\n# What genre do these games have from the sales dataset?\nvgsales[vgsales['Name'].isin(player_games[player_games['genre'] == 'Misc']['game_title'].unique())][['Name','Genre']].drop_duplicates().head(n=100)\n\n# Yep, seems like the \"Misc\" genre in player_games corresponds to those titles in the sales dataset too.\n# It's interesting, because I see \"Minecraft\" here, which is usually classified as Sandbox or Survival.\n# I guess \"Misc\" is just a catch-all for games that don't fit neatly into other categories defined in the data set for now.\n# For future projects, I'd probably try to refine these genre labels a bit more.\n\n\n\n\n\n\n\n\nName\nGenre\n\n\n\n\n7\nWii Play\nMisc\n\n\n15\nKinect Adventures!\nMisc\n\n\n19\nBrain Age: Train Your Brain in Minutes a Day\nMisc\n\n\n60\nJust Dance 3\nMisc\n\n\n68\nJust Dance 2\nMisc\n\n\n...\n...\n...\n\n\n1324\n4 Nin uchi Mahjong\nMisc\n\n\n1327\nNamco Museum 64\nMisc\n\n\n1331\nMy Word Coach\nMisc\n\n\n1332\nHello Kitty Party\nMisc\n\n\n1333\nSingStar Pop\nMisc\n\n\n\n\n100 rows × 2 columns\n\n\n\n\n# How many games are there for each combination of platform and genre?\nplayer_games[['platform','genre']].value_counts()\n\nplatform  genre    \nPS2       Sports       1451\nDS        Misc         1442\nPS3       Action       1355\nPS2       Action       1285\nDS        Action       1242\n                       ... \nGEN       Racing          3\nNG        Sports          3\nTG16      Shooter         3\nGB        Shooter         3\n3DO       Adventure       3\nName: count, Length: 293, dtype: int64\n\n\n\n# Which platforms have the highest average playtime hours?\nplayer_games.groupby('platform')['playtime_hours'].mean().sort_values(ascending=False)\n\nplatform\nDS      7.142651\nPS2     7.140786\nPS3     6.039137\nWii     6.033498\nX360    5.997810\nPCFX    5.865911\nPS      5.850155\nGG      5.843280\nPSP     5.814726\nPC      5.671329\nXB      5.660967\nGEN     5.485984\nGBA     5.337448\nGC      5.295808\nSAT     5.219366\n3DS     5.205030\nDC      5.135836\nGB      5.128663\nWiiU    5.127961\nPSV     5.107586\nSNES    5.101761\nNG      5.098376\nNES     5.089675\nTG16    5.087840\nXOne    5.063003\nPS4     5.059669\nN64     5.058548\n2600    5.043160\nSCD     4.920850\nWS      4.576416\n3DO     4.169893\nName: playtime_hours, dtype: float64\n\n\n\n# Which platform has the best player ratings on average?\nplayer_games.groupby('platform')['player_rating'].mean().sort_values(ascending=False)\n\nplatform\nDS      3.063155\nPS2     3.049054\nPS3     2.965046\nDC      2.940500\nX360    2.935645\nPSP     2.932819\nWii     2.928920\nPC      2.919836\nNG      2.918636\nPS      2.916864\nXOne    2.899193\nSAT     2.894806\nXB      2.893378\nGBA     2.893014\nGB      2.892825\nPSV     2.891514\nWS      2.891500\nSCD     2.889524\n2600    2.884356\nSNES    2.881785\nPS4     2.875763\nWiiU    2.873458\nN64     2.872916\nGC      2.859247\n3DS     2.836289\nNES     2.814476\nTG16    2.765714\nGEN     2.747872\nGG      2.573333\n3DO     2.408000\nPCFX    1.942500\nName: player_rating, dtype: float64\n\n\n\n# Looking at a box plot of platform and player rating\n# I'll sort by the top 10 platforms by average player rating for better visualization.\ntop_platforms = player_games.groupby('platform')['player_rating'].mean().sort_values(ascending=False).head(10).index\nsns.boxplot(x='platform', y='player_rating', data=player_games[player_games['platform'].isin(top_platforms)])\nplt.title('Player Ratings by Platform (Top 10 Platforms)')\nplt.xticks(rotation=90)\nplt.show()\n\n\n\n\n\n\n\n\n\n# Which genre has the highest average player rating?\nplayer_games.groupby('genre')['player_rating'].mean().sort_values(ascending=False)\n\ngenre\nPuzzle          2.989660\nSimulation      2.971018\nMisc            2.967781\nAdventure       2.960518\nStrategy        2.958082\nRacing          2.957172\nRole-Playing    2.952353\nFighting        2.944638\nShooter         2.942135\nAction          2.936865\nSports          2.935706\nPlatform        2.924698\nName: player_rating, dtype: float64\n\n\n\n# Looking at a box plot of genre and player rating\n# Similar to the last boxplot, I'll grab the top 10 genres here\ntop_genres = player_games.groupby('genre')['player_rating'].mean().sort_values(ascending=False).head(10).index\nsns.boxplot(x='genre', y='player_rating', data=player_games[player_games['genre'].isin(top_genres)])\nplt.title('Player Ratings by Genre (Top 10 Genres)')\nplt.xticks(rotation=90)\nplt.show()"
+  },
+  {
+    "objectID": "notebooks/final.html#video-game-sales",
+    "href": "notebooks/final.html#video-game-sales",
+    "title": "Exploratory Data Analysis",
+    "section": "Video Game Sales",
+    "text": "Video Game Sales\n\nvgsales.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 16598 entries, 0 to 16597\nData columns (total 11 columns):\n #   Column        Non-Null Count  Dtype  \n---  ------        --------------  -----  \n 0   Rank          16598 non-null  int64  \n 1   Name          16598 non-null  object \n 2   Platform      16598 non-null  object \n 3   Year          16327 non-null  float64\n 4   Genre         16598 non-null  object \n 5   Publisher     16540 non-null  object \n 6   NA_Sales      16598 non-null  float64\n 7   EU_Sales      16598 non-null  float64\n 8   JP_Sales      16598 non-null  float64\n 9   Other_Sales   16598 non-null  float64\n 10  Global_Sales  16598 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 1.4+ MB\n\n\n\n# Do we have any missing values in the sales dataset?\nvgsales.isna().sum()\n\nRank              0\nName              0\nPlatform          0\nYear            271\nGenre             0\nPublisher        58\nNA_Sales          0\nEU_Sales          0\nJP_Sales          0\nOther_Sales       0\nGlobal_Sales      0\ndtype: int64\n\n\n\nvgsales.describe(include='all')\n\n\n\n\n\n\n\n\nRank\nName\nPlatform\nYear\nGenre\nPublisher\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\nGlobal_Sales\n\n\n\n\ncount\n16598.000000\n16598\n16598\n16327.000000\n16598\n16540\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n\n\nunique\nNaN\n11493\n31\nNaN\n12\n578\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\ntop\nNaN\nNeed for Speed: Most Wanted\nDS\nNaN\nAction\nElectronic Arts\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nfreq\nNaN\n12\n2163\nNaN\n3316\n1351\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\nmean\n8300.605254\nNaN\nNaN\n2006.406443\nNaN\nNaN\n0.264667\n0.146652\n0.077782\n0.048063\n0.537441\n\n\nstd\n4791.853933\nNaN\nNaN\n5.828981\nNaN\nNaN\n0.816683\n0.505351\n0.309291\n0.188588\n1.555028\n\n\nmin\n1.000000\nNaN\nNaN\n1980.000000\nNaN\nNaN\n0.000000\n0.000000\n0.000000\n0.000000\n0.010000\n\n\n25%\n4151.250000\nNaN\nNaN\n2003.000000\nNaN\nNaN\n0.000000\n0.000000\n0.000000\n0.000000\n0.060000\n\n\n50%\n8300.500000\nNaN\nNaN\n2007.000000\nNaN\nNaN\n0.080000\n0.020000\n0.000000\n0.010000\n0.170000\n\n\n75%\n12449.750000\nNaN\nNaN\n2010.000000\nNaN\nNaN\n0.240000\n0.110000\n0.040000\n0.040000\n0.470000\n\n\nmax\n16600.000000\nNaN\nNaN\n2020.000000\nNaN\nNaN\n41.490000\n29.020000\n10.220000\n10.570000\n82.740000\n\n\n\n\n\n\n\n\n# How many sales per platform?\nvgsales['Platform'].value_counts()\n\nPlatform\nDS      2163\nPS2     2161\nPS3     1329\nWii     1325\nX360    1265\nPSP     1213\nPS      1196\nPC       960\nXB       824\nGBA      822\nGC       556\n3DS      509\nPSV      413\nPS4      336\nN64      319\nSNES     239\nXOne     213\nSAT      173\nWiiU     143\n2600     133\nNES       98\nGB        98\nDC        52\nGEN       27\nNG        12\nSCD        6\nWS         6\n3DO        3\nTG16       2\nGG         1\nPCFX       1\nName: count, dtype: int64\n\n\n\n# Do the sales per platform align with the number of games played per platform in the player_games dataset?\nplatform_sales_counts = vgsales['Platform'].value_counts()\nplatform_game_counts = player_games['platform'].value_counts()\n\n# Visualizing the two distributions side by side\nplatforms = set(platform_sales_counts.index).union(set(platform_game_counts.index))\nsales_counts = [platform_sales_counts.get(platform, 0) for platform in platforms]\ngame_counts = [platform_game_counts.get(platform, 0) for platform in platforms]\nx = np.arange(len(platforms))\nwidth = 0.35\nfig, ax = plt.subplots(figsize=(12,6))\nbars1 = ax.bar(x - width/2, sales_counts, width, label='Sales Counts')\nbars2 = ax.bar(x + width/2, game_counts, width, label='Game Counts')\nax.set_xticks(x)\nax.set_xticklabels(platforms, rotation=90)\nax.set_ylabel('Counts')\nax.set_title('Sales Counts vs Game Counts by Platform')\nax.legend()\nplt.tight_layout()\nplt.show()\n\n# Yep, I'd say there is a trend.\n# Games that had more sales have more play records in the player_games dataset.\n\n\n\n\n\n\n\n\n\n# How many sales per genre?\nvgsales['Genre'].value_counts()\n\nGenre\nAction          3316\nSports          2346\nMisc            1739\nRole-Playing    1488\nShooter         1310\nAdventure       1286\nRacing          1249\nPlatform         886\nSimulation       867\nFighting         848\nStrategy         681\nPuzzle           582\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "notebooks/final.html#summary-of-eda-and-preprocessing-work",
+    "href": "notebooks/final.html#summary-of-eda-and-preprocessing-work",
+    "title": "Exploratory Data Analysis",
+    "section": "Summary of EDA and Preprocessing Work",
+    "text": "Summary of EDA and Preprocessing Work\n\nLoaded three datasets from data/ (players, player_games, vgsales).\nExplored each dataset: info(), describe(), value counts, grouped stats and several plots."
+  },
+  {
+    "objectID": "notebooks/final.html#part-1-recommendation-system-with-surprise",
+    "href": "notebooks/final.html#part-1-recommendation-system-with-surprise",
+    "title": "Exploratory Data Analysis",
+    "section": "Part 1: Recommendation System with Surprise",
+    "text": "Part 1: Recommendation System with Surprise\n\nAnswering part 1 of the final project, which is to recommend games to players based on their past play history. For simplicity, I’ll use collaborative filtering with the Surprise library using ratings derived from players.\n\n\n# First, I need to filter down to a data frame with three columns for this model:\n# UserID, Game Title, and user rating.\n# The player_games csv has those three columns, so I'll go ahead and grab it.\nmodel_df = pd.read_csv(\"../data/player_games.csv\")\ncols_to_keep = ['user_id', 'game_title', 'player_rating']\n\nrating_df = model_df[cols_to_keep]\n\n\n# Using surprise\nreader = Reader(rating_scale=(1.0, 5.0))\ndata = Dataset.load_from_df(rating_df, reader)\n\nalgo = SVD()\n\n# Run 5-fold cross-validation and print results\ncross_validate(algo, data, measures=[\"RMSE\", \"MAE\"], cv=5, verbose=True)\n\nEvaluating RMSE, MAE of algorithm SVD on 5 split(s).\n\n                  Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     \nRMSE (testset)    0.7756  0.7684  0.7688  0.7815  0.7757  0.7740  0.0049  \nMAE (testset)     0.6186  0.6135  0.6134  0.6256  0.6175  0.6177  0.0045  \nFit time          0.23    0.24    0.24    0.24    0.25    0.24    0.01    \nTest time         0.02    0.02    0.07    0.02    0.02    0.03    0.02    \n\n\n{'test_rmse': array([0.77561042, 0.76841783, 0.7687912 , 0.78150812, 0.77565621]),\n 'test_mae': array([0.6186215 , 0.61352798, 0.61336035, 0.62561748, 0.6175117 ]),\n 'fit_time': (0.2341620922088623,\n  0.24496197700500488,\n  0.23569416999816895,\n  0.23739290237426758,\n  0.2491130828857422),\n 'test_time': (0.021291017532348633,\n  0.019502878189086914,\n  0.06631183624267578,\n  0.01961803436279297,\n  0.020987987518310547)}\n\n\n\n\n\ndef get_top_n(predictions, n=10):\n    \"\"\"Return the top-N recommendation for each user from a set of predictions.\n\n    Args:\n        predictions(list of Prediction objects): The list of predictions, as\n            returned by the test method of an algorithm.\n        n(int): The number of recommendation to output for each user. Default\n            is 10.\n\n    Returns:\n    A dict where keys are user (raw) ids and values are lists of tuples:\n        [(raw item id, rating estimation), ...] of size n.\n    \"\"\"\n\n    # First map the predictions to each user.\n    top_n = defaultdict(list)\n    for uid, iid, true_r, est, _ in predictions:\n        top_n[uid].append((iid, est))\n\n    # Then sort the predictions for each user and retrieve the k highest ones.\n    for uid, user_ratings in top_n.items():\n        user_ratings.sort(key=lambda x: x[1], reverse=True)\n        top_n[uid] = user_ratings[:n]\n\n    return top_n\n\n\n# Train the model on the full dataset\nprint(\"Training the model on the full dataset...\")\ntrainset = data.build_full_trainset()\nalgo.fit(trainset)\nprint(\"Model trained.\")\n\n# Predict ratings for all pairs that are not in the training set.\nprint(\"Generating recommendations...\")\ntestset = trainset.build_anti_testset()\npredictions = algo.test(testset)\nprint(\"Recommendations generated.\")\n\nprint(\"Getting the top 5 recommendations for each user...\")\ntop_n = get_top_n(predictions,n=5)\n\n# Print the recommended items for each user\nfor uid, user_ratings in top_n.items():\n    print(f\"User {uid}:\")\n    for (iid, est) in user_ratings:\n        print(f\"  Game: {iid}, Estimated Rating: {est:0.2f}\")\n    print()\n\nTraining the model on the full dataset...\nModel trained.\nGenerating recommendations...\nRecommendations generated.\nGetting the top 5 recommendations for each user...\nSelected sample users: [8900, 7966, 11234, 3462, 1652, 251, 5261, 7181, 7910, 1762]\n\n\n\n---------------------------------------------------------------------------\nFileNotFoundError                         Traceback (most recent call last)\nCell In[64], line 33\n     25         sample_rows.append({\n     26             \"user_id\": uid,\n     27             \"game_id\": iid,\n     28             \"est_rating\": float(est)\n     29         })\n     31 output_path = Path(\"data/sample_recommendations.json\")\n---&gt; 33 with open(output_path, \"w\") as f:\n     34     json.dump(sample_rows, f, indent=4)\n     36 print(f\"Exported sample recommendations to {output_path.resolve()}\")\n\nFile ~/Library/Python/3.12/lib/python/site-packages/IPython/core/interactiveshell.py:324, in _modified_open(file, *args, **kwargs)\n    317 if file in {0, 1, 2}:\n    318     raise ValueError(\n    319         f\"IPython won't let you open fd={file} by default \"\n    320         \"as it is likely to crash IPython. If you know what you are doing, \"\n    321         \"you can use builtins' open.\"\n    322     )\n--&gt; 324 return io_open(file, *args, **kwargs)\n\nFileNotFoundError: [Errno 2] No such file or directory: 'data/sample_recommendations.json'\n\n\n\n\n# Exporting a sample of recommendations to JSON\nall_users = list(top_n.keys())\nsample_users = random.sample(all_users, 10)\n\nprint(f\"Selected sample users: {sample_users}\")\n\nsample_rows = []\nfor uid in sample_users:\n    for (iid, est) in top_n[uid]:\n        sample_rows.append({\n            \"user_id\": uid,\n            \"game_id\": iid,\n            \"est_rating\": float(est)\n        })\n\noutput_path = Path(\"../data/sample_recommendations.json\")\n\nwith open(output_path, \"w\") as f:\n    json.dump(sample_rows, f, indent=4)\n\nprint(f\"Exported sample recommendations to {output_path.resolve()}\")\n\nSelected sample users: [3053, 9587, 9522, 9967, 11164, 4542, 10886, 1164, 10827, 5957]\nExported sample recommendations to /Users/zenful/School/INFO523/final-project-spencer-atchley-solo/data/sample_recommendations.json"
+  },
+  {
+    "objectID": "notebooks/final.html#part-2-which-factors-influence-a-games-global-sales-performance",
+    "href": "notebooks/final.html#part-2-which-factors-influence-a-games-global-sales-performance",
+    "title": "Exploratory Data Analysis",
+    "section": "Part 2: Which factors influence a game’s global sales performance?",
+    "text": "Part 2: Which factors influence a game’s global sales performance?\nShort, EDA-only pass with small steps and conversational notes.\n\nGame plan\n\nClean the year field and sanity-check the sales columns.\nLook at when sales peaked and how skewed the distribution is.\nCompare medians by genre and platform (with a minimum title count to avoid tiny samples).\nSee which publishers dominate totals.\nPeek at regional mix for the biggest hits.\n\n\n# Start with a clean copy and fix Year.\nsales = vgsales.copy()\nsales['Year'] = pd.to_numeric(sales['Year'], errors='coerce')\nmissing_year = sales['Year'].isna().sum()\nsales_clean = sales.dropna(subset=['Year']).assign(Year=lambda df: df['Year'].astype(int))\nprint(f'Rows with missing Year dropped: {missing_year}')\nsales_clean[['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales']].describe()\n\nRows with missing Year dropped: 271\n\n\n\n\n\n\n\n\n\nGlobal_Sales\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\n\n\n\n\ncount\n16327.00\n16327.00\n16327.00\n16327.00\n16327.00\n\n\nmean\n0.54\n0.27\n0.15\n0.08\n0.05\n\n\nstd\n1.57\n0.82\n0.51\n0.31\n0.19\n\n\nmin\n0.01\n0.00\n0.00\n0.00\n0.00\n\n\n25%\n0.06\n0.00\n0.00\n0.00\n0.00\n\n\n50%\n0.17\n0.08\n0.02\n0.00\n0.01\n\n\n75%\n0.48\n0.24\n0.11\n0.04\n0.04\n\n\nmax\n82.74\n41.49\n29.02\n10.22\n10.57\n\n\n\n\n\n\n\n\n# Let's peek at the sales distribution and how totals moved over time.\nfig, axes = plt.subplots(1, 2, figsize=(14,4))\nsns.histplot(sales_clean['Global_Sales'], bins=30, ax=axes[0])\naxes[0].set_title('Global sales are very skewed (millions)')\n\nyearly = sales_clean.groupby('Year')['Global_Sales'].agg(total='sum', mean='mean')\naxes[1].plot(yearly.index, yearly['total'], label='Total global sales')\naxes[1].plot(yearly.index, yearly['mean'], label='Avg per title')\naxes[1].axvspan(2006, 2011, color='orange', alpha=0.15)\naxes[1].set_title('Sales peaked in the mid-late 2000s')\naxes[1].legend()\nplt.tight_layout()\n\n\n\n\n\n\n\n\n\n# Which genres and platforms typically sell more? Use medians to soften the mega-hit effect.\ngenre_medians = sales_clean.groupby('Genre')['Global_Sales'].median().sort_values(ascending=False)\nplatform_medians = (sales_clean\n    .groupby('Platform')\n    .agg(median_sales=('Global_Sales','median'), count=('Name','size'))\n    .query('count &gt;= 100')  # keep platforms with real catalogs\n    .sort_values('median_sales', ascending=False)\n)\nfig, axes = plt.subplots(1, 2, figsize=(16,4))\nsns.barplot(x=genre_medians.index, y=genre_medians.values, color='steelblue', ax=axes[0])\naxes[0].set_xticklabels(axes[0].get_xticklabels(), rotation=45, ha='right')\naxes[0].set_ylabel('Median global sales (millions)')\naxes[0].set_title('Platform/Shooter/Sports sit at the top')\nsns.barplot(y=platform_medians.index, x=platform_medians['median_sales'], color='seagreen', ax=axes[1])\naxes[1].set_xlabel('Median global sales (millions)')\naxes[1].set_title('Strong median sales on big-install-base consoles')\nplt.tight_layout()\n\n/var/folders/ps/dp2pv5c94mgd208r06lxs13r0000gn/T/ipykernel_1947/1744094321.py:11: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.\n  axes[0].set_xticklabels(axes[0].get_xticklabels(), rotation=45, ha='right')\n\n\n\n\n\n\n\n\n\n\n# Who moves the most units in aggregate?\npublisher_totals = sales_clean.groupby('Publisher')['Global_Sales'].sum().sort_values(ascending=False).head(12)\nplt.figure(figsize=(8,5))\nsns.barplot(y=publisher_totals.index, x=publisher_totals.values, palette='Blues_r')\nplt.title('Publishers with the largest cumulative global sales')\nplt.xlabel('Total sales (millions)')\nplt.tight_layout()\n\n/var/folders/ps/dp2pv5c94mgd208r06lxs13r0000gn/T/ipykernel_1947/17215465.py:4: FutureWarning: \n\nPassing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.\n\n  sns.barplot(y=publisher_totals.index, x=publisher_totals.values, palette='Blues_r')\n\n\n\n\n\n\n\n\n\n\n# How do the biggest hits split by region?\ntop_hits = sales_clean.sort_values('Global_Sales', ascending=False).head(200)\nregion_cols = ['NA_Sales','EU_Sales','JP_Sales','Other_Sales']\nregion_share = top_hits[region_cols].div(top_hits['Global_Sales'], axis=0)\nshare_mean = region_share.mean().sort_values(ascending=False)\nfig, axes = plt.subplots(1, 2, figsize=(14,4))\nsns.barplot(x=share_mean.index, y=share_mean.values, ax=axes[0], palette='muted')\naxes[0].set_ylim(0,1)\naxes[0].set_title('Average regional share for the top 200 games')\nsns.scatterplot(data=top_hits, x='NA_Sales', y='Global_Sales', hue='Genre', ax=axes[1], alpha=0.7)\naxes[1].set_title('Hits: NA sales vs global (color = genre)')\naxes[1].set_xlim(0, top_hits['NA_Sales'].max()*1.05)\naxes[1].set_ylim(0, top_hits['Global_Sales'].max()*1.05)\nplt.tight_layout()\n\n/var/folders/ps/dp2pv5c94mgd208r06lxs13r0000gn/T/ipykernel_1947/2769122408.py:7: FutureWarning: \n\nPassing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.\n\n  sns.barplot(x=share_mean.index, y=share_mean.values, ax=axes[0], palette='muted')\n\n\n\n\n\n\n\n\n\n\n\nKey takeaways\n\nSales are highly skewed; a small set of blockbusters dominates volume.\nGlobal totals (and per-title averages) peak around 2006–2011, then taper off.\n\nThis could be due to data incompleteness for more recent years, or a real trend.\n\nPlatform, Shooter, and Sports games post the highest medians.\nNintendo, EA, and Activision lead cumulative sales.\nFor the biggest 200 games, NA and EU carry the bulk of global revenue; Japan is meaningful but smaller."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by Spencer Atchley For INFO 523 - Data Mining and Discovery at the University of Arizona."
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Project title",
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                    mpg   R-squared:                       0.073\nModel:                            OLS   Adj. R-squared:                  0.070\nMethod:                 Least Squares   F-statistic:                     30.59\nDate:                Tue, 09 Dec 2025   Prob (F-statistic):           5.84e-08\nTime:                        14:02:16   Log-Likelihood:                -1346.4\nNo. Observations:                 392   AIC:                             2697.\nDf Residuals:                     390   BIC:                             2705.\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nconst         35.8015      2.266     15.800      0.000      31.347      40.257\nspeed       -354.7055     64.129     -5.531      0.000    -480.788    -228.623\n==============================================================================\nOmnibus:                       27.687   Durbin-Watson:                   0.589\nProb(Omnibus):                  0.000   Jarque-Bera (JB):               18.976\nSkew:                           0.420   Prob(JB):                     7.57e-05\nKurtosis:                       2.323   Cond. No.                         169.\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#quarto",
+    "href": "presentation.html#quarto",
+    "title": "Video Game Recommendations",
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+  },
+  {
+    "objectID": "presentation.html#layouts",
+    "href": "presentation.html#layouts",
+    "title": "Video Game Recommendations",
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\nlike\nthis\n\nAnd add footnotes"
+  },
+  {
+    "objectID": "presentation.html#code",
+    "href": "presentation.html#code",
+    "title": "Video Game Recommendations",
+    "section": "Code",
+    "text": "Code"
+  },
+  {
+    "objectID": "presentation.html#plot-and-text",
+    "href": "presentation.html#plot-and-text",
+    "title": "Video Game Recommendations",
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#tables",
+    "href": "presentation.html#tables",
+    "title": "Video Game Recommendations",
+    "section": "Tables",
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,"
+  },
+  {
+    "objectID": "presentation.html#images",
+    "href": "presentation.html#images",
+    "title": "Video Game Recommendations",
+    "section": "Images",
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+  },
+  {
+    "objectID": "presentation.html#math-expressions",
+    "href": "presentation.html#math-expressions",
+    "title": "Video Game Recommendations",
+    "section": "Math Expressions",
+    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
+  },
+  {
+    "objectID": "presentation.html#feeling-adventurous",
+    "href": "presentation.html#feeling-adventurous",
+    "title": "Video Game Recommendations",
+    "section": "Feeling adventurous?",
+    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
+  },
+  {
+    "objectID": "presentation.html#footnotes",
+    "href": "presentation.html#footnotes",
+    "title": "Project title",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Video Game Recommendation System",
+    "section": "",
+    "text": "import numpy as np\nimport pandas as pd\nimport random"
+  },
+  {
+    "objectID": "proposal.html#dataset",
+    "href": "proposal.html#dataset",
+    "title": "Video Game Recommendation System",
+    "section": "Dataset",
+    "text": "Dataset\n\n# Loading in the two datasets.\nsales_df   = pd.read_csv(\"./data/vgsales.csv\")\nreviews_df = pd.read_csv(\"./data/video_game_reviews.csv\")\n\n\n# Looking at some information about the two data sets.\nprint(sales_df.info())\nprint(reviews_df.info())\nprint(sales_df.head())\nprint(reviews_df.head())\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 16598 entries, 0 to 16597\nData columns (total 11 columns):\n #   Column        Non-Null Count  Dtype  \n---  ------        --------------  -----  \n 0   Rank          16598 non-null  int64  \n 1   Name          16598 non-null  object \n 2   Platform      16598 non-null  object \n 3   Year          16327 non-null  float64\n 4   Genre         16598 non-null  object \n 5   Publisher     16540 non-null  object \n 6   NA_Sales      16598 non-null  float64\n 7   EU_Sales      16598 non-null  float64\n 8   JP_Sales      16598 non-null  float64\n 9   Other_Sales   16598 non-null  float64\n 10  Global_Sales  16598 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 1.4+ MB\nNone\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 47774 entries, 0 to 47773\nData columns (total 18 columns):\n #   Column                   Non-Null Count  Dtype  \n---  ------                   --------------  -----  \n 0   Game Title               47774 non-null  object \n 1   User Rating              47774 non-null  float64\n 2   Age Group Targeted       47774 non-null  object \n 3   Price                    47774 non-null  float64\n 4   Platform                 47774 non-null  object \n 5   Requires Special Device  47774 non-null  object \n 6   Developer                47774 non-null  object \n 7   Publisher                47774 non-null  object \n 8   Release Year             47774 non-null  int64  \n 9   Genre                    47774 non-null  object \n 10  Multiplayer              47774 non-null  object \n 11  Game Length (Hours)      47774 non-null  float64\n 12  Graphics Quality         47774 non-null  object \n 13  Soundtrack Quality       47774 non-null  object \n 14  Story Quality            47774 non-null  object \n 15  User Review Text         47774 non-null  object \n 16  Game Mode                47774 non-null  object \n 17  Min Number of Players    47774 non-null  int64  \ndtypes: float64(3), int64(2), object(13)\nmemory usage: 6.6+ MB\nNone\n   Rank                      Name Platform    Year         Genre Publisher  \\\n0     1                Wii Sports      Wii  2006.0        Sports  Nintendo   \n1     2         Super Mario Bros.      NES  1985.0      Platform  Nintendo   \n2     3            Mario Kart Wii      Wii  2008.0        Racing  Nintendo   \n3     4         Wii Sports Resort      Wii  2009.0        Sports  Nintendo   \n4     5  Pokemon Red/Pokemon Blue       GB  1996.0  Role-Playing  Nintendo   \n\n   NA_Sales  EU_Sales  JP_Sales  Other_Sales  Global_Sales  \n0     41.49     29.02      3.77         8.46         82.74  \n1     29.08      3.58      6.81         0.77         40.24  \n2     15.85     12.88      3.79         3.31         35.82  \n3     15.75     11.01      3.28         2.96         33.00  \n4     11.27      8.89     10.22         1.00         31.37  \n           Game Title  User Rating Age Group Targeted  Price     Platform  \\\n0  Grand Theft Auto V         36.4           All Ages  41.41           PC   \n1          The Sims 4         38.3             Adults  57.56           PC   \n2           Minecraft         26.8              Teens  44.93           PC   \n3   Bioshock Infinite         38.4           All Ages  48.29       Mobile   \n4     Half-Life: Alyx         30.1             Adults  55.49  PlayStation   \n\n  Requires Special Device   Developer        Publisher  Release Year  \\\n0                      No  Game Freak       Innersloth          2015   \n1                      No    Nintendo  Electronic Arts          2015   \n2                     Yes      Bungie           Capcom          2012   \n3                     Yes  Game Freak         Nintendo          2015   \n4                     Yes  Game Freak       Epic Games          2022   \n\n       Genre Multiplayer  Game Length (Hours) Graphics Quality  \\\n0  Adventure          No                 55.3           Medium   \n1    Shooter         Yes                 34.6              Low   \n2  Adventure         Yes                 13.9              Low   \n3     Sports          No                 41.9           Medium   \n4        RPG         Yes                 13.2             High   \n\n  Soundtrack Quality Story Quality  \\\n0            Average          Poor   \n1               Poor          Poor   \n2               Good       Average   \n3               Good     Excellent   \n4               Poor          Good   \n\n                                User Review Text Game Mode  \\\n0                 Solid game, but too many bugs.   Offline   \n1                 Solid game, but too many bugs.   Offline   \n2  Great game, but the graphics could be better.   Offline   \n3  Solid game, but the graphics could be better.    Online   \n4                 Great game, but too many bugs.   Offline   \n\n   Min Number of Players  \n0                      1  \n1                      3  \n2                      5  \n3                      4  \n4                      1  \n\n\n\n# Showcasing an example script of how I might generate the synthetic data for users.\n# I could also just use GenAI to generate a dataset.\n\n# First, loading in the unique platforms and game_titles from the sales dataframe.\n# In the actual project I will merge sales and reviews to get a more complete list of games that exist in both dataframes.\nplatforms = sales_df[\"Platform\"].unique().tolist()\ngame_titles = sales_df[\"Name\"].unique().tolist()\n\n# Helper data for random generation\n# For genre, I'll eventually determine the user's favorite genres based off of the highest frequency of genres the user has played. For now this will suffice.\ngenres = [\"Action\", \"Adventure\", \"RPG\", \"Shooter\", \"Sports\", \"Puzzle\"]\ncountries = [\"USA\", \"Canada\", \"UK\", \"Germany\", \"Japan\", \"Australia\"]\nprice_sensitivity_levels = [\"Low\", \"Medium\", \"High\"]\n\ndef generate_user(user_id: int) -&gt; dict:\n    \"\"\"Generate one synthetic user record.\"\"\"\n    # Choosing platforms\n    owned_platforms = set(random.sample(platforms, random.randint(1, min(5, len(platforms)))))\n    \n    # Choosing owned games\n    owned_games = random.sample(game_titles, random.randint(10, min(50, len(game_titles))))\n    \n    # Build playtime and rating maps for owned games\n    playtime_by_game = {game: round(random.uniform(1, 200), 1) for game in owned_games}\n    ratings_by_game = {game: round(random.uniform(4, 10), 1) for game in owned_games}\n    \n    return {\n        \"UserId\": user_id,\n        \"Username\": f\"user_{user_id}\",\n        \"Age\": random.randint(13, 50),\n        \"Gender\": random.choice([\"Male\", \"Female\", \"Other\"]),\n        \"Country\": random.choice(countries),\n        \"PlatformsOwned\": owned_platforms,\n        \"AvgPlaytimePerWeek\": round(random.uniform(2, 30), 1),\n        \"FavoriteGenres\": random.sample(genres, random.randint(1, 3)),\n        \"PriceSensitivity\": random.choice(price_sensitivity_levels),\n        \"HasSpecialHardware\": random.choice([True, False]),\n        \"GamesOwned\": owned_games,\n        \"PlaytimeByGame\": playtime_by_game,\n        \"UserRatings\": ratings_by_game,\n        \"SessionFrequency\": random.randint(1, 14)\n    }\n\n# Generate multiple users for demonstrating the functionality\nnum_users = 10\nusers = [generate_user(i + 1) for i in range(num_users)]\n\n# Converting to a df\ndf_users = pd.DataFrame(users)\n\nprint(df_users.head()) \n\n   UserId Username  Age  Gender    Country            PlatformsOwned  \\\n0       1   user_1   24  Female        USA                  {GB, DC}   \n1       2   user_2   14  Female         UK                {SCD, PS3}   \n2       3   user_3   21  Female  Australia       {Wii, GB, SNES, WS}   \n3       4   user_4   47  Female      Japan  {PS2, 3DS, WS, N64, NES}   \n4       5   user_5   35   Other        USA           {WiiU, SCD, XB}   \n\n   AvgPlaytimePerWeek            FavoriteGenres PriceSensitivity  \\\n0                13.6         [Shooter, Action]           Medium   \n1                17.7          [Action, Puzzle]              Low   \n2                18.8                  [Puzzle]              Low   \n3                 2.6  [Adventure, RPG, Puzzle]           Medium   \n4                 8.1       [Adventure, Puzzle]           Medium   \n\n   HasSpecialHardware                                         GamesOwned  \\\n0               False  [Cruis'n Exotica, Draglade (JP sales), Sakura ...   \n1               False  [Imabikisou, Steal Princess, WipEout Pure, IHR...   \n2                True  [Kuusen II, Rugrats: Castle Capers, Toy Story ...   \n3               False  [Pursuit Force, Zoobles! Spring to Life!, Supe...   \n4               False  [Hatsune Miku: Project Diva 2nd, Toriko: Ultim...   \n\n                                      PlaytimeByGame  \\\n0  {'Cruis'n Exotica': 124.6, 'Draglade (JP sales...   \n1  {'Imabikisou': 36.8, 'Steal Princess': 11.5, '...   \n2  {'Kuusen II': 183.4, 'Rugrats: Castle Capers':...   \n3  {'Pursuit Force': 197.2, 'Zoobles! Spring to L...   \n4  {'Hatsune Miku: Project Diva 2nd': 158.3, 'Tor...   \n\n                                         UserRatings  SessionFrequency  \n0  {'Cruis'n Exotica': 5.4, 'Draglade (JP sales)'...                10  \n1  {'Imabikisou': 9.9, 'Steal Princess': 8.4, 'Wi...                10  \n2  {'Kuusen II': 6.7, 'Rugrats: Castle Capers': 8...                14  \n3  {'Pursuit Force': 6.1, 'Zoobles! Spring to Lif...                13  \n4  {'Hatsune Miku: Project Diva 2nd': 9.2, 'Torik...                10  \n\n\nThere are three primary data sets that will be used as part of this project:\n\nVideo Game Sales\n\n\nRank\n\nRanking of overall sales\n\nName\n\nThe games name\n\nPlatform\n\nPlatform of the games release (i.e. PC,PS4, etc.)\n\nYear\n\nYear of the game’s release\n\nGenre\n\nGenre of the game\n\nPublisher\n\nPublisher of the game\n\nNA_Sales\n\nSales in North America (in millions)\n\nEU_Sales\n\nSales in Europe (in millions)\n\nJP_Sales\n\nSales in Japan (in millions)\n\nOther_Sales\n\nSales in the rest of the world (in millions)\n\nGlobal_Sales\n\nTotal worldwide sales.\n\n\n\nVideo Game Reviews and Ratings\n\n\nGame Title\n\nThe name of the video game (e.g., Super Mario Odyssey, FIFA 24)\n\nUser Rating\n\nA numerical rating given by the user, ranging from 0 to 10, indicating their overall satisfaction with the game.\n\nAge Group Target\n\nThe primary demographic that the game is designed for (e.g., Kids, Teens, Adults, All Ages).\n\nPrice\n\nThe retail price of the game (in USD), reflecting its market value at the time of purchase.\n\nPlatform\n\nThe gaming platform(s) on which the game is available (e.g., PC, PlayStation, Nintendo Switch, Mobile).\n\nRequires Special Device\n\nWhether the game requires special hardware or accessories\n\nDeveloper\n\nThe company or studio responsible for developing the game (e.g., Nintendo, EA Sports, Epic Games).\n\nPublisher\n\nThe company that publishes the game (e.g., Activision, Take-Two Interactive, Square Enix).\n\nRelease Year\n\nThe year the game was released to the public.\n\nGenre\n\nThe category of gameplay the game falls under (e.g., Action, Adventure, Sports, Puzzle, RPG).\n\n\n\nUser (synthetic data)\n\n\nUserId\n\nUnique identifier assigned to each user\n\nUsername\n\nFictional username or handle representing the player. Sometimes known as a “gamertag”\n\nAge\n\nThe user’s age in years; allows demographic-based analysis (e.g., age-related genre preferences).\n\nGender\n\nThe gender of the user\n\nCountry\n\nThe country or region where the user resides; aligns with regional sales data such as NA_Sales or EU_Sales.\n\nPlatformsOwned\n\nThe gaming platform(s) that the user owns\n\nAvgPlaytimePerWeek\n\nThe average number of hours the user spends gaming each week; indicates engagement intensity and likelihood of interaction with new titles.\n\nFavoriteGenres\n\nThe top 1–3 game genres the user most enjoys (e.g., RPG, Action, Sports)\n\nPriceSensitivity\n\nRepresents the user’s sensitivity to price (Low, Medium, High)\n\nHasSpecialHardware\n\nIndicates whether the user owns specialized hardware (e.g., VR headset, motion controller)\n\nGamesOwned\n\nA list of titles currently owned by the user\n\nPlaytimeByGame\n\nA mapping of each owned game to the number of hours played\n\nUserRatings\n\nA mapping of each owned game to a user-assigned rating (0–10); enables collaborative filtering based on user-item relationships.\n\nSessionFrequency\n\nNumber of gaming sessions per week; helps model user engagement and recommendation responsiveness."
+  },
+  {
+    "objectID": "proposal.html#questions",
+    "href": "proposal.html#questions",
+    "title": "Video Game Recommendation System",
+    "section": "Questions",
+    "text": "Questions\nWhich video games should be recommended to a user based on their existing library, playtime, and ratings?\nWhat factors (such as genre, platform, or region) most strongly influence a game’s global sales performance?"
+  },
+  {
+    "objectID": "proposal.html#analysis-plan",
+    "href": "proposal.html#analysis-plan",
+    "title": "Video Game Recommendation System",
+    "section": "Analysis plan",
+    "text": "Analysis plan\n\nVideo Game Recommender\n\n\nVariables Used: User’s games, playtime, ratings, favorite genres, and platforms.\nNew Data to Create: Average playtime and ratings by genre for each user.\nExtra Data Needed: None, all data comes from the current datasets.\n\n\nWhich factors influence a game’s global sales performance?\n\n\nVariables Used: Global sales, genre, platform, release year, publisher, and user rating.\nNew Data to Create: Average sales by genre and platform.\nExtra Data Needed: None, only existing sales and reviews data are used."
+  },
+  {
+    "objectID": "presentation.html#plots",
+    "href": "presentation.html#plots",
+    "title": "Video Game Recommendations",
+    "section": "Plots",
+    "text": "Plots"
+  },
+  {
+    "objectID": "presentation.html#project-goals",
+    "href": "presentation.html#project-goals",
+    "title": "Video Game Recommendations",
+    "section": "Project Goals",
+    "text": "Project Goals\n\nWhich video games should be recommended to a user based on their existing library, playtime, and ratings?\nWhich factors (such as genre, platform, or region) most strongly influence a game’s global sales performance?"
+  },
+  {
+    "objectID": "presentation.html#tools-used",
+    "href": "presentation.html#tools-used",
+    "title": "Video Game Recommendations",
+    "section": "Tools Used",
+    "text": "Tools Used\n\nQuarto\nJupyter Notebook\nVSCode\nGenerative AI (more on this in later slides)"
+  },
+  {
+    "objectID": "presentation.html#types-of-recommendation-engines",
+    "href": "presentation.html#types-of-recommendation-engines",
+    "title": "Video Game Recommendations",
+    "section": "Types of recommendation engines",
+    "text": "Types of recommendation engines\n\nContent-based filtering\nCollaborative filtering"
+  },
+  {
+    "objectID": "presentation.html#content-based-filtering",
+    "href": "presentation.html#content-based-filtering",
+    "title": "Video Game Recommendations",
+    "section": "Content-based filtering",
+    "text": "Content-based filtering\n\nRecommends items to users based off of features and metadata\nCompares item data and user data to create recommendations\n\nItem data: Video game genres, time to game completion, cost\nUser data: Previously played genres, game completion %, budget range"
+  },
+  {
+    "objectID": "presentation.html#collaborative-filtering",
+    "href": "presentation.html#collaborative-filtering",
+    "title": "Video Game Recommendations",
+    "section": "Collaborative filtering",
+    "text": "Collaborative filtering\n\nGroups users based on similarities\nRecommends new items to users based off of similar user items\n\nSimilar users share similar interests\nUses matrices to represent data\nMeasures similarity between users\n\nExample: User A rated Game1 high, User B rated Game1 high, User A also rated Game2 high, recommend Game2 to User B\nSusceptible to Cold Start problem\n\nNew users have no past history, system can’t perform evaluation"
+  },
+  {
+    "objectID": "presentation.html#hybrid-filtering",
+    "href": "presentation.html#hybrid-filtering",
+    "title": "Video Game Recommendations",
+    "section": "Hybrid filtering",
+    "text": "Hybrid filtering\n\nUses both content-based filtering and collaborative filtering\nHelps to overcome weaknesses from models, such as cold start problem"
+  },
+  {
+    "objectID": "presentation.html#project-choice",
+    "href": "presentation.html#project-choice",
+    "title": "Video Game Recommendations",
+    "section": "Project Choice",
+    "text": "Project Choice\n\nCollaborative filtering chosen for project\n\nEasier to use as introduction to recommendation engines\nGood support using available Python libraries\nGood learning opportunity, easier to understand"
+  },
+  {
+    "objectID": "presentation.html#surprise",
+    "href": "presentation.html#surprise",
+    "title": "Video Game Recommendations",
+    "section": "Surprise",
+    "text": "Surprise\n\nSimple Python RecommendatIon System Engine\nCollaborative filtering library\nWell documented, easy to use"
+  },
+  {
+    "objectID": "presentation.html#other-libraries-used",
+    "href": "presentation.html#other-libraries-used",
+    "title": "Video Game Recommendations",
+    "section": "Other libraries used",
+    "text": "Other libraries used\n\nStandard libraries used throughout course\n\npandas\nnumpy\nseaborn"
+  },
+  {
+    "objectID": "presentation.html#video-game-sales",
+    "href": "presentation.html#video-game-sales",
+    "title": "Video Game Recommendations",
+    "section": "Video Game Sales",
+    "text": "Video Game Sales\n\nThousands of video game sales\nVarious pieces of metadata\n\nRanking of overall sales\nPlatform\nYear of release\nRegional sales and global sales"
+  },
+  {
+    "objectID": "presentation.html#video-game-reviews-and-ratings",
+    "href": "presentation.html#video-game-reviews-and-ratings",
+    "title": "Video Game Recommendations",
+    "section": "Video Game Reviews and Ratings",
+    "text": "Video Game Reviews and Ratings\n\nSeemed promising at initial glance\nEDA determined not feasible for project\n\nRandomly generated data"
+  },
+  {
+    "objectID": "presentation.html#agentic-ai",
+    "href": "presentation.html#agentic-ai",
+    "title": "Video Game Recommendations",
+    "section": "Agentic AI",
+    "text": "Agentic AI\n\nHow can we use Agentic AI to assist in data science?\n\nWanted to explore the use of agentic AI in a practical development setting\n\nUsed OpenAI Codex\n\nExtension for VSCode\nUsed GPT-5.1-Codex-Max model\n\nThorough review required\n\nCode review needed on each generated line"
+  },
+  {
+    "objectID": "presentation.html#synthetic-dataset-generation",
+    "href": "presentation.html#synthetic-dataset-generation",
+    "title": "Video Game Recommendations",
+    "section": "Synthetic Dataset Generation",
+    "text": "Synthetic Dataset Generation\n\nNeeded synthetic player data\n\nNeeded both unique player entities and game ratings\n\nAgentic AI used for player_gen script\nSeveral attempts and some refinement required"
+  },
+  {
+    "objectID": "presentation.html#synthetic-dataset-generation-script",
+    "href": "presentation.html#synthetic-dataset-generation-script",
+    "title": "Video Game Recommendations",
+    "section": "Synthetic Dataset Generation Script",
+    "text": "Synthetic Dataset Generation Script\n# Disclaimer: This script was generated by an AI language model\n# using GPT-5.1-Codex-Max\n\nimport pandas as pd\nimport numpy as np\n\nrng = np.random.default_rng(42)\n\n\ndef clean_title(s: str) -&gt; str:\n    \"\"\"Lowercase and strip to alnum + spaces to improve matching.\"\"\"\n    cleaned = \"\".join(ch.lower() if ch.isalnum() else \" \" for ch in s)\n    return \" \".join(cleaned.split())\n\n\n# ---------------------------\n# Load game data (vgsales only)\n# ---------------------------\nsales = pd.read_csv(\"../data/vgsales.csv\")\nsales = sales.dropna(subset=[\"Name\", \"Genre\", \"Platform\"])\nsales[\"title_norm\"] = sales[\"Name\"].str.strip().str.lower()\nsales[\"title_clean\"] = sales[\"Name\"].apply(clean_title)\n\n# Deduplicate by title/platform, keeping the first occurrence\nsales = sales.drop_duplicates(subset=[\"title_clean\", \"Platform\"]).reset_index(drop=True)\n\n\n# Build the working games dataframe using only vgsales attributes\ndef parse_year(val):\n    if pd.isna(val):\n        return np.nan\n    try:\n        return int(float(val))\n    except Exception:\n        return np.nan\n\n\ngames_all = pd.DataFrame(\n    {\n        \"game_title\": sales[\"Name\"],\n        \"Platform\": sales[\"Platform\"],\n        \"Genre\": sales[\"Genre\"],\n        \"release_year\": sales[\"Year\"].apply(parse_year),\n        \"publisher\": sales.get(\"Publisher\"),\n        \"global_sales\": sales.get(\"Global_Sales\"),\n        \"title_norm\": sales[\"title_norm\"],\n        \"title_clean\": sales[\"title_clean\"],\n    }\n)\n\n# Categorical distributions from the dataset\ngenre_probs = games_all[\"Genre\"].value_counts(normalize=True)\nplatform_probs = games_all[\"Platform\"].value_counts(normalize=True)\nage_group_probs = pd.Series([0.2, 0.5, 0.3], index=[\"Kids\", \"Teen\", \"Adult\"])\n\n\ndef weighted_choice(vc_series, size=1):\n    \"\"\"Sample from a value_counts() series (index = values, values = probs).\"\"\"\n    return rng.choice(vc_series.index.to_list(), size=size, p=vc_series.values)\n\n\ndef skew_distribution(vc_series, exponent=1.4):\n    \"\"\"Amplify the most common categories to create a skewed distribution.\"\"\"\n    weights = np.power(vc_series.values, exponent)\n    weights = weights / weights.sum()\n    return pd.Series(weights, index=vc_series.index)\n\n\n# ---------------------------\n# Generate players (ensure coverage) and assignments\n# ---------------------------\n\nreviews_per_game_required = 3\nreviews_per_user_cap = 5\n\ngames_by_genre = {g: games_all[games_all[\"Genre\"] == g] for g in genre_probs.index}\ngames_count_by_genre = {g: len(df) for g, df in games_by_genre.items()}\n\n# Minimum players per genre to satisfy coverage assuming each writes 5 reviews\nmin_players_per_genre = {\n    g: int(np.ceil(reviews_per_game_required * cnt / reviews_per_user_cap))\n    for g, cnt in games_count_by_genre.items()\n}\n\nusers = []\nplatform_probs_skewed = skew_distribution(platform_probs, exponent=1.6)\n\n\ndef add_user(primary_genre):\n    uid = len(users) + 1\n    age_group = weighted_choice(age_group_probs, size=1)[0]\n    sessions = rng.integers(2, 7) if rng.random() &lt; 0.75 else rng.integers(7, 15)\n    avg_len = float(np.clip(rng.normal(loc=2.0, scale=0.7), 0.5, 6.0))\n    preferred_platform = weighted_choice(platform_probs_skewed, size=1)[0]\n    users.append(\n        {\n            \"user_id\": uid,\n            \"age_group\": age_group,\n            \"session_count_per_week\": sessions,\n            \"avg_session_length_hours\": avg_len,\n            \"primary_genre\": primary_genre,\n            \"preferred_platform\": preferred_platform,\n            \"remaining_slots\": reviews_per_user_cap,\n            \"assigned_games\": [],\n        }\n    )\n    return uid\n\n\n# Seed required users per genre\nfor genre, needed in min_players_per_genre.items():\n    for _ in range(needed):\n        add_user(genre)\n\n# Add a buffer of extra users distributed by genre popularity\nextra_users = 2000\nfor _ in range(extra_users):\n    add_user(weighted_choice(genre_probs, size=1)[0])\n\n# Map genre to list of user indices for quick access\ngenre_to_users = {}\nfor idx, user in enumerate(users):\n    genre_to_users.setdefault(user[\"primary_genre\"], []).append(idx)\n\n# Track review counts per game\ngame_review_counts = np.zeros(len(games_all), dtype=int)\n\n\n# Helper to round-robin through users in a genre\ndef assign_mandatory_reviews():\n    for genre, games_df in games_by_genre.items():\n        game_indices = games_df.index.tolist()\n        user_indices = genre_to_users.get(genre, [])\n        pointer = 0\n        for gi in game_indices:\n            for _ in range(reviews_per_game_required):\n                # find next user with capacity; if none, create a new one\n                start_pointer = pointer\n                while (\n                    not user_indices\n                    or users[user_indices[pointer]][\"remaining_slots\"] &lt;= 0\n                ):\n                    pointer = (pointer + 1) % max(len(user_indices), 1)\n                    if pointer == start_pointer and user_indices:\n                        # all full, add a new user for this genre\n                        new_uid = add_user(genre)\n                        user_indices.append(new_uid - 1)\n                        genre_to_users[genre].append(new_uid - 1)\n                        start_pointer = pointer = len(user_indices) - 1\n                        break\n                    if not user_indices:\n                        new_uid = add_user(genre)\n                        user_indices.append(new_uid - 1)\n                        genre_to_users[genre] = user_indices\n                        start_pointer = pointer = 0\n                        break\n                user_idx = user_indices[pointer]\n                users[user_idx][\"assigned_games\"].append(gi)\n                users[user_idx][\"remaining_slots\"] -= 1\n                game_review_counts[gi] += 1\n                pointer = (pointer + 1) % len(user_indices)\n\n\nassign_mandatory_reviews()\n\n# Fill remaining slots per user within their genre, favoring less-reviewed games and platform preference\nfor user in users:\n    remaining = user[\"remaining_slots\"]\n    if remaining &lt;= 0:\n        continue\n    genre = user[\"primary_genre\"]\n    games_df = games_by_genre[genre]\n    if games_df.empty:\n        continue\n    already = set(user[\"assigned_games\"])\n    candidate_indices = [idx for idx in games_df.index if idx not in already]\n    if not candidate_indices:\n        continue\n    # weights: inverse of current review count, platform bonus\n    counts = game_review_counts[candidate_indices]\n    weights = 1 / (1 + counts.astype(float))\n    weights *= np.where(\n        games_all.loc[candidate_indices, \"Platform\"].values\n        == user[\"preferred_platform\"],\n        2.0,\n        1.0,\n    )\n    weights = weights / weights.sum()\n    picks = rng.choice(\n        candidate_indices,\n        size=min(remaining, len(candidate_indices)),\n        replace=False,\n        p=weights,\n    )\n    for gi in picks:\n        user[\"assigned_games\"].append(gi)\n        user[\"remaining_slots\"] -= 1\n        game_review_counts[gi] += 1\n\n# Build players dataframe\nplayers = pd.DataFrame(\n    {\n        \"user_id\": [u[\"user_id\"] for u in users],\n        \"age_group\": [u[\"age_group\"] for u in users],\n        \"session_count_per_week\": [u[\"session_count_per_week\"] for u in users],\n        \"avg_session_length_hours\": [\n            round(u[\"avg_session_length_hours\"], 2) for u in users\n        ],\n        \"primary_genre\": [u[\"primary_genre\"] for u in users],\n        \"preferred_platform\": [u[\"preferred_platform\"] for u in users],\n    }\n)\n\nplayers.to_csv(\"../data/players.csv\", index=False)\nprint(\"Generated players.csv with\", len(players), \"users\")\n\n# ---------------------------\n# Generate player game libraries\n# ---------------------------\n\nplayer_game_rows = []\n\nfor user in users:\n    assigned_indices = user[\"assigned_games\"]\n    if not assigned_indices:\n        continue\n    g = games_all.loc[assigned_indices].reset_index()\n    # Preference score based on platform match\n    score = np.where(g[\"Platform\"] == user[\"preferred_platform\"], 2.0, 1.0).astype(\n        float\n    )\n    score = np.clip(score, 1e-6, None)\n    score_norm = (score - score.min()) / (score.max() - score.min() + 1e-9)\n    multipliers = 0.5 + score_norm  # 0.5–1.5\n    base_hours = rng.normal(loc=10, scale=5, size=len(g))\n    playtime_hours = np.clip(base_hours * multipliers, 0.5, 500)\n    rating_base = 3.0 + 1.0 * (score_norm - 0.5)\n    rating_noise = rng.normal(loc=0.0, scale=0.7, size=len(g))\n    player_rating = rating_base + rating_noise\n    for i, row in g.iterrows():\n        rating_adj = 0.35 if row[\"Genre\"] == user[\"primary_genre\"] else 0.0\n        final_rating = np.clip(float(player_rating[i] + rating_adj), 1.0, 5.0)\n        player_game_rows.append(\n            {\n                \"user_id\": user[\"user_id\"],\n                \"game_title\": row[\"game_title\"],\n                \"platform\": row[\"Platform\"],\n                \"genre\": row[\"Genre\"],\n                \"release_year\": row[\"release_year\"],\n                \"publisher\": row.get(\"publisher\", np.nan),\n                \"global_sales\": row.get(\"global_sales\", np.nan),\n                \"playtime_hours\": float(playtime_hours[i]),\n                \"player_rating\": round(final_rating, 2),\n            }\n        )\n\nplayer_games = pd.DataFrame(player_game_rows)\nplayer_games.to_csv(\"../data/player_games.csv\", index=False)\nprint(\"Generated player_games.csv with\", len(player_games), \"rows\")"
+  },
+  {
+    "objectID": "presentation.html#jupyter-notebook",
+    "href": "presentation.html#jupyter-notebook",
+    "title": "Video Game Recommendations",
+    "section": "Jupyter Notebook",
+    "text": "Jupyter Notebook\n\nCommon tool for data science workflows\nUsed for exploratory data analysis and recommendation engine"
+  },
+  {
+    "objectID": "presentation.html#exploring",
+    "href": "presentation.html#exploring",
+    "title": "Video Game Recommendations",
+    "section": "Exploring",
+    "text": "Exploring"
+  },
+  {
+    "objectID": "presentation.html#section",
+    "href": "presentation.html#section",
+    "title": "Video Game Recommendations",
+    "section": "",
+    "text": "Rows with missing Year dropped: 271\n\n\n\n\n\n\n\n\n\nGlobal_Sales\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\n\n\n\n\ncount\n16327.000000\n16327.000000\n16327.000000\n16327.000000\n16327.000000\n\n\nmean\n0.540232\n0.265415\n0.147554\n0.078661\n0.048325\n\n\nstd\n1.565732\n0.821591\n0.508766\n0.311557\n0.189885\n\n\nmin\n0.010000\n0.000000\n0.000000\n0.000000\n0.000000\n\n\n25%\n0.060000\n0.000000\n0.000000\n0.000000\n0.000000\n\n\n50%\n0.170000\n0.080000\n0.020000\n0.000000\n0.010000\n\n\n75%\n0.480000\n0.240000\n0.110000\n0.040000\n0.040000\n\n\nmax\n82.740000\n41.490000\n29.020000\n10.220000\n10.570000"
+  },
+  {
+    "objectID": "presentation.html#section-1",
+    "href": "presentation.html#section-1",
+    "title": "Video Game Recommendations",
+    "section": "",
+    "text": "Code\nplayers.describe()\n\n\n\n\n\n\n\n\n\nuser_id\nsession_count_per_week\navg_session_length_hours\n\n\n\n\ncount\n11959.000000\n11959.000000\n11959.000000\n\n\nmean\n5980.000000\n5.649218\n2.014694\n\n\nstd\n3452.410269\n3.296081\n0.691597\n\n\nmin\n1.000000\n2.000000\n0.500000\n\n\n25%\n2990.500000\n3.000000\n1.540000\n\n\n50%\n5980.000000\n5.000000\n2.010000\n\n\n75%\n8969.500000\n7.000000\n2.480000\n\n\nmax\n11959.000000\n14.000000\n4.610000"
+  },
+  {
+    "objectID": "presentation.html#section-2",
+    "href": "presentation.html#section-2",
+    "title": "Video Game Recommendations",
+    "section": "",
+    "text": "Code\n# Based off of age group, what are some statistics for number of sessions per week and average session length?\nplayers.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])\n\n\n\n\n\n\n\n\n\nsession_count_per_week\navg_session_length_hours\n\n\n\nmean\nmedian\nmin\nmax\nmean\nmedian\nmin\nmax\n\n\nage_group\n\n\n\n\n\n\n\n\n\n\n\n\nAdult\n5.702414\n5.0\n2\n14\n2.026676\n2.03\n0.5\n4.32\n\n\nKids\n5.687317\n5.0\n2\n14\n2.011875\n2.01\n0.5\n4.60\n\n\nTeen\n5.601114\n5.0\n2\n14\n2.008455\n2.00\n0.5\n4.61"
+  },
+  {
+    "objectID": "presentation.html#section-3",
+    "href": "presentation.html#section-3",
+    "title": "Video Game Recommendations",
+    "section": "",
+    "text": "Code\n# Based off of age group, what are some statistics for number of sessions per week and average session length?\nplayers.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])\n\n\n\n\n\n\n\n\n\nsession_count_per_week\navg_session_length_hours\n\n\n\nmean\nmedian\nmin\nmax\nmean\nmedian\nmin\nmax\n\n\nage_group\n\n\n\n\n\n\n\n\n\n\n\n\nAdult\n5.702414\n5.0\n2\n14\n2.026676\n2.03\n0.5\n4.32\n\n\nKids\n5.687317\n5.0\n2\n14\n2.011875\n2.01\n0.5\n4.60\n\n\nTeen\n5.601114\n5.0\n2\n14\n2.008455\n2.00\n0.5\n4.61"
+  },
+  {
+    "objectID": "presentation.html#section-4",
+    "href": "presentation.html#section-4",
+    "title": "Video Game Recommendations",
+    "section": "",
+    "text": "Code\n# Looking at the distribution of session counts and average session lengths.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))\nax.set_title('Sessions per Week')\nax.set_xlabel(\"Session Count per Week\")\nsns.histplot(players['session_count_per_week'], kde=True, ax=ax)\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#sessions-per-week",
+    "href": "presentation.html#sessions-per-week",
+    "title": "Video Game Recommendations",
+    "section": "Sessions per Week",
+    "text": "Sessions per Week\n\n\nCode\n# Looking at the distribution of session counts and average session lengths.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))\nax.set_xlabel(\"Session Count per Week\")\nsns.histplot(players['session_count_per_week'], kde=True, ax=ax)\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#average-session-length-in-hours",
+    "href": "presentation.html#average-session-length-in-hours",
+    "title": "Video Game Recommendations",
+    "section": "Average Session Length In Hours",
+    "text": "Average Session Length In Hours\n\n\nCode\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))\nax.set_xlabel(\"Average Session Length (hrs)\")\nsns.histplot(players['avg_session_length_hours'], kde=True, ax=ax)\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#code-from-the-jupyter-notebook",
+    "href": "presentation.html#code-from-the-jupyter-notebook",
+    "title": "Video Game Recommendations",
+    "section": "Code from the Jupyter Notebook",
+    "text": "Code from the Jupyter Notebook\n\nNot all EDA code and plots included here\nSee Jupyter Notebook file in GitHub repo for full context"
+  },
+  {
+    "objectID": "presentation.html#examining-the-age-groups",
+    "href": "presentation.html#examining-the-age-groups",
+    "title": "Video Game Recommendations",
+    "section": "Examining the age groups",
+    "text": "Examining the age groups\n\n\nCode\n# How many players are in each age group?\nplayers['age_group'].value_counts()\n\n\nage_group\nTeen     5924\nAdult    3646\nKids     2389\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#inspecting-the-dataframe",
+    "href": "presentation.html#inspecting-the-dataframe",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting the dataframe",
+    "text": "Inspecting the dataframe\n\n\nCode\n# Looking at the players dataset.\nplayers.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 11959 entries, 0 to 11958\nData columns (total 6 columns):\n #   Column                    Non-Null Count  Dtype  \n---  ------                    --------------  -----  \n 0   user_id                   11959 non-null  int64  \n 1   age_group                 11959 non-null  object \n 2   session_count_per_week    11959 non-null  int64  \n 3   avg_session_length_hours  11959 non-null  float64\n 4   primary_genre             11959 non-null  object \n 5   preferred_platform        11959 non-null  object \ndtypes: float64(1), int64(2), object(3)\nmemory usage: 560.7+ KB"
+  },
+  {
+    "objectID": "presentation.html#describing-the-dataframe",
+    "href": "presentation.html#describing-the-dataframe",
+    "title": "Video Game Recommendations",
+    "section": "Describing the dataframe",
+    "text": "Describing the dataframe\n\n\nCode\nplayers.describe()\n\n\n\n\n\n\n\n\n\nuser_id\nsession_count_per_week\navg_session_length_hours\n\n\n\n\ncount\n11959.000000\n11959.000000\n11959.000000\n\n\nmean\n5980.000000\n5.649218\n2.014694\n\n\nstd\n3452.410269\n3.296081\n0.691597\n\n\nmin\n1.000000\n2.000000\n0.500000\n\n\n25%\n2990.500000\n3.000000\n1.540000\n\n\n50%\n5980.000000\n5.000000\n2.010000\n\n\n75%\n8969.500000\n7.000000\n2.480000\n\n\nmax\n11959.000000\n14.000000\n4.610000"
+  },
+  {
+    "objectID": "presentation.html#average-session-count-and-session-length-per-age-group",
+    "href": "presentation.html#average-session-count-and-session-length-per-age-group",
+    "title": "Video Game Recommendations",
+    "section": "Average session count and session length per age group",
+    "text": "Average session count and session length per age group\n\n\nCode\n# Based off of age group, what are some statistics for number of sessions per week and average session length?\nplayers.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])\n\n\n\n\n\n\n\n\n\nsession_count_per_week\navg_session_length_hours\n\n\n\nmean\nmedian\nmin\nmax\nmean\nmedian\nmin\nmax\n\n\nage_group\n\n\n\n\n\n\n\n\n\n\n\n\nAdult\n5.702414\n5.0\n2\n14\n2.026676\n2.03\n0.5\n4.32\n\n\nKids\n5.687317\n5.0\n2\n14\n2.011875\n2.01\n0.5\n4.60\n\n\nTeen\n5.601114\n5.0\n2\n14\n2.008455\n2.00\n0.5\n4.61"
+  },
+  {
+    "objectID": "presentation.html#project-writeup",
+    "href": "presentation.html#project-writeup",
+    "title": "Video Game Recommendations",
+    "section": "Project Writeup",
+    "text": "Project Writeup\n\nFull writeup included on project site\nProject Writeup Link"
+  },
+  {
+    "objectID": "presentation.html#disclaimer",
+    "href": "presentation.html#disclaimer",
+    "title": "Video Game Recommendations",
+    "section": "Disclaimer",
+    "text": "Disclaimer\n\nNot all code and EDA is included in this presentation\nSee Jupyter Notebook file notebooks/final.ipynb for full context"
+  },
+  {
+    "objectID": "presentation.html#inspecting-the-dataframe-1",
+    "href": "presentation.html#inspecting-the-dataframe-1",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting the dataframe",
+    "text": "Inspecting the dataframe\n\n\nCode\n# Looking at the players dataset.\nplayer_games.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 59795 entries, 0 to 59794\nData columns (total 9 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   user_id         59795 non-null  int64  \n 1   game_title      59795 non-null  object \n 2   platform        59795 non-null  object \n 3   genre           59795 non-null  object \n 4   release_year    58812 non-null  float64\n 5   publisher       59584 non-null  object \n 6   global_sales    59795 non-null  float64\n 7   playtime_hours  59795 non-null  float64\n 8   player_rating   59795 non-null  float64\ndtypes: float64(4), int64(1), object(4)\nmemory usage: 4.1+ MB"
+  },
+  {
+    "objectID": "presentation.html#describing-the-dataframe-1",
+    "href": "presentation.html#describing-the-dataframe-1",
+    "title": "Video Game Recommendations",
+    "section": "Describing the dataframe",
+    "text": "Describing the dataframe\n\n\nCode\nplayer_games.describe()\n\n\n\n\n\n\n\n\n\nuser_id\nrelease_year\nglobal_sales\nplaytime_hours\nplayer_rating\n\n\n\n\ncount\n59795.00000\n58812.000000\n59795.000000\n59795.000000\n59795.000000\n\n\nmean\n5980.00000\n2006.424641\n0.537874\n6.042779\n2.949367\n\n\nstd\n3452.29479\n5.806611\n1.614241\n4.456615\n0.753637\n\n\nmin\n1.00000\n1980.000000\n0.010000\n0.500000\n1.000000\n\n\n25%\n2990.00000\n2003.000000\n0.060000\n3.458654\n2.430000\n\n\n50%\n5980.00000\n2007.000000\n0.170000\n5.277986\n2.930000\n\n\n75%\n8970.00000\n2010.000000\n0.470000\n7.266400\n3.450000\n\n\nmax\n11959.00000\n2020.000000\n82.740000\n40.703874\n5.000000"
+  },
+  {
+    "objectID": "presentation.html#inspecting-games-per-platform",
+    "href": "presentation.html#inspecting-games-per-platform",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting games per platform",
+    "text": "Inspecting games per platform\n\n\nCode\n# How many games are there per platform?\nplayer_games['platform'].value_counts()\n\n# Definitely skewed towards more modern gaming in this dataset.\n# Especially DS titles - that's mostly Nintendo handheld games.\n\n\nplatform\nDS      7891\nPS2     7841\nPS3     4790\nWii     4741\nX360    4549\nPSP     4403\nPS      4286\nPC      3416\nXB      2969\nGBA     2966\nGC      1992\n3DS     1808\nPSV     1513\nPS4     1206\nN64     1142\nSNES     846\nXOne     756\nSAT      618\nWiiU     506\n2600     466\nGB       354\nNES      353\nDC       180\nGEN       94\nNG        44\nSCD       21\nWS        20\n3DO       10\nTG16       7\nPCFX       4\nGG         3\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#inspecting-games-per-genre",
+    "href": "presentation.html#inspecting-games-per-genre",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting games per genre",
+    "text": "Inspecting games per genre\n\n\nCode\n# How mnay games are there per genre?\nplayer_games['genre'].value_counts()\n\n# Most games are Action or Sports.\n# There are quite a lot of \"Misc\" games too - not sure what those are.#| \n\n\ngenre\nAction          11970\nSports           8490\nMisc             6290\nRole-Playing     5410\nShooter          4675\nAdventure        4675\nRacing           4530\nPlatform         3180\nSimulation       3055\nFighting         2980\nStrategy         2425\nPuzzle           2115\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#top-player-ratings-by-platform",
+    "href": "presentation.html#top-player-ratings-by-platform",
+    "title": "Video Game Recommendations",
+    "section": "Top Player Ratings by Platform",
+    "text": "Top Player Ratings by Platform\n\n\nCode\n# Looking at a box plot of platform and player rating\n# I'll sort by the top 10 platforms by average player rating for better visualization.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.25))\ntop_platforms = player_games.groupby('platform')['player_rating'].mean().sort_values(ascending=False).head(10).index\nsns.boxplot(x='platform', y='player_rating', data=player_games[player_games['platform'].isin(top_platforms)], ax=ax)\nplt.title('Player Ratings by Platform (Top 10 Platforms)')\nplt.xticks(rotation=90)\nplt.show()"
+  },
+  {
+    "objectID": "presentation.html#inspecting-the-dataframe-2",
+    "href": "presentation.html#inspecting-the-dataframe-2",
+    "title": "Video Game Recommendations",
+    "section": "Inspecting the dataframe",
+    "text": "Inspecting the dataframe\n\n\nCode\n# Looking at the players dataset.\nvgsales.info()\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 16598 entries, 0 to 16597\nData columns (total 11 columns):\n #   Column        Non-Null Count  Dtype  \n---  ------        --------------  -----  \n 0   Rank          16598 non-null  int64  \n 1   Name          16598 non-null  object \n 2   Platform      16598 non-null  object \n 3   Year          16327 non-null  float64\n 4   Genre         16598 non-null  object \n 5   Publisher     16540 non-null  object \n 6   NA_Sales      16598 non-null  float64\n 7   EU_Sales      16598 non-null  float64\n 8   JP_Sales      16598 non-null  float64\n 9   Other_Sales   16598 non-null  float64\n 10  Global_Sales  16598 non-null  float64\ndtypes: float64(6), int64(1), object(4)\nmemory usage: 1.4+ MB"
+  },
+  {
+    "objectID": "presentation.html#describing-the-dataframe-2",
+    "href": "presentation.html#describing-the-dataframe-2",
+    "title": "Video Game Recommendations",
+    "section": "Describing the dataframe",
+    "text": "Describing the dataframe\n\n\nCode\nvgsales.describe()\n\n\n\n\n\n\n\n\n\nRank\nYear\nNA_Sales\nEU_Sales\nJP_Sales\nOther_Sales\nGlobal_Sales\n\n\n\n\ncount\n16598.000000\n16327.000000\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n16598.000000\n\n\nmean\n8300.605254\n2006.406443\n0.264667\n0.146652\n0.077782\n0.048063\n0.537441\n\n\nstd\n4791.853933\n5.828981\n0.816683\n0.505351\n0.309291\n0.188588\n1.555028\n\n\nmin\n1.000000\n1980.000000\n0.000000\n0.000000\n0.000000\n0.000000\n0.010000\n\n\n25%\n4151.250000\n2003.000000\n0.000000\n0.000000\n0.000000\n0.000000\n0.060000\n\n\n50%\n8300.500000\n2007.000000\n0.080000\n0.020000\n0.000000\n0.010000\n0.170000\n\n\n75%\n12449.750000\n2010.000000\n0.240000\n0.110000\n0.040000\n0.040000\n0.470000\n\n\nmax\n16600.000000\n2020.000000\n41.490000\n29.020000\n10.220000\n10.570000\n82.740000"
+  },
+  {
+    "objectID": "presentation.html#sales-per-platform",
+    "href": "presentation.html#sales-per-platform",
+    "title": "Video Game Recommendations",
+    "section": "Sales per platform",
+    "text": "Sales per platform\n\n\nCode\n# How many sales per platform?\nvgsales['Platform'].value_counts() \n\n\nPlatform\nDS      2163\nPS2     2161\nPS3     1329\nWii     1325\nX360    1265\nPSP     1213\nPS      1196\nPC       960\nXB       824\nGBA      822\nGC       556\n3DS      509\nPSV      413\nPS4      336\nN64      319\nSNES     239\nXOne     213\nSAT      173\nWiiU     143\n2600     133\nNES       98\nGB        98\nDC        52\nGEN       27\nNG        12\nSCD        6\nWS         6\n3DO        3\nTG16       2\nGG         1\nPCFX       1\nName: count, dtype: int64"
+  },
+  {
+    "objectID": "presentation.html#sale-counts-vs-game-counts-by-platform",
+    "href": "presentation.html#sale-counts-vs-game-counts-by-platform",
+    "title": "Video Game Recommendations",
+    "section": "Sale counts vs Game counts by Platform",
+    "text": "Sale counts vs Game counts by Platform"
+  },
+  {
+    "objectID": "presentation.html#general-flow",
+    "href": "presentation.html#general-flow",
+    "title": "Video Game Recommendations",
+    "section": "General flow",
+    "text": "General flow\n\nFilter the data frame to user id, game id (title), rating\nInitialize a Reader object from the dataframe\nFit the model"
+  },
+  {
+    "objectID": "presentation.html#filtering-the-dataframe",
+    "href": "presentation.html#filtering-the-dataframe",
+    "title": "Video Game Recommendations",
+    "section": "Filtering the dataframe",
+    "text": "Filtering the dataframe\n# First, I need to filter down to a data frame with three columns for this model:\n# UserID, Game Title, and user rating.\n# The player_games csv has those three columns, so I'll go ahead and grab it.\nmodel_df = pd.read_csv(\"../data/player_games.csv\")\ncols_to_keep = ['user_id', 'game_title', 'player_rating']\n\nrating_df = model_df[cols_to_keep]"
+  },
+  {
+    "objectID": "presentation.html#fold-cross-validation",
+    "href": "presentation.html#fold-cross-validation",
+    "title": "Video Game Recommendations",
+    "section": "5-fold Cross-Validation",
+    "text": "5-fold Cross-Validation\n# Using surprise\nreader = Reader(rating_scale=(1.0, 5.0))\ndata = Dataset.load_from_df(rating_df, reader)\n\nalgo = SVD()\n\n# Run 5-fold cross-validation and print results\ncross_validate(algo, data, measures=[\"RMSE\", \"MAE\"], cv=5, verbose=True)"
+  },
+  {
+    "objectID": "presentation.html#get-top-n-function",
+    "href": "presentation.html#get-top-n-function",
+    "title": "Video Game Recommendations",
+    "section": "Get-Top-N function",
+    "text": "Get-Top-N function\ndef get_top_n(predictions, n=10):\n    \"\"\"Return the top-N recommendation for each user from a set of predictions.\n\n    Args:\n        predictions(list of Prediction objects): The list of predictions, as\n            returned by the test method of an algorithm.\n        n(int): The number of recommendation to output for each user. Default\n            is 10.\n\n    Returns:\n    A dict where keys are user (raw) ids and values are lists of tuples:\n        [(raw item id, rating estimation), ...] of size n.\n    \"\"\"\n\n    # First map the predictions to each user.\n    top_n = defaultdict(list)\n    for uid, iid, true_r, est, _ in predictions:\n        top_n[uid].append((iid, est))\n\n    # Then sort the predictions for each user and retrieve the k highest ones.\n    for uid, user_ratings in top_n.items():\n        user_ratings.sort(key=lambda x: x[1], reverse=True)\n        top_n[uid] = user_ratings[:n]\n\n    return top_n"
+  },
+  {
+    "objectID": "presentation.html#model-training-and-predictions",
+    "href": "presentation.html#model-training-and-predictions",
+    "title": "Video Game Recommendations",
+    "section": "Model Training and Predictions",
+    "text": "Model Training and Predictions\n# Train the model on the full dataset\nprint(\"Training the model on the full dataset...\")\ntrainset = data.build_full_trainset()\nalgo.fit(trainset)\nprint(\"Model trained.\")\n\n# Predict ratings for all pairs that are not in the training set.\nprint(\"Generating recommendations...\")\ntestset = trainset.build_anti_testset()\npredictions = algo.test(testset)\nprint(\"Recommendations generated.\")\n\nprint(\"Getting the top 5 recommendations for each user...\")\ntop_n = get_top_n(predictions,n=5)\n\n# Print the recommended items for each user\nfor uid, user_ratings in top_n.items():\n    print(f\"User {uid}:\")\n    for (iid, est) in user_ratings:\n        print(f\"  Game: {iid}, Estimated Rating: {est:0.2f}\")\n    print()"
+  },
+  {
+    "objectID": "presentation.html#model-training-and-predictions-output-example",
+    "href": "presentation.html#model-training-and-predictions-output-example",
+    "title": "Video Game Recommendations",
+    "section": "Model Training and Predictions Output Example",
+    "text": "Model Training and Predictions Output Example\nTraining the model on the full dataset...\nModel trained.\nGenerating recommendations...\nRecommendations generated.\nGetting the top 5 recommendations for each user...\n...\nUser 11389:\n  Game: Over the Hedge: Hammy Goes Nuts!, Estimated Rating: 3.41\n  Game: SWAT: Global Strike Team, Estimated Rating: 3.39\n  Game: Midnight Play! Pack, Estimated Rating: 3.33\n  Game: Kane & Lynch 2: Dog Days, Estimated Rating: 3.33\n  Game: Tenchu: Dark Secret, Estimated Rating: 3.33\n\nUser 11390:\n  Game: Silly Bandz: Play The Craze, Estimated Rating: 3.56\n  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.48\n  Game: Royal Palace of White Sword and The City of Gentiles, Estimated Rating: 3.45\n  Game: Hot Wheels: Battle Force 5, Estimated Rating: 3.44\n  Game: Hitman 2: Silent Assassin, Estimated Rating: 3.43\n\nUser 11391:\n  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.45\n  Game: Higurashi no Nakukoru ni Kizuna: Dai-Ni-Kan - Sou, Estimated Rating: 3.44\n  Game: Legaia 2: Duel Saga, Estimated Rating: 3.44\n  Game: Seinaru Kana: Orichalcum no Na no Motoni, Estimated Rating: 3.40\n  Game: Need for Speed Underground, Estimated Rating: 3.38"
+  },
+  {
+    "objectID": "presentation.html#the-question",
+    "href": "presentation.html#the-question",
+    "title": "Video Game Recommendations",
+    "section": "The Question",
+    "text": "The Question\n\nCan we determine factors from the data that may influence global sales?\nInitially planned to use ratings data set, but dropped due to reasons mentioned before"
+  },
+  {
+    "objectID": "presentation.html#sales-distribution",
+    "href": "presentation.html#sales-distribution",
+    "title": "Video Game Recommendations",
+    "section": "Sales Distribution",
+    "text": "Sales Distribution\n\n\nCode\n# Let's peek at the sales distribution and how totals moved over time.\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))\nsns.histplot(sales_clean['Global_Sales'], bins=30, ax=ax)\nax.set_title('Global sales are very skewed (millions)')\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#totals-over-time",
+    "href": "presentation.html#totals-over-time",
+    "title": "Video Game Recommendations",
+    "section": "Totals Over Time",
+    "text": "Totals Over Time\n\n\nCode\nfig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))\nyearly = sales_clean.groupby('Year')['Global_Sales'].agg(total='sum', mean='mean')\nax.plot(yearly.index, yearly['total'], label='Total global sales')\nax.plot(yearly.index, yearly['mean'], label='Avg per title')\nax.axvspan(2006, 2011, color='orange', alpha=0.15)\nax.set_title('Sales peaked in the mid-late 2000s')\nax.legend()\nplt.tight_layout()"
+  },
+  {
+    "objectID": "presentation.html#genre-sales",
+    "href": "presentation.html#genre-sales",
+    "title": "Video Game Recommendations",
+    "section": "Genre Sales",
+    "text": "Genre Sales"
+  },
+  {
+    "objectID": "presentation.html#publishers-and-global-sales",
+    "href": "presentation.html#publishers-and-global-sales",
+    "title": "Video Game Recommendations",
+    "section": "Publishers and global sales",
+    "text": "Publishers and global sales"
+  },
+  {
+    "objectID": "presentation.html#key-takeaways-from-eda",
+    "href": "presentation.html#key-takeaways-from-eda",
+    "title": "Video Game Recommendations",
+    "section": "Key Takeaways from EDA",
+    "text": "Key Takeaways from EDA\n\nSales are highly skewed; a small set of blockbusters dominates volume.\nGlobal totals (and per-title averages) peak around 2006–2011, then taper off.\n\nThis could be due to data incompleteness for more recent years, or a real trend."
+  },
+  {
+    "objectID": "presentation.html#key-takeaways-cont",
+    "href": "presentation.html#key-takeaways-cont",
+    "title": "Video Game Recommendations",
+    "section": "Key Takeaways (cont)",
+    "text": "Key Takeaways (cont)\n\nPlatform, Shooter, and Sports games post the highest medians.\nNintendo, EA, and Activision lead cumulative sales.\nFor the biggest 200 games, NA and EU carry the bulk of global revenue; Japan is meaningful but smaller.\nView the full EDA in the Notebook file"
+  }
+]

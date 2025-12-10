@@ -1,7 +1,7 @@
 ---
-title: "Project title"
-subtitle: "INFO 523 - Summer 2025 - Final Project"
-author: "Author names"
+title: "Video Game Recommendations"
+subtitle: "INFO 523 - Fall 2025 - Final Project"
+author: "Spencer Atchley"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -23,8 +23,10 @@ execute:
 
 # Load packages here
 import pandas as pd
+import numpy as np
 import seaborn as sns
-
+import matplotlib.pyplot as plt
+from pathlib import Path
 ```
 
 ```{python}
@@ -45,123 +47,471 @@ plt.rcParams['figure.figsize'] = (6, 6 * 0.618)
 #| label: load-data
 #| include: false
 # Load data in Python
-mtcars = sns.load_dataset('mpg').dropna()  # mtcars dataset is similar to the mpg dataset from seaborn
-mtcars['speed'] = mtcars['horsepower'] / mtcars['weight']
+data_dir = Path("data")
+players_path = data_dir / "players.csv"
+player_games_path = data_dir / "player_games.csv"
+vgsales_path = data_dir / "vgsales.csv"
 
-penguins = sns.load_dataset('penguins').dropna()
+players = pd.read_csv(players_path)
+player_games = pd.read_csv(player_games_path)
+vgsales = pd.read_csv(vgsales_path)
 ```
 
-# Using Quarto for presentations
+# Project Overview
 
-## Quarto
+## Project Goals
+- Which video games should be recommended to a user based on their existing library, playtime, and ratings?
+- Which factors (such as genre, platform, or region) most strongly influence a game's global sales performance?
 
--   The presentation is created using the Quarto CLI
+## Tools Used
+- Quarto
+- Jupyter Notebook
+- VSCode
+- Generative AI (more on this in later slides)
 
--   `##` sets the start of a new slide
+## Project Writeup
+- Full writeup included on project site
+- [Project Writeup Link](https://info523-fall25-101-201.github.io/final-project-spencer-atchley-solo/writeup.html)
 
-## Layouts
+# Recommendation Engines
 
-You can use plain text
+## Types of recommendation engines
+- Content-based filtering
+- Collaborative filtering
 
-::: columns
-::: {.column width="40%"}
--   or bullet points[^1]
-:::
+## Content-based filtering
+- Recommends items to users based off of features and metadata
+- Compares item data and user data to create recommendations
+  - Item data: Video game genres, time to game completion, cost
+  - User data: Previously played genres, game completion %, budget range
 
-::: {.column width="60%"}
-or in two columns
-:::
-:::
+## Collaborative filtering
+- Groups users based on similarities
+- Recommends new items to users based off of similar user items
+  - Similar users share similar interests
+  - Uses matrices to represent data
+  - Measures similarity between users
+- Example: User A rated Game1 high, User B rated Game1 high, User A also rated Game2 high, recommend Game2 to User B
+- Susceptible to Cold Start problem
+  - New users have no past history, system can't perform evaluation
 
-[^1]: And add footnotes
+## Hybrid filtering
+- Uses both content-based filtering and collaborative filtering
+- Helps to overcome weaknesses from models, such as cold start problem
 
--   like
+## Project Choice
+- Collaborative filtering chosen for project
+  - Easier to use as introduction to recommendation engines
+  - Good support using available Python libraries
+  - Good learning opportunity, easier to understand
 
--   this
+# Tools and Libraries
 
-## Code
+## Surprise
+- Simple Python RecommendatIon System Engine
+- Collaborative filtering library
+- Well documented, easy to use
 
+## Other libraries used
+- Standard libraries used throughout course
+  - pandas
+  - numpy
+  - seaborn
+
+# Data sets
+
+## Video Game Sales
+- Thousands of video game sales
+- Various pieces of metadata
+  - Ranking of overall sales
+  - Platform
+  - Year of release
+  - Regional sales and global sales
+
+## Video Game Reviews and Ratings
+- Seemed promising at initial glance
+- EDA determined not feasible for project
+  - Randomly generated data
+
+# Use of Generative AI
+
+## Agentic AI
+- How can we use Agentic AI to assist in data science?
+  - Wanted to explore the use of agentic AI in a practical development setting
+- Used OpenAI Codex
+  - Extension for VSCode
+  - Used GPT-5.1-Codex-Max model
+- Thorough review required
+  - Code review needed on each generated line
+
+# Development Workflow
+
+## Synthetic Dataset Generation
+- Needed synthetic player data
+  - Needed both unique player entities and game ratings
+- Agentic AI used for player_gen script
+- Several attempts and some refinement required
+
+## Jupyter Notebook
+- Common tool for data science workflows
+- Used for exploratory data analysis and recommendation engine
+
+# Code Disclaimer
+
+## Disclaimer
+- Not all code and EDA is included in this presentation
+- See Jupyter Notebook file `notebooks/final.ipynb` for full context
+
+# Exploring the Players dataset
+
+## Inspecting the dataframe
 ```{python}
-from sklearn.linear_model import LinearRegression
-import statsmodels.api as sm
-import pandas as pd
-
-# Fit a linear regression model
-X = mtcars[['speed']]
-y = mtcars['mpg']
-model = LinearRegression().fit(X, y)
-
-# Summary of the model
-X2 = sm.add_constant(X)
-est = sm.OLS(y, X2)
-est2 = est.fit()
-print(est2.summary())
+#| echo: true
+#| code-fold: true
+# Looking at the players dataset.
+players.info()
 ```
 
-## Plots
-
+## Describing the dataframe
 ```{python}
-penguins['species'] = penguins['species'].apply(lambda x: "Adelie" if x == "Adelie" else "Other")
-sns.scatterplot(data=penguins, x='flipper_length_mm', y='body_mass_g', hue='species')
-plt.show()
+#| echo: true
+#| code-fold: true
+players.describe()
 ```
 
-## Plot and text
-
-::: columns
-::: {.column width="50%"}
--   Some text
-
--   goes here
-:::
-
-::: {.column width="50%"}
+## Examining the age groups
 ```{python}
-#| warning: false
+#| echo: true
+#| code-fold: true
+# How many players are in each age group?
+players['age_group'].value_counts()
+```
+
+## Average session count and session length per age group
+```{python}
+#| echo: true
+#| code-fold: true
+# Based off of age group, what are some statistics for number of sessions per week and average session length?
+players.groupby('age_group')[['session_count_per_week', 'avg_session_length_hours']].agg(['mean','median','min','max'])
+```
+
+## Sessions per Week
+```{python}
+#| echo: true
+#| code-fold: true
 #| fig.width: 5.5
-fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.618))
-sns.boxplot(data=penguins, x='bill_length_mm', y='species', hue='species', ax=ax)
-plt.show()
+# Looking at the distribution of session counts and average session lengths.
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))
+ax.set_xlabel("Session Count per Week")
+sns.histplot(players['session_count_per_week'], kde=True, ax=ax)
+plt.tight_layout()
 ```
-:::
-:::
 
-# A new section...
+## Average Session Length In Hours
+```{python}
+#| echo: true
+#| code-fold: true
+#| fig.width: 5.5
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))
+ax.set_xlabel("Average Session Length (hrs)")
+sns.histplot(players['avg_session_length_hours'], kde=True, ax=ax)
+plt.tight_layout() 
+```
 
-## Tables
+# Player Ratings
 
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+## Inspecting the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+# Looking at the players dataset.
+player_games.info()
+```
+
+## Describing the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+player_games.describe()
+```
+
+## Inspecting games per platform
+```{python}
+#| echo: true
+#| code-fold: true
+# How many games are there per platform?
+player_games['platform'].value_counts()
+
+# Definitely skewed towards more modern gaming in this dataset.
+# Especially DS titles - that's mostly Nintendo handheld games.
+```
+
+## Inspecting games per genre
+```{python}
+#| echo: true
+#| code-fold: true
+# How mnay games are there per genre?
+player_games['genre'].value_counts()
+
+# Most games are Action or Sports.
+# There are quite a lot of "Misc" games too - not sure what those are.#| 
+```
+
+## Top Player Ratings by Platform
+```{python}
+#| echo: true
+#| code-fold: true
+#| fig.width: 5.5
+# Looking at a box plot of platform and player rating
+# I'll sort by the top 10 platforms by average player rating for better visualization.
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.25))
+top_platforms = player_games.groupby('platform')['player_rating'].mean().sort_values(ascending=False).head(10).index
+sns.boxplot(x='platform', y='player_rating', data=player_games[player_games['platform'].isin(top_platforms)], ax=ax)
+plt.title('Player Ratings by Platform (Top 10 Platforms)')
+plt.xticks(rotation=90)
+plt.show() 
+```
+
+# Video Game Sales
+
+## Inspecting the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+# Looking at the players dataset.
+vgsales.info()
+```
+
+## Describing the dataframe
+```{python}
+#| echo: true
+#| code-fold: true
+vgsales.describe()
+```
+
+## Sales per platform
+```{python}
+#| echo: true
+#| code-fold: true
+# How many sales per platform?
+vgsales['Platform'].value_counts() 
+```
+
+## Sale counts vs Game counts by Platform
+```{python}
+# Do the sales per platform align with the number of games played per platform in the player_games dataset?
+platform_sales_counts = vgsales['Platform'].value_counts()
+platform_game_counts = player_games['platform'].value_counts()
+
+# Visualizing the two distributions side by side
+platforms = set(platform_sales_counts.index).union(set(platform_game_counts.index))
+sales_counts = [platform_sales_counts.get(platform, 0) for platform in platforms]
+game_counts = [platform_game_counts.get(platform, 0) for platform in platforms]
+x = np.arange(len(platforms))
+width = 0.35
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.4))
+bars1 = ax.bar(x - width/2, sales_counts, width, label='Sales Counts')
+bars2 = ax.bar(x + width/2, game_counts, width, label='Game Counts')
+ax.set_xticks(x)
+ax.set_xticklabels(platforms, rotation=90)
+ax.set_ylabel('Counts')
+ax.set_title('Sales Counts vs Game Counts by Platform')
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+# Yep, I'd say there is a trend.
+# Games that had more sales have more play records in the player_games dataset.
+```
+
+# The Surprise
+
+## General flow
+- Filter the data frame to user id, game id (title), rating
+- Initialize a Reader object from the dataframe
+- Fit the model
+
+## Filtering the dataframe
+```python
+# First, I need to filter down to a data frame with three columns for this model:
+# UserID, Game Title, and user rating.
+# The player_games csv has those three columns, so I'll go ahead and grab it.
+model_df = pd.read_csv("../data/player_games.csv")
+cols_to_keep = ['user_id', 'game_title', 'player_rating']
+
+rating_df = model_df[cols_to_keep]
+```
+
+## 5-fold Cross-Validation
+```python
+# Using surprise
+reader = Reader(rating_scale=(1.0, 5.0))
+data = Dataset.load_from_df(rating_df, reader)
+
+algo = SVD()
+
+# Run 5-fold cross-validation and print results
+cross_validate(algo, data, measures=["RMSE", "MAE"], cv=5, verbose=True)
+```
+
+## Get-Top-N function
+```python
+def get_top_n(predictions, n=10):
+    """Return the top-N recommendation for each user from a set of predictions.
+
+    Args:
+        predictions(list of Prediction objects): The list of predictions, as
+            returned by the test method of an algorithm.
+        n(int): The number of recommendation to output for each user. Default
+            is 10.
+
+    Returns:
+    A dict where keys are user (raw) ids and values are lists of tuples:
+        [(raw item id, rating estimation), ...] of size n.
+    """
+
+    # First map the predictions to each user.
+    top_n = defaultdict(list)
+    for uid, iid, true_r, est, _ in predictions:
+        top_n[uid].append((iid, est))
+
+    # Then sort the predictions for each user and retrieve the k highest ones.
+    for uid, user_ratings in top_n.items():
+        user_ratings.sort(key=lambda x: x[1], reverse=True)
+        top_n[uid] = user_ratings[:n]
+
+    return top_n
+```
+
+## Model Training and Predictions
+```python
+# Train the model on the full dataset
+print("Training the model on the full dataset...")
+trainset = data.build_full_trainset()
+algo.fit(trainset)
+print("Model trained.")
+
+# Predict ratings for all pairs that are not in the training set.
+print("Generating recommendations...")
+testset = trainset.build_anti_testset()
+predictions = algo.test(testset)
+print("Recommendations generated.")
+
+print("Getting the top 5 recommendations for each user...")
+top_n = get_top_n(predictions,n=5)
+
+# Print the recommended items for each user
+for uid, user_ratings in top_n.items():
+    print(f"User {uid}:")
+    for (iid, est) in user_ratings:
+        print(f"  Game: {iid}, Estimated Rating: {est:0.2f}")
+    print()
+```
+
+## Model Training and Predictions Output Example
+```
+Training the model on the full dataset...
+Model trained.
+Generating recommendations...
+Recommendations generated.
+Getting the top 5 recommendations for each user...
+...
+User 11389:
+  Game: Over the Hedge: Hammy Goes Nuts!, Estimated Rating: 3.41
+  Game: SWAT: Global Strike Team, Estimated Rating: 3.39
+  Game: Midnight Play! Pack, Estimated Rating: 3.33
+  Game: Kane & Lynch 2: Dog Days, Estimated Rating: 3.33
+  Game: Tenchu: Dark Secret, Estimated Rating: 3.33
+
+User 11390:
+  Game: Silly Bandz: Play The Craze, Estimated Rating: 3.56
+  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.48
+  Game: Royal Palace of White Sword and The City of Gentiles, Estimated Rating: 3.45
+  Game: Hot Wheels: Battle Force 5, Estimated Rating: 3.44
+  Game: Hitman 2: Silent Assassin, Estimated Rating: 3.43
+
+User 11391:
+  Game: Teenage Mutant Ninja Turtles: Mutants in Manhattan, Estimated Rating: 3.45
+  Game: Higurashi no Nakukoru ni Kizuna: Dai-Ni-Kan - Sou, Estimated Rating: 3.44
+  Game: Legaia 2: Duel Saga, Estimated Rating: 3.44
+  Game: Seinaru Kana: Orichalcum no Na no Motoni, Estimated Rating: 3.40
+  Game: Need for Speed Underground, Estimated Rating: 3.38
+
+```
+
+# Part 2: What influences a game global sales performance?
+
+## The Question
+- Can we determine factors from the data that may influence global sales?
+- Initially planned to use ratings data set, but dropped due to reasons mentioned before
 
 ```{python}
-penguins.head().to_html()
+#| include: false
+# Start with a clean copy and fix Year.
+sales = vgsales.copy()
+sales['Year'] = pd.to_numeric(sales['Year'], errors='coerce')
+missing_year = sales['Year'].isna().sum()
+sales_clean = sales.dropna(subset=['Year']).assign(Year=lambda df: df['Year'].astype(int))
+print(f'Rows with missing Year dropped: {missing_year}')
+sales_clean[['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales']].describe()
 ```
 
-## Images
-
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
-
-## Math Expressions {.smaller}
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. \$\\alpha+\\beta\$ renders $\alpha + \beta$. You can use the display style with double dollar signs:
-
-```         
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
+## Sales Distribution
+```{python}
+#| echo: true
+#| code-fold: true
+# Let's peek at the sales distribution and how totals moved over time.
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))
+sns.histplot(sales_clean['Global_Sales'], bins=30, ax=ax)
+ax.set_title('Global sales are very skewed (millions)')
+plt.tight_layout() 
 ```
 
-$$
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-$$
+## Totals Over Time
+```{python}
+#| echo: true
+#| code-fold: true
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.35))
+yearly = sales_clean.groupby('Year')['Global_Sales'].agg(total='sum', mean='mean')
+ax.plot(yearly.index, yearly['total'], label='Total global sales')
+ax.plot(yearly.index, yearly['mean'], label='Avg per title')
+ax.axvspan(2006, 2011, color='orange', alpha=0.15)
+ax.set_title('Sales peaked in the mid-late 2000s')
+ax.legend()
+plt.tight_layout()
+```
 
-Limitations:
+## Genre Sales
+```{python}
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.5))
+genre_medians = sales_clean.groupby('Genre')['Global_Sales'].median().sort_values(ascending=False)
 
-1.  The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
+sns.barplot(x=genre_medians.index, y=genre_medians.values, color='steelblue', ax=ax)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
+ax.set_ylabel('Median global sales (millions)')
+ax.set_title('Platform/Shooter/Sports sit at the top')
+plt.tight_layout()
+```
 
-2.  There should not be spaces after the opening `$` or before the closing `$`.
+## Publishers and global sales
+```{python}
+fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.5))
+# Who moves the most units in aggregate?
+publisher_totals = sales_clean.groupby('Publisher')['Global_Sales'].sum().sort_values(ascending=False).head(12)
+sns.barplot(y=publisher_totals.index, x=publisher_totals.values, palette='Blues_r', ax=ax)
+plt.title('Publishers with the largest cumulative global sales')
+plt.xlabel('Total sales (millions)')
+plt.tight_layout()
+```
 
-# Wrap up
+## Key Takeaways from EDA
+- Sales are highly skewed; a small set of blockbusters dominates volume.
+- Global totals (and per-title averages) peak around 2006–2011, then taper off.
+  - This could be due to data incompleteness for more recent years, or a real trend.
 
-## Feeling adventurous?
 
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
+## Key Takeaways (cont)
+- Platform, Shooter, and Sports games post the highest medians.
+- Nintendo, EA, and Activision lead cumulative sales.
+- For the biggest 200 games, NA and EU carry the bulk of global revenue; Japan is meaningful but smaller.
+- View the full EDA in the Notebook file
